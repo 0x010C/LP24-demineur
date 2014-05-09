@@ -9,8 +9,8 @@ public class Case {
 	public enum State {
 		hidden,
 		open,
-		flagged,
-		asked
+		flag,
+		ask
 	}
 	
 	public enum Content {
