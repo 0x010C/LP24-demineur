@@ -28,6 +28,11 @@ public class Chunk {
 		this.generateChunk();
 	}
 	
+	/* Getters */
+	public int getSeed() {
+		return seed;
+	}
+	
 	/* Methods */
 	public void generateChunk() {
 		Random r = new Random(seed);
