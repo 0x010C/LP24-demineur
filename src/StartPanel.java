@@ -6,13 +6,8 @@ import javax.swing.JPanel;
 
 
 public class StartPanel extends JPanel{
-	protected int height;
-	protected int width;
-	
-	public StartPanel(int width, int height){
+	public StartPanel(){
 		super();
-		this.width = width;
-		this.height = height;
 		this.setBackground(Color.green);
 		
 		/* Definition of the GridLayout */

@@ -38,7 +38,7 @@ public class MainFrame extends JFrame {
 		card.setLayout(cardLayout);
 		
 		/* Define the start's panel */
-		StartPanel startPanel = new StartPanel(this.width, this.height-this.logoHeight);
+		StartPanel startPanel = new StartPanel();
 		
 		/* Define the customization's panel */
 		JPanel customizationPanel = new JPanel();
@@ -63,7 +63,6 @@ public class MainFrame extends JFrame {
 		/* Adding of the different JPanel */
 		card.add(startPanel, "start");
 		card.add(customizationPanel, "customization");
-		//card.add(rulesPanel, "rules");
 		card.add(rulesPanel, "rules");
 		card.add(aboutPanel, "about");
 		card.add(gamePanel, "game");
