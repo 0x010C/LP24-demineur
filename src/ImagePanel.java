@@ -12,6 +12,7 @@ public class ImagePanel extends JPanel {
 	protected String filePath;
 	protected Image img;
 	
+	/* Constructor with only the path as parameter */
 	public ImagePanel(String filePath) {
 		super();
 		this.filePath = filePath;
@@ -21,6 +22,7 @@ public class ImagePanel extends JPanel {
 		this.setPreferredSize(new Dimension(this.width, this.height));
 	}
 	
+	/* Complete constructor */
 	public ImagePanel(String filePath, int width, int height) {
 		super();
 		this.filePath = filePath;
