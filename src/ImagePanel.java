@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -17,6 +18,7 @@ public class ImagePanel extends JPanel {
 		this.img = new ImageIcon(this.filePath).getImage();
 		this.width = img.getWidth(null);
 		this.height = img.getHeight(null);
+		this.setPreferredSize(new Dimension(this.width, this.height));
 	}
 	
 	public ImagePanel(String filePath, int width, int height) {
@@ -25,6 +27,7 @@ public class ImagePanel extends JPanel {
 		this.img = new ImageIcon(this.filePath).getImage();
 		this.height = height;
 		this.width = width;
+		this.setPreferredSize(new Dimension(this.width, this.height));
 	}
 	
 	public void paintComponent(Graphics g) {

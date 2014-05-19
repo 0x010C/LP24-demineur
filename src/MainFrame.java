@@ -37,27 +37,42 @@ public class MainFrame extends JFrame {
 		CardLayout cardLayout = new CardLayout();
 		card.setLayout(cardLayout);
 		
-		JPanel startPanel = new JPanel();
-		startPanel.setBackground(Color.white);
+		/* Define the start's panel */
+		StartPanel startPanel = new StartPanel(this.width, this.height-this.logoHeight);
+		
+		/* Define the customization's panel */
 		JPanel customizationPanel = new JPanel();
-		JPanel rulePanel = new JPanel();
-		rulePanel.setBackground(Color.green);
+		
+		/* Define the rules' panel */
+		JPanel rulesPanel = new JPanel();
+		rulesPanel.setBackground(Color.white);
+		
+		/* Define the about's panel */
 		JPanel aboutPanel = new JPanel();
 		aboutPanel.setBackground(Color.blue);
+		
+		/* Define the game's panel */
 		JPanel gamePanel = new JPanel();
+		
+		/* Define the pause's panel */
 		JPanel pausePanel = new JPanel();
+		
+		/* Define the score's panel */
 		JPanel scorePanel = new JPanel();
+		
+		/* Adding of the different JPanel */
 		card.add(startPanel, "start");
 		card.add(customizationPanel, "customization");
-		card.add(rulePanel, "rule");
+		//card.add(rulesPanel, "rules");
+		card.add(rulesPanel, "rules");
 		card.add(aboutPanel, "about");
 		card.add(gamePanel, "game");
 		card.add(pausePanel, "pause");
 		card.add(scorePanel, "score");
 		
-		//cardLayout.show(card, "about");
+		cardLayout.show(card, "start");
 		
-		/* Display the windows */
+		/* Display the window */
 		this.setVisible(true);
 	}
 }
