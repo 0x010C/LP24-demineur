@@ -1,68 +1,71 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Label;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
 public class StartPanel extends JPanel{
+	
 	public StartPanel(){
 		super();
-		this.setBackground(Color.white);
+				
+		/* Definition of the BoderLayout */
+		BorderLayout bl = new BorderLayout();
+		this.setLayout(bl);
 		
-		/* Definition of Panels */
-		JPanel p1 = new JPanel();
-		JPanel p2 = new JPanel();
-		JPanel p3 = new JPanel();
-		JPanel p4 = new JPanel();
-		JPanel column = new JPanel();
-		//column.setSize(new Dimension(1100,400));
+		/* Definition of the GridLayout */
+		GridLayout gl = new GridLayout();
+		gl.setColumns(5);
+		gl.setRows(1);
+		gl.setHgap(10);
+		gl.setVgap(10);
 		
-		/* Definition of the BoxLayouts */
-		p1.setLayout(new BoxLayout(p1, BoxLayout.LINE_AXIS));
-		p2.setLayout(new BoxLayout(p2, BoxLayout.LINE_AXIS));
-		p3.setLayout(new BoxLayout(p3, BoxLayout.LINE_AXIS));
-		p4.setLayout(new BoxLayout(p4, BoxLayout.LINE_AXIS));
-		column.setLayout(new BoxLayout(column, BoxLayout.PAGE_AXIS));
+		/* Creation of the panels north, center and south */
+		JPanel panelWest = new JPanel();
+		JPanel panelEast = new JPanel();
+		JPanel panelNorth = new JPanel();
+		JPanel panelCenter = new JPanel();
+		JPanel panelSouth = new JPanel();
+		panelCenter.setMaximumSize(new Dimension(700, 30));
 		
-		/* Adding of the different panels to the panel column */
-		column.add(p1);
-		column.add(Box.createVerticalGlue());
-		column.add(p2);
-		column.add(Box.createVerticalGlue());
-		column.add(p3);
-		column.add(Box.createVerticalGlue());
-		column.add(p4);
+		this.add(BorderLayout.NORTH,panelNorth);
+		this.add(BorderLayout.CENTER,panelCenter);
+		this.add(BorderLayout.SOUTH,panelSouth);
+		this.add(BorderLayout.WEST,panelWest);
+		this.add(BorderLayout.EAST,panelEast);
 		
+
 		/* Creation of the buttons and setting the buttons' texts */
 		JButton btEasy = new JButton("Easy");
 		JButton btMedium = new JButton("Medium");
 		JButton btDifficult = new JButton("Difficult");
 		JButton btCustom = new JButton("Custom");
 		JButton btInfinite = new JButton("Infinite");
+
+		/* Adding the buttons and label to the panels */
+		panelCenter.setLayout(gl);
+		Font font = new Font("Liberation Sans", Font.BOLD, 20);
+		panelNorth.setFont(font);
+		Label label = new Label("Choose your difficulty !");
+		label.setFont(font);
+		panelNorth.add(label);
 		
-		/* Define the size of the buttons */
-		//btEasy.setPreferredSize(new Dimension(100,100));
+		panelCenter.add(btEasy);
+		panelCenter.add(btMedium);
+		panelCenter.add(btDifficult);
+		panelCenter.add(btCustom);
+		panelCenter.add(btInfinite);
 		
-		/* Adding the buttons to the panels */
-		p1.add(new Label("Choose the difficulty."));
-		
-		p2.add(btEasy);
-		//p2.add(Box.createHorizontalGlue());
-		p2.add(btMedium);
-		p2.
-		p3.add(btDifficult);
-		p3.add(Box.createHorizontalGlue());
-		p3.add(btCustom);
-		
-		p4.add(btInfinite);
-		
-		/* Adding of the panel column to StartPanel */
-		this.add(column);
+		/* Adding the color of the background */
+		panelNorth.setBackground(Color.white);
+		panelCenter.setBackground(Color.white);
+		panelSouth.setBackground(Color.white);
+		panelWest.setBackground(Color.white);
+		panelEast.setBackground(Color.white);
 	}
 }

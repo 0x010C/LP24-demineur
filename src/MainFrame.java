@@ -10,9 +10,9 @@ import javax.swing.JPanel;
 /* For more details, see the graph of the interface */
 public class MainFrame extends JFrame {
 	private int width = 700;
-	private int height = 450;
+	private int height = 280;
 	private int minWidth = 700;
-	private int minHeight = 200;
+	private int minHeight = 280;
 	private int logoWidth = 700;
 	private int logoHeight = 100;
 	
@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
 		/* Define the screen size and location */
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(true);
+		this.setResizable(false);
 		this.setBounds((int) (toolkit.getScreenSize().getWidth()-this.width)/2,(int) (toolkit.getScreenSize().getHeight()-this.height)/2,this.width,this.height);
 		this.setMinimumSize(new Dimension(this.minWidth,this.minHeight));
 		
