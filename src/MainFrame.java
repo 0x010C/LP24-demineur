@@ -37,30 +37,30 @@ public class MainFrame extends JFrame {
 		CardLayout cardLayout = new CardLayout();
 		card.setLayout(cardLayout);
 		
-		/* Define the start's panel */
+		// Define the start's panel
 		StartPanel startPanel = new StartPanel();
 		
-		/* Define the customization's panel */
+		// Define the customization's panel
 		JPanel customizationPanel = new JPanel();
 		
-		/* Define the rules' panel */
+		// Define the rules' panel
 		JPanel rulesPanel = new JPanel();
 		rulesPanel.setBackground(Color.white);
 		
-		/* Define the about's panel */
+		// Define the about's panel
 		JPanel aboutPanel = new JPanel();
 		aboutPanel.setBackground(Color.blue);
 		
-		/* Define the game's panel */
+		// Define the game's panel
 		JPanel gamePanel = new JPanel();
 		
-		/* Define the pause's panel */
+		// Define the pause's panel
 		JPanel pausePanel = new JPanel();
 		
-		/* Define the score's panel */
+		// Define the score's panel
 		JPanel scorePanel = new JPanel();
 		
-		/* Adding of the different JPanel */
+		// Adding of the different JPanel
 		card.add(startPanel, "start");
 		card.add(customizationPanel, "customization");
 		card.add(rulesPanel, "rules");

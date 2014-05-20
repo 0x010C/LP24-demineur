@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -18,22 +17,15 @@ public class StartPanel extends JPanel{
 		gl.setHgap(10);
 		gl.setVgap(10);
 		
-		/* Adding of the GridLayout to RulesPanel */
+		/* Adding of the GridLayout to StartPanel */
 		this.setLayout(gl);
 		
-		/* Creation of the buttons */
-		JButton btEasy = new JButton();
-		JButton btMedium = new JButton();
-		JButton btDifficult = new JButton();
-		JButton btCustom = new JButton();
-		JButton btInfinite = new JButton();
-		
-		/* Setting the buttons' texts */
-		btEasy.setText("Easy");
-		btMedium.setText("Medium");
-		btDifficult.setText("Difficult");
-		btCustom.setText("Custom");
-		btInfinite.setText("Infinite");
+		/* Creation of the buttons and setting the buttons' texts */
+		JButton btEasy = new JButton("Easy");
+		JButton btMedium = new JButton("Medium");
+		JButton btDifficult = new JButton("Difficult");
+		JButton btCustom = new JButton("Custom");
+		JButton btInfinite = new JButton("Infinite");
 		
 		/* Adding the buttons to the panel */
 		this.add(btEasy);
