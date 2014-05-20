@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
 		/* Define the screen size and location */
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setBounds((int) (toolkit.getScreenSize().getWidth()-this.width)/2,(int) (toolkit.getScreenSize().getHeight()-this.height)/2,this.width,this.height);
 		this.setMinimumSize(new Dimension(this.minWidth,this.minHeight));
 		
@@ -52,7 +52,7 @@ public class MainFrame extends JFrame {
 		aboutPanel.setBackground(Color.blue);
 		
 		// Define the game's panel
-		JPanel gamePanel = new JPanel();
+		GamePanel gamePanel = new GamePanel(10,10);
 		
 		// Define the pause's panel
 		JPanel pausePanel = new JPanel();
