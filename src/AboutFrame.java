@@ -2,7 +2,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Label;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -36,43 +35,36 @@ public class AboutFrame extends JFrame {
 		content.setSize(this.width, this.height-this.logoHeight);
 		content.setLayout(new BorderLayout());
 		
-		/* Creation of the panels north, south, center, east and west */
+		/* Creation of the panels north and center */
 		JPanel panelNorth = new JPanel();
-		JPanel panelSouth = new JPanel();
 		JPanel panelCenter = new JPanel();
-		JPanel panelEast = new JPanel();
-		JPanel panelWest = new JPanel();
 		
 		content.add(BorderLayout.NORTH,panelNorth);
-		content.add(BorderLayout.SOUTH,panelSouth);
 		content.add(BorderLayout.CENTER,panelCenter);
-		content.add(BorderLayout.EAST,panelEast);
-		content.add(BorderLayout.WEST,panelWest);
 		
 		/* Adding the title of the frame */
-		Font fontTitle = new Font("Liberation Sans", Font.BOLD, 20);
 		JLabel labelTitle = new JLabel("About MineSweeper !");
-		labelTitle.setFont(fontTitle);
-		panelNorth.add(labelTitle);
 		
 		/* Adding the content of the frame */
-		Font fontContent = new Font("Liberation Sans", Font.PLAIN, 16);
-		
 		JLabel label1 = new JLabel("<html><span><center>1.00<br /><br />The popular logic game MineSweeper.<br />Find the mines in the table using the\n indications given by the cases already opened.<br /><br />MineSweeper was created in order to a project of LP24, a course in the UTBM school.</center></span></html>");
 		JLabel label2 = new JLabel("<html><span><center>Game created by <a href=\"mailto:antoine.lamielle@utbm.fr\">Antoine LAMIELLE</a> and <a href=\"mailto:vincent.merat@utbm.fr\">Vincent MERAT</a> .</center></span></html>");
 		
+		/* Settings the fonts */
+		Font fontTitle = new Font("Liberation Sans", Font.BOLD, 20);
+		labelTitle.setFont(fontTitle);
+		
+		Font fontContent = new Font("Liberation Sans", Font.PLAIN, 16);
 		label1.setFont(fontContent);
 		label2.setFont(fontContent);
 		
+		/* Adding of the labels to the panels */
+		panelNorth.add(labelTitle);
 		panelCenter.add(label1);
 		panelCenter.add(label2);
 		
 		/* Adding the color of the background */
 		panelNorth.setBackground(Color.white);
-		panelSouth.setBackground(Color.white);
 		panelCenter.setBackground(Color.white);
-		panelEast.setBackground(Color.white);
-		panelWest.setBackground(Color.white);
 		
 		/* Display the window */
 		this.setVisible(true);

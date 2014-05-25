@@ -62,13 +62,13 @@ public class MainFrame extends JFrame {
 		card.add(startPanel, "start");
 		card.add(customizationPanel, "customization");
 		card.add(rulesPanel, "rules");
-		//card.add(aboutPanel, "about");
 		card.add(gamePanel, "game");
 		card.add(pausePanel, "pause");
 		card.add(scorePanel, "score");
 		
 		cardLayout.show(card, "start");
 		aboutFrame.setVisible(true);
+		
 		
 		/* Display the window */
 		this.setVisible(true);
