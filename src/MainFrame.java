@@ -47,7 +47,7 @@ public class MainFrame extends JFrame {
 		JPanel rulesPanel = new JPanel();
 		
 		// Define the about's panel
-		JPanel aboutPanel = new JPanel();
+		AboutFrame aboutFrame = new AboutFrame();
 		
 		// Define the game's panel
 		GamePanel gamePanel = new GamePanel(10,10);
@@ -62,13 +62,13 @@ public class MainFrame extends JFrame {
 		card.add(startPanel, "start");
 		card.add(customizationPanel, "customization");
 		card.add(rulesPanel, "rules");
-		card.add(aboutPanel, "about");
+		//card.add(aboutPanel, "about");
 		card.add(gamePanel, "game");
 		card.add(pausePanel, "pause");
 		card.add(scorePanel, "score");
 		
 		cardLayout.show(card, "start");
-		cardLayout.show(card, "rules");
+		aboutFrame.setVisible(true);
 		
 		/* Display the window */
 		this.setVisible(true);

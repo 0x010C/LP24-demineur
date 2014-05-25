@@ -1,11 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Label;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -25,21 +24,19 @@ public class StartPanel extends JPanel{
 		gl.setHgap(10);
 		gl.setVgap(10);
 		
-		/* Creation of the panels north, center and south */
-		JPanel panelWest = new JPanel();
-		JPanel panelEast = new JPanel();
+		/* Creation of the panels north, south, center, east and west */
 		JPanel panelNorth = new JPanel();
-		JPanel panelCenter = new JPanel();
 		JPanel panelSouth = new JPanel();
-		panelCenter.setMaximumSize(new Dimension(700, 30));
+		JPanel panelCenter = new JPanel();
+		JPanel panelEast = new JPanel();
+		JPanel panelWest = new JPanel();
 		
 		this.add(BorderLayout.NORTH,panelNorth);
-		this.add(BorderLayout.CENTER,panelCenter);
 		this.add(BorderLayout.SOUTH,panelSouth);
-		this.add(BorderLayout.WEST,panelWest);
+		this.add(BorderLayout.CENTER,panelCenter);
 		this.add(BorderLayout.EAST,panelEast);
+		this.add(BorderLayout.WEST,panelWest);
 		
-
 		/* Creation of the buttons and setting the buttons' texts */
 		JButton btEasy = new JButton("Easy");
 		JButton btMedium = new JButton("Medium");
@@ -50,8 +47,7 @@ public class StartPanel extends JPanel{
 		/* Adding the buttons and label to the panels */
 		panelCenter.setLayout(gl);
 		Font font = new Font("Liberation Sans", Font.BOLD, 20);
-		panelNorth.setFont(font);
-		Label label = new Label("Choose your difficulty !");
+		JLabel label = new JLabel("<html><span><center>Choose your difficulty !</center></span></html>");
 		label.setFont(font);
 		panelNorth.add(label);
 		
@@ -63,9 +59,9 @@ public class StartPanel extends JPanel{
 		
 		/* Adding the color of the background */
 		panelNorth.setBackground(Color.white);
-		panelCenter.setBackground(Color.white);
 		panelSouth.setBackground(Color.white);
-		panelWest.setBackground(Color.white);
+		panelCenter.setBackground(Color.white);
 		panelEast.setBackground(Color.white);
+		panelWest.setBackground(Color.white);
 	}
 }
