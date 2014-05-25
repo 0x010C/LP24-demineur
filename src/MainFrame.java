@@ -45,11 +45,9 @@ public class MainFrame extends JFrame {
 		
 		// Define the rules' panel
 		JPanel rulesPanel = new JPanel();
-		rulesPanel.setBackground(Color.white);
 		
 		// Define the about's panel
 		JPanel aboutPanel = new JPanel();
-		aboutPanel.setBackground(Color.blue);
 		
 		// Define the game's panel
 		GamePanel gamePanel = new GamePanel(10,10);
@@ -70,6 +68,7 @@ public class MainFrame extends JFrame {
 		card.add(scorePanel, "score");
 		
 		cardLayout.show(card, "start");
+		cardLayout.show(card, "rules");
 		
 		/* Display the window */
 		this.setVisible(true);
