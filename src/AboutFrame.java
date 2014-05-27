@@ -46,7 +46,7 @@ public class AboutFrame extends JFrame {
 		JLabel labelTitle = new JLabel("About MineSweeper !");
 		
 		/* Adding the content of the frame */
-		JLabel label1 = new JLabel("<html><span><center>1.00<br /><br />The popular logic game MineSweeper.<br />Find the mines in the table using the\n indications given by the cases already opened.<br /><br />MineSweeper was created in order to a project of LP24, a course in the UTBM school.</center></span></html>");
+		JLabel label1 = new JLabel("<html><span><center>1.00<br /><br />The popular logic game MineSweeper.<br />Find the mines in the table using the\n indications given by the cases already opened.<br /><br />MineSweeper was created for a project of LP24, a course in the UTBM school.</center></span></html>");
 		JLabel label2 = new JLabel("<html><span><center>Game created by <a href=\"mailto:antoine.lamielle@utbm.fr\">Antoine LAMIELLE</a> and <a href=\"mailto:vincent.merat@utbm.fr\">Vincent MERAT</a> .</center></span></html>");
 		
 		/* Settings the fonts */
@@ -65,8 +65,5 @@ public class AboutFrame extends JFrame {
 		/* Adding the color of the background */
 		panelNorth.setBackground(Color.white);
 		panelCenter.setBackground(Color.white);
-		
-		/* Display the window */
-		this.setVisible(true);
 	}
 }
