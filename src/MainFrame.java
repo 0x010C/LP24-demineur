@@ -44,7 +44,7 @@ public class MainFrame extends JFrame {
 		JPanel customizationPanel = new JPanel();
 		
 		// Define the rules' panel
-		JPanel rulesPanel = new JPanel();
+		RulesFrame rulesFrame = new RulesFrame();
 		
 		// Define the about's panel
 		AboutFrame aboutFrame = new AboutFrame();
@@ -61,7 +61,6 @@ public class MainFrame extends JFrame {
 		// Adding of the different JPanel
 		card.add(startPanel, "start");
 		card.add(customizationPanel, "customization");
-		card.add(rulesPanel, "rules");
 		card.add(gamePanel, "game");
 		card.add(pausePanel, "pause");
 		card.add(scorePanel, "score");
