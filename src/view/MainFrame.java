@@ -1,11 +1,15 @@
 package view;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 /* For more details, see the graph of the interface */
@@ -28,10 +32,37 @@ public class MainFrame extends JFrame {
 		/* Global Panel */
 		this.getContentPane().setLayout(new BorderLayout());
 		
+		JPanel menuPanel = new JPanel();
+		JMenuBar menuBar = new JMenuBar();
 		ImagePanel logo = new ImagePanel("images/png/logo.png", this.logoWidth, this.logoHeight);
 		JPanel card = new JPanel();
-		this.getContentPane().add(BorderLayout.NORTH, logo);
+		
+		this.getContentPane().add(BorderLayout.NORTH, menuPanel);
 		this.getContentPane().add(BorderLayout.CENTER, card);
+		
+		/* Menu Panel */
+		menuPanel.setLayout(new BorderLayout());
+		
+		// Creation of menus and items
+		JMenu menu1 = new JMenu("MineSweeper");
+		JMenuItem itemRules = new JMenuItem("Rules");
+		JMenuItem itemAbout = new JMenuItem("About");
+		JMenuItem itemQuit = new JMenuItem("Quit");
+		
+		// Adding of the menus and items
+		menu1.add(itemRules);
+		menu1.add(itemAbout);
+		menu1.addSeparator();
+		menu1.add(itemQuit);
+		menuBar.add(menu1);
+		menuPanel.add(BorderLayout.NORTH, menuBar);
+		menuPanel.add(BorderLayout.CENTER, logo);
+		
+		/*itemQuit.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent arg0) {
+					System.exit(0);
+			}
+		});*/
 		
 		/* Card Panel */
 		card.setSize(this.width, this.height-this.logoHeight);
@@ -67,7 +98,7 @@ public class MainFrame extends JFrame {
 		card.add(scorePanel, "score");
 		
 		cardLayout.show(card, "start");
-		aboutFrame.setVisible(true);
+		rulesFrame.setVisible(true);
 		
 		
 		/* Display the window */
