@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 public class RulesFrame extends JFrame {
 	private int width = 700;
-	private int height = 320;
+	private int height = 340;
 	private int minWidth = 700;
 	private int minHeight = 280;
 	private int logoWidth = 700;
@@ -47,7 +47,8 @@ public class RulesFrame extends JFrame {
 		JLabel labelTitle = new JLabel("Rules of the game !");
 		
 		/* Adding the content of the frame */
-		JLabel label1 = new JLabel("<html><span><center>Insert the rules.</center></span></html>");
+		JLabel label1 = new JLabel("<html><span><center><strong>The rules in Minesweeper are quite simple :</strong><br />Uncover a mine, and the game ends<br />Uncover an empty square, and you keep playing<br />Uncover a number, and it tells you the number of mines just next to this number</center></span></html>");
+		JLabel label2 = new JLabel("<html><span><center><br />To play, you just need a mouse. <br />The left button is used to discover the mines. <br />The right one is used to mark the mines (a second right click put a \"?\" instead if you are not sure)</center></span></html>");
 		
 		/* Settings the fonts */
 		Font fontTitle = new Font("Liberation Sans", Font.BOLD, 20);
@@ -55,10 +56,12 @@ public class RulesFrame extends JFrame {
 		
 		Font fontContent = new Font("Liberation Sans", Font.PLAIN, 16);
 		label1.setFont(fontContent);
+		label2.setFont(fontContent);
 		
 		/* Adding of the labels to the panels */
 		panelNorth.add(labelTitle);
 		panelCenter.add(label1);
+		panelCenter.add(label2);
 		
 		/* Adding the color of the background */
 		panelNorth.setBackground(Color.white);
