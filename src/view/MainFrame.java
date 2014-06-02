@@ -1,6 +1,7 @@
 package view;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 /* For more details, see the graph of the interface */
 public class MainFrame extends JFrame {
@@ -48,6 +50,12 @@ public class MainFrame extends JFrame {
 		JMenuItem itemRules = new JMenuItem("Rules");
 		JMenuItem itemAbout = new JMenuItem("About");
 		JMenuItem itemQuit = new JMenuItem("Quit");
+		
+		// Adding of the shortcuts
+		menu1.setMnemonic('M');
+		itemAbout.setAccelerator(KeyStroke.getKeyStroke('r'));
+		itemRules.setAccelerator(KeyStroke.getKeyStroke('r'));
+		itemQuit.setAccelerator(KeyStroke.getKeyStroke('q'));
 		
 		// Adding of the menus and items
 		menu1.add(itemRules);
