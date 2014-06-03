@@ -16,6 +16,14 @@ import javax.swing.KeyStroke;
 
 /* For more details, see the graph of the interface */
 public class MainFrame extends JFrame {
+	
+	public enum Card {
+		start,
+		custom,
+		game,
+		pause
+	}
+	
 	private int width = 700;
 	private int height = 280;
 	private int minWidth = 700;
@@ -154,5 +162,22 @@ public class MainFrame extends JFrame {
 		itemAbout.addActionListener(al);
 		itemScore.addActionListener(al);
 		itemQuit.addActionListener(al);
+	}
+	
+	public void switchCard(MainFrame.Card newCard){
+		switch(newCard){
+			case start:
+				this.cardLayout.show(this.card, "start");
+				break;
+			case custom:
+				cardLayout.show(this.card, "customization");
+				break;
+			case game:
+				cardLayout.show(this.card, "game");
+				break;
+			case pause:
+				cardLayout.show(this.card, "pause");
+				break;
+		}
 	}
 }
