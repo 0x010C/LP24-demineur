@@ -49,17 +49,20 @@ public class MainFrame extends JFrame {
 		JMenu menu1 = new JMenu("MineSweeper");
 		JMenuItem itemRules = new JMenuItem("Rules");
 		JMenuItem itemAbout = new JMenuItem("About");
+		JMenuItem itemScore = new JMenuItem("Scores");
 		JMenuItem itemQuit = new JMenuItem("Quit");
 		
 		// Adding of the shortcuts
 		menu1.setMnemonic('M');
-		itemAbout.setAccelerator(KeyStroke.getKeyStroke('r'));
+		itemAbout.setAccelerator(KeyStroke.getKeyStroke('a'));
 		itemRules.setAccelerator(KeyStroke.getKeyStroke('r'));
 		itemQuit.setAccelerator(KeyStroke.getKeyStroke('q'));
+		itemScore.setAccelerator(KeyStroke.getKeyStroke('s'));
 		
 		// Adding of the menus and items
 		menu1.add(itemRules);
 		menu1.add(itemAbout);
+		menu1.add(itemScore);
 		menu1.addSeparator();
 		menu1.add(itemQuit);
 		menuBar.add(menu1);
@@ -83,10 +86,10 @@ public class MainFrame extends JFrame {
 		// Define the customization's panel
 		JPanel customizationPanel = new JPanel();
 		
-		// Define the rules' panel
+		// Define the rules' frame
 		RulesFrame rulesFrame = new RulesFrame();
 		
-		// Define the about's panel
+		// Define the about's frame
 		AboutFrame aboutFrame = new AboutFrame();
 		
 		// Define the game's panel
@@ -95,15 +98,14 @@ public class MainFrame extends JFrame {
 		// Define the pause's panel
 		JPanel pausePanel = new JPanel();
 		
-		// Define the score's panel
-		JPanel scorePanel = new JPanel();
+		// Define the score's frame
+		ScoreFrame scoreFrame = new ScoreFrame();
 		
 		// Adding of the different JPanel
 		card.add(startPanel, "start");
 		card.add(customizationPanel, "customization");
 		card.add(gamePanel, "game");
 		card.add(pausePanel, "pause");
-		card.add(scorePanel, "score");
 		
 		cardLayout.show(card, "start");
 		rulesFrame.setVisible(true);
