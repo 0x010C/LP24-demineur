@@ -62,6 +62,7 @@ public class MainFrame extends JFrame {
 		itemScore.setAccelerator(KeyStroke.getKeyStroke('s'));
 		
 		// Adding of the menus and items
+		itemPause.setEnabled(false);
 		menu1.add(itemPause);
 		menu1.addSeparator();
 		menu1.add(itemRules);
