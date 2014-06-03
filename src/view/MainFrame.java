@@ -46,11 +46,8 @@ public class MainFrame extends JFrame {
 	private CardLayout cardLayout;
 	private StartPanel startPanel;
 	private JPanel customizationPanel;
-	private RulesFrame rulesFrame;
-	private AboutFrame aboutFrame;
 	private GamePanel gamePanel;
 	private JPanel pausePanel;
-	private ScoreFrame scoreFrame;
 	
 	public MainFrame() {
 		/* Define the screen size and location */
@@ -109,12 +106,6 @@ public class MainFrame extends JFrame {
 		menuPanel.add(BorderLayout.NORTH, menuBar);
 		menuPanel.add(BorderLayout.CENTER, logo);
 		
-		/*itemQuit.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent arg0) {
-					System.exit(0);
-			}
-		});*/
-		
 		/* Card Panel */
 		card.setSize(this.width, this.height-this.logoHeight);
 		cardLayout = new CardLayout();
@@ -126,17 +117,9 @@ public class MainFrame extends JFrame {
 		// Define the customization's panel
 		customizationPanel = new JPanel();
 		
-		// Define the rules' frame
-		rulesFrame = new RulesFrame();
-		
-		// Define the about's frame
-		aboutFrame = new AboutFrame();
-		
 		// Define the pause's panel
 		pausePanel = new JPanel();
 		
-		// Define the score's frame
-		scoreFrame = new ScoreFrame();
 		
 		// Adding of the different JPanel
 		card.add(startPanel, "start");

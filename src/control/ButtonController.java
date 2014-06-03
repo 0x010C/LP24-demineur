@@ -28,10 +28,13 @@ public class ButtonController implements ActionListener {
 				case "btInfinite":
 					break;
 				case "itemRules":
+					bcl.openFrame(WindowManager.Frame.rules);
 					break;
 				case "itemAbout":
+					bcl.openFrame(WindowManager.Frame.about);
 					break;
 				case "itemScore":
+					bcl.openFrame(WindowManager.Frame.score);
 					break;
 				case "itemQuit":
 					break;
