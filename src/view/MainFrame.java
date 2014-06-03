@@ -45,7 +45,7 @@ public class MainFrame extends JFrame {
 	
 	private CardLayout cardLayout;
 	private StartPanel startPanel;
-	private JPanel customizationPanel;
+	private JPanel customPanel;
 	private GamePanel gamePanel;
 	private JPanel pausePanel;
 	
@@ -115,7 +115,7 @@ public class MainFrame extends JFrame {
 		startPanel = new StartPanel();
 		
 		// Define the customization's panel
-		customizationPanel = new JPanel();
+		customPanel = new JPanel();
 		
 		// Define the pause's panel
 		pausePanel = new JPanel();
@@ -123,7 +123,7 @@ public class MainFrame extends JFrame {
 		
 		// Adding of the different JPanel
 		card.add(startPanel, "start");
-		card.add(customizationPanel, "customization");
+		card.add(customPanel, "custom");
 		card.add(pausePanel, "pause");
 		
 		/* Display the window */
@@ -146,7 +146,7 @@ public class MainFrame extends JFrame {
 				this.cardLayout.show(this.card, "start");
 				break;
 			case custom:
-				cardLayout.show(this.card, "customization");
+				cardLayout.show(this.card, "custom");
 				break;
 			case game:
 				cardLayout.show(this.card, "game");
