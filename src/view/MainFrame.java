@@ -47,6 +47,7 @@ public class MainFrame extends JFrame {
 		
 		// Creation of menus and items
 		JMenu menu1 = new JMenu("MineSweeper");
+		JMenuItem itemPause = new JMenuItem("Pause");
 		JMenuItem itemRules = new JMenuItem("Rules");
 		JMenuItem itemAbout = new JMenuItem("About");
 		JMenuItem itemScore = new JMenuItem("Scores");
@@ -54,12 +55,15 @@ public class MainFrame extends JFrame {
 		
 		// Adding of the shortcuts
 		menu1.setMnemonic('M');
+		itemPause.setAccelerator(KeyStroke.getKeyStroke('p'));
 		itemAbout.setAccelerator(KeyStroke.getKeyStroke('a'));
 		itemRules.setAccelerator(KeyStroke.getKeyStroke('r'));
 		itemQuit.setAccelerator(KeyStroke.getKeyStroke('q'));
 		itemScore.setAccelerator(KeyStroke.getKeyStroke('s'));
 		
 		// Adding of the menus and items
+		menu1.add(itemPause);
+		menu1.addSeparator();
 		menu1.add(itemRules);
 		menu1.add(itemAbout);
 		menu1.add(itemScore);
