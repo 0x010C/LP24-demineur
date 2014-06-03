@@ -21,6 +21,8 @@ public class WindowManager implements ButtonControllerListener {
 	/* ButtonControllerListener */
 	
 	public void startGame(int sizeX, int sizeY, int nbBombes) {
+		mainFrame.initGamePanel(sizeX, sizeY);
+		
 		this.currentCard = MainFrame.Card.game;
 		mainFrame.switchCard(currentCard);
 	}

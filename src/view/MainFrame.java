@@ -132,9 +132,6 @@ public class MainFrame extends JFrame {
 		// Define the about's frame
 		aboutFrame = new AboutFrame();
 		
-		// Define the game's panel
-		gamePanel = new GamePanel(10,10);
-		
 		// Define the pause's panel
 		pausePanel = new JPanel();
 		
@@ -144,10 +141,7 @@ public class MainFrame extends JFrame {
 		// Adding of the different JPanel
 		card.add(startPanel, "start");
 		card.add(customizationPanel, "customization");
-		card.add(gamePanel, "game");
 		card.add(pausePanel, "pause");
-		
-		rulesFrame.setVisible(true);
 		
 		/* Display the window */
 		this.setVisible(true);
@@ -178,5 +172,10 @@ public class MainFrame extends JFrame {
 				cardLayout.show(this.card, "pause");
 				break;
 		}
+	}
+	
+	public void initGamePanel(int sizeX, int sizeY) {
+		gamePanel = new GamePanel(sizeX, sizeY);
+		this.card.add(gamePanel, "game");
 	}
 }

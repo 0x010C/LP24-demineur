@@ -18,7 +18,7 @@ public class GamePanel extends JPanel {
 		this.sizeY = sizeY;
 		this.setSize(new Dimension(this.sizeX*32,this.sizeY*32));
 		panel = new JPanel();
-		panel.setLayout(new GridLayout(this.sizeX,this.sizeY,-5,-5));
+		panel.setLayout(new GridLayout(this.sizeY,this.sizeX,-5,-5));
 		this.setBackground(Color.white);
 		for(int i=0;i<this.sizeX*this.sizeY;i++)
 			panel.add(new CasePanel());
