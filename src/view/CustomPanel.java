@@ -3,7 +3,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
@@ -11,7 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 
-public class CustomPanel extends JPanel {
+import control.SpinnerUpdater;
+import control.SpinnerUpdaterListener;
+
+public class CustomPanel extends JPanel implements SpinnerUpdaterListener {
 	private BorderLayout bl;
 	
 	private JPanel panelCenter;
@@ -25,7 +27,8 @@ public class CustomPanel extends JPanel {
 	private JSpinner.NumberEditor spinnerBEditor;
 	
 	public CustomPanel(){
-		super();
+		super();		
+		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		
 		/* Definition of the BoderLayout */
@@ -94,10 +97,19 @@ public class CustomPanel extends JPanel {
 		
 		panelCenter.setLayout(new FlowLayout());
 		panelCenter.add(contentPanel);
+		
+		/* Création du listener */
+		SpinnerUpdater su = new SpinnerUpdater();
+		su.add(this);
+		((JSpinner.DefaultEditor) spinnerX.getEditor()).getTextField().addFocusListener(su);
+		((JSpinner.DefaultEditor) spinnerY.getEditor()).getTextField().addFocusListener(su);
 	}
 	
-	public void paintComponent(Graphics g){
-		spinnerBEditor.getModel().setMaximum((Integer)spinnerXEditor.getModel().getNumber()*(Integer)spinnerYEditor.getModel().getNumber()-10);
-		super.paintComponent(g);
+	public void update() {
+		int newMaxBomb = (Integer)spinnerXEditor.getModel().getNumber()*(Integer)spinnerYEditor.getModel().getNumber()-10;
+		if((Integer)spinnerBEditor.getModel().getNumber() >= newMaxBomb)
+			spinnerBEditor.getModel().setValue(newMaxBomb);
+		spinnerBEditor.getModel().setMaximum(newMaxBomb);
+		System.out.println("haha");
 	}
 }
