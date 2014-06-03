@@ -54,7 +54,6 @@ public class MainFrame extends JFrame {
 		
 		/* Global Panel */
 		this.getContentPane().setLayout(new BorderLayout());
-		
 		menuPanel = new JPanel();
 		menuBar = new JMenuBar();
 		logo = new ImagePanel("images/png/logo.png", this.logoWidth, this.logoHeight);
@@ -73,6 +72,13 @@ public class MainFrame extends JFrame {
 		itemAbout = new JMenuItem("About");
 		itemScore = new JMenuItem("Scores");
 		itemQuit = new JMenuItem("Quit");
+		
+		// Setting of the ActionCommand of the items
+		itemPause.setActionCommand("itemPause");
+		itemRules.setActionCommand("itemRules");
+		itemAbout.setActionCommand("itemAbout");
+		itemScore.setActionCommand("itemScore");
+		itemQuit.setActionCommand("itemQuit");
 		
 		// Adding of the shortcuts
 		menu1.setMnemonic('M');
@@ -142,6 +148,7 @@ public class MainFrame extends JFrame {
 	
 	public void setButtonListener(ActionListener al){
 		startPanel.setButtonListener(al);
+		
 		itemPause.addActionListener(al);
 		itemRules.addActionListener(al);
 		itemAbout.addActionListener(al);
