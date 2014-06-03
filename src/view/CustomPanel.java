@@ -110,6 +110,5 @@ public class CustomPanel extends JPanel implements SpinnerUpdaterListener {
 		if((Integer)spinnerBEditor.getModel().getNumber() >= newMaxBomb)
 			spinnerBEditor.getModel().setValue(newMaxBomb);
 		spinnerBEditor.getModel().setMaximum(newMaxBomb);
-		System.out.println("haha");
 	}
 }
