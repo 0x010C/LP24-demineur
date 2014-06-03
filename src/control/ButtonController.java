@@ -40,6 +40,7 @@ public class ButtonController implements ActionListener {
 					bcl.openFrame(WindowManager.Frame.score);
 					break;
 				case "itemQuit":
+					System.exit(0);
 					break;
 			}
 		}

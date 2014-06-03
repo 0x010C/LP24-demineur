@@ -1,7 +1,7 @@
 package control;
 
-import view.MainFrame;
 import view.AboutFrame;
+import view.MainFrame;
 import view.RulesFrame;
 import view.ScoreFrame;
 
@@ -19,6 +19,10 @@ public class WindowManager implements ButtonControllerListener {
 	private ScoreFrame scoreFrame;
 	private ButtonController bc;
 	private MainFrame.Card currentCard;
+	
+	private int sizeX;
+	private int sizeY;
+	private int nbBombes;
 	
 	public WindowManager() {
 		mainFrame = new MainFrame();
@@ -42,6 +46,10 @@ public class WindowManager implements ButtonControllerListener {
 	/* ButtonControllerListener */
 	
 	public void startGame(int sizeX, int sizeY, int nbBombes) {
+		this.sizeX = sizeX;
+		this.sizeY = sizeY;
+		this.nbBombes = nbBombes;
+		
 		mainFrame.initGamePanel(sizeX, sizeY);
 		
 		this.currentCard = MainFrame.Card.game;
@@ -66,6 +74,9 @@ public class WindowManager implements ButtonControllerListener {
 		default:
 			break;
 		}
-		//TODO: si le jeu est lancé (currentCard = game), passer en pause
+		
+		if(this.currentCard == MainFrame.Card.game) {
+			this.switchCard(MainFrame.Card.pause);
+		}
 	}
 }

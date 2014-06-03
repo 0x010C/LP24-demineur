@@ -1,5 +1,4 @@
 package control;
-import view.MainFrame;
 
 public class MainClass {
 

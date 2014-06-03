@@ -3,8 +3,8 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
@@ -33,6 +33,7 @@ public class MainFrame extends JFrame {
 	
 	private JPanel menuPanel;
 	private JMenuBar menuBar;
+	private JPanel logoPanel;
 	private ImagePanel logo;
 	private JPanel card;
 	
@@ -61,6 +62,7 @@ public class MainFrame extends JFrame {
 		this.getContentPane().setLayout(new BorderLayout());
 		menuPanel = new JPanel();
 		menuBar = new JMenuBar();
+		logoPanel = new JPanel();
 		logo = new ImagePanel("images/png/logo.png", this.logoWidth, this.logoHeight);
 		card = new JPanel();
 		
@@ -104,7 +106,11 @@ public class MainFrame extends JFrame {
 		menu1.add(itemQuit);
 		menuBar.add(menu1);
 		menuPanel.add(BorderLayout.NORTH, menuBar);
-		menuPanel.add(BorderLayout.CENTER, logo);
+		
+		logoPanel.setLayout(new FlowLayout());
+		logoPanel.add(logo);
+		logoPanel.setBackground(Color.white);
+		menuPanel.add(BorderLayout.CENTER, logoPanel);
 		
 		/* Card Panel */
 		card.setSize(this.width, this.height-this.logoHeight);
@@ -161,4 +167,6 @@ public class MainFrame extends JFrame {
 		gamePanel = new GamePanel(sizeX, sizeY);
 		this.card.add(gamePanel, "game");
 	}
+	
+	
 }
