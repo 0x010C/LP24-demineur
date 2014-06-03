@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,6 +11,17 @@ import javax.swing.JPanel;
 
 
 public class StartPanel extends JPanel{
+	private JPanel panelNorth;
+	private JPanel panelSouth;
+	private JPanel panelCenter;
+	private JPanel panelEast;
+	private JPanel panelWest;
+	
+	private JButton btEasy;
+	private JButton btMedium;
+	private JButton btDifficult;
+	private JButton btCustom;
+	private JButton btInfinite;
 	
 	public StartPanel(){
 		super();
@@ -26,11 +38,11 @@ public class StartPanel extends JPanel{
 		gl.setVgap(10);
 		
 		/* Creation of the panels north, south, center, east and west */
-		JPanel panelNorth = new JPanel();
-		JPanel panelSouth = new JPanel();
-		JPanel panelCenter = new JPanel();
-		JPanel panelEast = new JPanel();
-		JPanel panelWest = new JPanel();
+		panelNorth = new JPanel();
+		panelSouth = new JPanel();
+		panelCenter = new JPanel();
+		panelEast = new JPanel();
+		panelWest = new JPanel();
 		
 		this.add(BorderLayout.NORTH,panelNorth);
 		this.add(BorderLayout.SOUTH,panelSouth);
@@ -39,11 +51,11 @@ public class StartPanel extends JPanel{
 		this.add(BorderLayout.WEST,panelWest);
 		
 		/* Creation of the buttons and setting the buttons' texts */
-		JButton btEasy = new JButton("Easy");
-		JButton btMedium = new JButton("Medium");
-		JButton btDifficult = new JButton("Difficult");
-		JButton btCustom = new JButton("Custom");
-		JButton btInfinite = new JButton("Infinite");
+		btEasy = new JButton("Easy");
+		btMedium = new JButton("Medium");
+		btDifficult = new JButton("Difficult");
+		btCustom = new JButton("Custom");
+		btInfinite = new JButton("Infinite");
 
 		/* Adding the buttons and label to the panels */
 		panelCenter.setLayout(gl);
@@ -64,5 +76,13 @@ public class StartPanel extends JPanel{
 		panelCenter.setBackground(Color.white);
 		panelEast.setBackground(Color.white);
 		panelWest.setBackground(Color.white);
+	}
+	
+	public void setButtonListener(ActionListener al){
+		btEasy.addActionListener(al);
+		btMedium.addActionListener(al);
+		btDifficult.addActionListener(al);
+		btCustom.addActionListener(al);
+		btInfinite.addActionListener(al);
 	}
 }

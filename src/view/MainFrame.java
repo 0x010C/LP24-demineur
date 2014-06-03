@@ -23,6 +23,27 @@ public class MainFrame extends JFrame {
 	private int logoWidth = 700;
 	private int logoHeight = 100;
 	
+	private JPanel menuPanel;
+	private JMenuBar menuBar;
+	private ImagePanel logo;
+	private JPanel card;
+	
+	private JMenu menu1;
+	private JMenuItem itemPause;
+	private JMenuItem itemRules;
+	private JMenuItem itemAbout;
+	private JMenuItem itemScore;
+	private JMenuItem itemQuit;
+	
+	private CardLayout cardLayout;
+	private StartPanel startPanel;
+	private JPanel customizationPanel;
+	private RulesFrame rulesFrame;
+	private AboutFrame aboutFrame;
+	private GamePanel gamePanel;
+	private JPanel pausePanel;
+	private ScoreFrame scoreFrame;
+	
 	public MainFrame() {
 		/* Define the screen size and location */
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -34,10 +55,10 @@ public class MainFrame extends JFrame {
 		/* Global Panel */
 		this.getContentPane().setLayout(new BorderLayout());
 		
-		JPanel menuPanel = new JPanel();
-		JMenuBar menuBar = new JMenuBar();
-		ImagePanel logo = new ImagePanel("images/png/logo.png", this.logoWidth, this.logoHeight);
-		JPanel card = new JPanel();
+		menuPanel = new JPanel();
+		menuBar = new JMenuBar();
+		logo = new ImagePanel("images/png/logo.png", this.logoWidth, this.logoHeight);
+		card = new JPanel();
 		
 		this.getContentPane().add(BorderLayout.NORTH, menuPanel);
 		this.getContentPane().add(BorderLayout.CENTER, card);
@@ -46,12 +67,12 @@ public class MainFrame extends JFrame {
 		menuPanel.setLayout(new BorderLayout());
 		
 		// Creation of menus and items
-		JMenu menu1 = new JMenu("MineSweeper");
-		JMenuItem itemPause = new JMenuItem("Pause");
-		JMenuItem itemRules = new JMenuItem("Rules");
-		JMenuItem itemAbout = new JMenuItem("About");
-		JMenuItem itemScore = new JMenuItem("Scores");
-		JMenuItem itemQuit = new JMenuItem("Quit");
+		menu1 = new JMenu("MineSweeper");
+		itemPause = new JMenuItem("Pause");
+		itemRules = new JMenuItem("Rules");
+		itemAbout = new JMenuItem("About");
+		itemScore = new JMenuItem("Scores");
+		itemQuit = new JMenuItem("Quit");
 		
 		// Adding of the shortcuts
 		menu1.setMnemonic('M');
@@ -82,29 +103,29 @@ public class MainFrame extends JFrame {
 		
 		/* Card Panel */
 		card.setSize(this.width, this.height-this.logoHeight);
-		CardLayout cardLayout = new CardLayout();
+		cardLayout = new CardLayout();
 		card.setLayout(cardLayout);
 		
 		// Define the start's panel
-		StartPanel startPanel = new StartPanel();
+		startPanel = new StartPanel();
 		
 		// Define the customization's panel
-		JPanel customizationPanel = new JPanel();
+		customizationPanel = new JPanel();
 		
 		// Define the rules' frame
-		RulesFrame rulesFrame = new RulesFrame();
+		rulesFrame = new RulesFrame();
 		
 		// Define the about's frame
-		AboutFrame aboutFrame = new AboutFrame();
+		aboutFrame = new AboutFrame();
 		
 		// Define the game's panel
-		GamePanel gamePanel = new GamePanel(10,10);
+		gamePanel = new GamePanel(10,10);
 		
 		// Define the pause's panel
-		JPanel pausePanel = new JPanel();
+		pausePanel = new JPanel();
 		
 		// Define the score's frame
-		ScoreFrame scoreFrame = new ScoreFrame();
+		scoreFrame = new ScoreFrame();
 		
 		// Adding of the different JPanel
 		card.add(startPanel, "start");
@@ -115,8 +136,16 @@ public class MainFrame extends JFrame {
 		cardLayout.show(card, "start");
 		rulesFrame.setVisible(true);
 		
-		
 		/* Display the window */
 		this.setVisible(true);
+	}
+	
+	public void setButtonListener(ActionListener al){
+		startPanel.setButtonListener(al);
+		itemPause.addActionListener(al);
+		itemRules.addActionListener(al);
+		itemAbout.addActionListener(al);
+		itemScore.addActionListener(al);
+		itemQuit.addActionListener(al);
 	}
 }
