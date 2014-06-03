@@ -15,10 +15,13 @@ public class ButtonController implements ActionListener {
 		for(ButtonControllerListener bcl : client) {
 			switch (e.getActionCommand()) {
 				case "btEasy":
+					bcl.startGame(8, 8, 10);
 					break;
 				case "btMedium":
+					bcl.startGame(16, 16, 40);
 					break;
 				case "btDifficult":
+					bcl.startGame(30, 16, 99);
 					break;
 				case "btCustom":
 					break;

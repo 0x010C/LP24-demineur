@@ -147,7 +147,6 @@ public class MainFrame extends JFrame {
 		card.add(gamePanel, "game");
 		card.add(pausePanel, "pause");
 		
-		cardLayout.show(card, "start");
 		rulesFrame.setVisible(true);
 		
 		/* Display the window */
@@ -164,7 +163,7 @@ public class MainFrame extends JFrame {
 		itemQuit.addActionListener(al);
 	}
 	
-	public void switchCard(MainFrame.Card newCard){
+	public void switchCard(MainFrame.Card newCard) {
 		switch(newCard){
 			case start:
 				this.cardLayout.show(this.card, "start");
