@@ -48,6 +48,10 @@ public class WindowManager implements ButtonControllerListener {
 		mainFrame.switchCard(currentCard);
 	}
 	
+	public void switchCard(MainFrame.Card newCard) {
+		this.mainFrame.switchCard(newCard);
+	}
+	
 	public void openFrame(WindowManager.Frame frame) {
 		switch(frame) {
 		case about:

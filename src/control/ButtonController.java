@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import view.MainFrame;
+
 public class ButtonController implements ActionListener {
 	private ArrayList<ButtonControllerListener> client = new ArrayList<ButtonControllerListener>();
 	
@@ -24,6 +26,7 @@ public class ButtonController implements ActionListener {
 					bcl.startGame(30, 16, 99);
 					break;
 				case "btCustom":
+					bcl.switchCard(MainFrame.Card.custom);
 					break;
 				case "btInfinite":
 					break;
