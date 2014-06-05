@@ -118,6 +118,9 @@ public class CustomPanel extends JPanel implements SpinnerUpdaterListener {
 		this.add(BorderLayout.CENTER, panelCenter);
 		this.add(BorderLayout.SOUTH, panelSouth);
 		
+		/* Setting the name to "send" the default values to other class */
+		this.customOK.setName("8#8#10");
+		
 		/* Adding the color of the background */
 		panelNorth.setBackground(Color.white);
 		panelCenter.setBackground(Color.white);

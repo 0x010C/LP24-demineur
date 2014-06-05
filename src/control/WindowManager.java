@@ -1,5 +1,6 @@
 package control;
 
+import model.Chunk;
 import view.AboutFrame;
 import view.MainFrame;
 import view.RulesFrame;
@@ -18,10 +19,10 @@ public class WindowManager implements ButtonControllerListener {
 	private ScoreFrame scoreFrame;
 	private ButtonController bc;
 	private MainFrame.Card currentCard;
-	private GameManager gameManager;
 	public static GameController gc;
 	public static UpdateDisplayController udc;
 	
+	private Chunk chunk;
 	private int sizeX;
 	private int sizeY;
 	private int nbBombs;
@@ -52,17 +53,15 @@ public class WindowManager implements ButtonControllerListener {
 		this.sizeY = sizeY;
 		this.nbBombs = nbBombs;
 		
-		this.gameManager = new GameManager(this.sizeX, this.sizeY, this.nbBombs);
 		WindowManager.gc = new GameController();
-		this.gameManager.setController(gc);
+		chunk = new Chunk(this.sizeX, this.sizeY, this.nbBombs);
+		gc.add(chunk);
 		WindowManager.udc = new UpdateDisplayController();
 		
-		this.mainFrame.initGamePanel(sizeX, sizeY);
-		this.mainFrame.setSize(sizeX*37+20, sizeY*37+200+20); //TODO: mettre une meilleur taille
+		this.mainFrame.initGamePanel(this.sizeX, this.sizeY);
+		this.mainFrame.setSize(this.sizeX*37+20, this.sizeY*37+200+20); //TODO: mettre une meilleur taille
 		this.currentCard = MainFrame.Card.game;
 		this.mainFrame.switchCard(currentCard);
-		
-		
 	}
 	
 	public void switchCard(MainFrame.Card newCard) {

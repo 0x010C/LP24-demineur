@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
@@ -170,4 +171,8 @@ public class MainFrame extends JFrame {
 	}
 	
 	
+	public void paint(Graphics g) {
+		super.paint(g);
+		
+	}
 }

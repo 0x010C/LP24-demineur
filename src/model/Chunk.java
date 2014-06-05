@@ -12,6 +12,8 @@ public class Chunk implements GameControllerListener {
 	private int sizeX, sizeY;
 	private int nbBombs;
 	private int seed;
+	private boolean multiChunk;
+	private int nbOpen;
 	
 	/* Constructors */
 	public Chunk(int sizeX, int sizeY, int nbBombs) {
@@ -20,6 +22,8 @@ public class Chunk implements GameControllerListener {
 		this.sizeY = sizeY;
 		this.nbBombs = nbBombs;
 		this.seed = r.nextInt(1000000);
+		this.multiChunk = false;
+		this.nbOpen = 0;
 		
 		this.generateChunk();
 	}
@@ -28,6 +32,8 @@ public class Chunk implements GameControllerListener {
 		this.sizeY = sizeY;
 		this.nbBombs = nbBombs;
 		this.seed = seed;
+		this.multiChunk = false;
+		this.nbOpen = 0;
 		
 		this.generateChunk();
 	}
@@ -109,12 +115,18 @@ public class Chunk implements GameControllerListener {
         }
 	}
 	public void revealing(int x, int y) {
-		System.out.print("x=");
-		System.out.println(x);
-		System.out.print("y=");
-		System.out.println(y);
+		while(this.multiChunk == false && this.nbOpen == 0 && cases.get(x).get(y).getContent() != Case.Content.empty)
+		{
+			Random r = new Random();
+			this.seed = r.nextInt(1000000);
+			this.generateChunk();
+		}
+		
 		if(cases.get(x).get(y).getState() == Case.State.hidden)
+		{
 			cases.get(x).get(y).setState(Case.State.open);
+			this.nbOpen++;
+		}
 		
 		WindowManager.udc.updateCase(x, y, cases.get(x).get(y).getContent(), cases.get(x).get(y).getState());
 
