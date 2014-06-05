@@ -138,6 +138,7 @@ public class MainFrame extends JFrame {
 	
 	public void setButtonListener(ActionListener al){
 		startPanel.setButtonListener(al);
+		customPanel.setButtonListener(al);
 		
 		itemPause.addActionListener(al);
 		itemRules.addActionListener(al);

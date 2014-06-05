@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+
 import view.MainFrame;
 
 public class ButtonController implements ActionListener {
@@ -30,7 +32,7 @@ public class ButtonController implements ActionListener {
 					break;
 				case "btInfinite":
 					break;
-				case "itemRules":
+				case "itemRules":((JButton) e.getSource()).getName().split("#");
 					bcl.openFrame(WindowManager.Frame.rules);
 					break;
 				case "itemAbout":
@@ -41,6 +43,13 @@ public class ButtonController implements ActionListener {
 					break;
 				case "itemQuit":
 					System.exit(0);
+					break;
+				case "customCancel":
+					bcl.switchCard(MainFrame.Card.start);
+					break;
+				case "customOK":
+					String param[] = ((JButton) e.getSource()).getName().split("#");
+					bcl.startGame((int)Integer.valueOf(param[0]), (int)Integer.valueOf(param[1]), (int)Integer.valueOf(param[2]));
 					break;
 			}
 		}

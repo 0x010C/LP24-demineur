@@ -23,8 +23,9 @@ public class GamePanel extends JPanel implements UpdateDisplayListener {
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(this.sizeX,this.sizeY,-5,-5));
 		this.setBackground(Color.white);
-		for(int i=0;i<this.sizeX*this.sizeY;i++) {
-			panel.add(new CasePanel(String.valueOf((int)i%this.sizeX).concat("#").concat(String.valueOf((int)i/this.sizeY))));
+		for(int i=0;i<this.sizeY;i++) {
+			for(int j=0;j<this.sizeX;j++)
+				panel.add(new CasePanel(String.valueOf(j).concat("#").concat(String.valueOf(i))));
 		}
 		this.add(panel);
 		WindowManager.udc.add(this);

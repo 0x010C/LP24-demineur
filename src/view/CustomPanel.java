@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -158,12 +159,21 @@ public class CustomPanel extends JPanel implements SpinnerUpdaterListener {
 		su.add(this);
 		((JSpinner.DefaultEditor) spinnerX.getEditor()).getTextField().addFocusListener(su);
 		((JSpinner.DefaultEditor) spinnerY.getEditor()).getTextField().addFocusListener(su);
+		((JSpinner.DefaultEditor) spinnerB.getEditor()).getTextField().addFocusListener(su);
+	}
+	
+	public void setButtonListener(ActionListener al){
+		this.customCancel.addActionListener(al);
+		this.customOK.addActionListener(al);
 	}
 	
 	public void update() {
+		System.out.println(this.spinnerXEditor.getTextField().getText().concat("#").concat(this.spinnerYEditor.getTextField().getText()).concat("#").concat(this.spinnerBEditor.getTextField().getText()));
 		int newMaxBomb = (Integer)spinnerXEditor.getModel().getNumber()*(Integer)spinnerYEditor.getModel().getNumber()-10;
-		if((Integer)spinnerBEditor.getModel().getNumber() >= newMaxBomb)
+		if((Integer)spinnerBEditor.getModel().getNumber() > newMaxBomb)
 			spinnerBEditor.getModel().setValue(newMaxBomb);
 		spinnerBEditor.getModel().setMaximum(newMaxBomb);
+		
+		this.customOK.setName(this.spinnerXEditor.getTextField().getText().concat("#").concat(this.spinnerYEditor.getTextField().getText()).concat("#").concat(this.spinnerBEditor.getTextField().getText()));
 	}
 }
