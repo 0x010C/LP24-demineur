@@ -16,14 +16,14 @@ public class CasePanel extends JPanel {
 	private JPanel askImg = new ImagePanel("images/png/ask.png");
 	private JPanel bombImg = new ImagePanel("images/png/bomb.png");
 	private JPanel explodeImg = new ImagePanel("images/png/bang.png");
-	private JPanel oneImg = new ImagePanel("");
-	private JPanel twoImg = new ImagePanel("");
-	private JPanel threeImg = new ImagePanel("");
-	private JPanel fourImg = new ImagePanel("");
-	private JPanel fiveImg = new ImagePanel("");
-	private JPanel sixImg = new ImagePanel("");
-	private JPanel sevenImg = new ImagePanel("");
-	private JPanel eightImg = new ImagePanel("");
+	private JPanel oneImg = new ImagePanel("images/png/one.png");
+	private JPanel twoImg = new ImagePanel("images/png/two.png");
+	private JPanel threeImg = new ImagePanel("images/png/three.png");
+	private JPanel fourImg = new ImagePanel("images/png/four.png");
+	private JPanel fiveImg = new ImagePanel("images/png/five.png");
+	private JPanel sixImg = new ImagePanel("images/png/six.png");
+	private JPanel sevenImg = new ImagePanel("images/png/seven.png");
+	private JPanel eightImg = new ImagePanel("images/png/eight.png");
 	
 	public CasePanel(String xy) {
 		super();
