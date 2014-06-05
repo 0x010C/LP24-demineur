@@ -2,7 +2,10 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Chunk {
+import control.GameControllerListener;
+import control.WindowManager;
+
+public class Chunk implements GameControllerListener {
 
 	/* Attributes */
 	private ArrayList<ArrayList<Case>> cases;
@@ -106,12 +109,50 @@ public class Chunk {
         }
 	}
 	public void revealing(int x, int y) {
-		cases.get(x).get(y).setState(Case.State.open);
+		System.out.print("x=");
+		System.out.println(x);
+		System.out.print("y=");
+		System.out.println(y);
+		if(cases.get(x).get(y).getState() == Case.State.hidden)
+			cases.get(x).get(y).setState(Case.State.open);
+		
+		WindowManager.udc.updateCase(x, y, cases.get(x).get(y).getContent(), cases.get(x).get(y).getState());
+
+		if(cases.get(x).get(y).getContent() == Case.Content.empty) {
+			if(x-1 >= 0) {
+				if(cases.get(x-1).get(y).getState() == Case.State.hidden)
+					revealing(x-1,y);
+			}
+			if(y-1 >= 0) {
+				if(cases.get(x).get(y-1).getState() == Case.State.hidden)
+				revealing(x,y-1);
+			}
+			if(x+1 < this.sizeX) {
+				if(cases.get(x+1).get(y).getState() == Case.State.hidden)
+				revealing(x+1,y);
+			}
+			if(y+1 < this.sizeY) {
+				if(cases.get(x).get(y+1).getState() == Case.State.hidden)
+				revealing(x,y+1);
+			}
+		}
 	}
 	public void flagging(int x, int y) {
-		cases.get(x).get(y).setState(Case.State.flag);
+		if(cases.get(x).get(y).getState() != Case.State.open) {
+			if(cases.get(x).get(y).getState() == Case.State.hidden)
+				cases.get(x).get(y).setState(Case.State.flag);
+			else if(cases.get(x).get(y).getState() == Case.State.flag)
+				cases.get(x).get(y).setState(Case.State.ask);
+			else
+				cases.get(x).get(y).setState(Case.State.hidden);
+		}
+		
+		WindowManager.udc.updateCase(x, y, cases.get(x).get(y).getContent(), cases.get(x).get(y).getState());
 	}
-	public void asking(int x, int y) {
-		cases.get(x).get(y).setState(Case.State.ask);
+	public Case.State getState(int x, int y) {
+		return cases.get(x).get(y).getState();
+	}
+	public Case.Content getContent(int x, int y) {
+		return cases.get(x).get(y).getContent();
 	}
 }

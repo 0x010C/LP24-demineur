@@ -12,17 +12,19 @@ public class WindowManager implements ButtonControllerListener {
 		rules,
 		score
 	}
-	
 	private MainFrame mainFrame;
 	private RulesFrame rulesFrame;
 	private AboutFrame aboutFrame;
 	private ScoreFrame scoreFrame;
 	private ButtonController bc;
 	private MainFrame.Card currentCard;
+	private GameManager gameManager;
+	public static GameController gc;
+	public static UpdateDisplayController udc;
 	
 	private int sizeX;
 	private int sizeY;
-	private int nbBombes;
+	private int nbBombs;
 	
 	public WindowManager() {
 		mainFrame = new MainFrame();
@@ -45,15 +47,22 @@ public class WindowManager implements ButtonControllerListener {
 	
 	/* ButtonControllerListener */
 	
-	public void startGame(int sizeX, int sizeY, int nbBombes) {
+	public void startGame(int sizeX, int sizeY, int nbBombs) {
 		this.sizeX = sizeX;
 		this.sizeY = sizeY;
-		this.nbBombes = nbBombes;
+		this.nbBombs = nbBombs;
 		
-		mainFrame.initGamePanel(sizeX, sizeY);
-		mainFrame.setSize(sizeX*37+20, sizeY*37+200+20); //TODO: mettre une meilleur taille
+		this.gameManager = new GameManager(this.sizeX, this.sizeY, this.nbBombs);
+		WindowManager.gc = new GameController();
+		this.gameManager.setController(gc);
+		WindowManager.udc = new UpdateDisplayController();
+		
+		this.mainFrame.initGamePanel(sizeX, sizeY);
+		this.mainFrame.setSize(sizeX*37+20, sizeY*37+200+20); //TODO: mettre une meilleur taille
 		this.currentCard = MainFrame.Card.game;
-		mainFrame.switchCard(currentCard);
+		this.mainFrame.switchCard(currentCard);
+		
+		
 	}
 	
 	public void switchCard(MainFrame.Card newCard) {
