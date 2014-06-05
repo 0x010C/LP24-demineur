@@ -17,11 +17,11 @@ public class GamePanel extends JPanel implements UpdateDisplayListener {
 	public int sizeY;
 	
 	public GamePanel(int sizeX, int sizeY) {
-		this.sizeX = sizeY;
-		this.sizeY = sizeX;
-		this.setSize(new Dimension(this.sizeX*32,this.sizeY*32));
+		this.sizeX = sizeX;
+		this.sizeY = sizeY;
+		this.setSize(new Dimension(this.sizeY*32,this.sizeX*32));
 		panel = new JPanel();
-		panel.setLayout(new GridLayout(this.sizeX,this.sizeY,-5,-5));
+		panel.setLayout(new GridLayout(this.sizeY,this.sizeX,-5,-5));
 		this.setBackground(Color.white);
 		for(int i=0;i<this.sizeY;i++) {
 			for(int j=0;j<this.sizeX;j++)
