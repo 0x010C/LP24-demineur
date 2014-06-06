@@ -114,12 +114,64 @@ public class Chunk implements GameControllerListener {
             }
         }
 	}
+	
 	public void revealing(int x, int y) {
 		while(this.multiChunk == false && this.nbOpen == 0 && cases.get(x).get(y).getContent() != Case.Content.empty)
 		{
 			Random r = new Random();
 			this.seed = r.nextInt(1000000);
 			this.generateChunk();
+		}
+		
+		if(cases.get(x).get(y).getState() == Case.State.open && cases.get(x).get(y).getContent() != Case.Content.empty && cases.get(x).get(y).getContent() != Case.Content.bomb) {
+			int count = 0;
+			if(x-1 >= 0) {
+				if(cases.get(x-1).get(y).getState() == Case.State.flag)
+					count++;
+			}
+			if(x-1 >= 0 && y-1 >= 0) {
+				if(cases.get(x-1).get(y-1).getState() == Case.State.flag)
+					count++;
+			}
+			if(y-1 >= 0) {
+				if(cases.get(x).get(y-1).getState() == Case.State.flag)
+					count++;
+			}
+			if(y-1 >= 0 && x+1 < this.sizeX) {
+				if(cases.get(x+1).get(y-1).getState() == Case.State.flag)
+					count++;
+			}
+			if(x+1 < this.sizeX) {
+				if(cases.get(x+1).get(y).getState() == Case.State.flag)
+					count++;
+			}
+			if(x+1 < this.sizeX && y+1 < this.sizeY) {
+				if(cases.get(x+1).get(y+1).getState() == Case.State.flag)
+					count++;
+			}
+			if(y+1 < this.sizeY) {
+				if(cases.get(x).get(y+1).getState() == Case.State.flag)
+					count++;
+			}
+			if(y+1 < this.sizeY && x-1 >= 0) {
+				if(cases.get(x-1).get(y+1).getState() == Case.State.flag)
+					count++;
+			}
+			
+			if(count == 1 && cases.get(x).get(y).getContent() == Case.Content.one)
+				revealingAround(x, y);
+			else if(count == 2 && cases.get(x).get(y).getContent() == Case.Content.two)
+				revealingAround(x, y);
+			else if(count == 3 && cases.get(x).get(y).getContent() == Case.Content.three)
+				revealingAround(x, y);
+			else if(count == 4 && cases.get(x).get(y).getContent() == Case.Content.four)
+				revealingAround(x, y);
+			else if(count == 5 && cases.get(x).get(y).getContent() == Case.Content.five)
+				revealingAround(x, y);
+			else if(count == 6 && cases.get(x).get(y).getContent() == Case.Content.six)
+				revealingAround(x, y);
+			else if(count == 7 && cases.get(x).get(y).getContent() == Case.Content.seven)
+				revealingAround(x, y);
 		}
 		
 		if(cases.get(x).get(y).getState() == Case.State.hidden)
@@ -131,40 +183,44 @@ public class Chunk implements GameControllerListener {
 		WindowManager.udc.updateCase(x, y, cases.get(x).get(y).getContent(), cases.get(x).get(y).getState());
 
 		if(cases.get(x).get(y).getContent() == Case.Content.empty) {
-			if(x-1 >= 0) {
-				if(cases.get(x-1).get(y).getState() == Case.State.hidden)
-					revealing(x-1,y);
-			}
-			if(x-1 >= 0 && y-1 >= 0) {
-				if(cases.get(x-1).get(y-1).getState() == Case.State.hidden)
-				revealing(x-1,y-1);
-			}
-			if(y-1 >= 0) {
-				if(cases.get(x).get(y-1).getState() == Case.State.hidden)
-				revealing(x,y-1);
-			}
-			if(y-1 >= 0 && x+1 < this.sizeX) {
-				if(cases.get(x+1).get(y-1).getState() == Case.State.hidden)
-				revealing(x+1,y-1);
-			}
-			if(x+1 < this.sizeX) {
-				if(cases.get(x+1).get(y).getState() == Case.State.hidden)
-				revealing(x+1,y);
-			}
-			if(x+1 < this.sizeX && y+1 < this.sizeY) {
-				if(cases.get(x+1).get(y+1).getState() == Case.State.hidden)
-				revealing(x+1,y+1);
-			}
-			if(y+1 < this.sizeY) {
-				if(cases.get(x).get(y+1).getState() == Case.State.hidden)
-				revealing(x,y+1);
-			}
-			if(y+1 < this.sizeY && x-1 >= 0) {
-				if(cases.get(x-1).get(y+1).getState() == Case.State.hidden)
-				revealing(x-1,y+1);
-			}
+			revealingAround(x, y);
 		}
 	}
+	public void revealingAround(int x, int y) {
+		if(x-1 >= 0) {
+			if(cases.get(x-1).get(y).getState() == Case.State.hidden)
+				revealing(x-1,y);
+		}
+		if(x-1 >= 0 && y-1 >= 0) {
+			if(cases.get(x-1).get(y-1).getState() == Case.State.hidden)
+				revealing(x-1,y-1);
+		}
+		if(y-1 >= 0) {
+			if(cases.get(x).get(y-1).getState() == Case.State.hidden)
+				revealing(x,y-1);
+		}
+		if(y-1 >= 0 && x+1 < this.sizeX) {
+			if(cases.get(x+1).get(y-1).getState() == Case.State.hidden)
+				revealing(x+1,y-1);
+		}
+		if(x+1 < this.sizeX) {
+			if(cases.get(x+1).get(y).getState() == Case.State.hidden)
+				revealing(x+1,y);
+		}
+		if(x+1 < this.sizeX && y+1 < this.sizeY) {
+			if(cases.get(x+1).get(y+1).getState() == Case.State.hidden)
+				revealing(x+1,y+1);
+		}
+		if(y+1 < this.sizeY) {
+			if(cases.get(x).get(y+1).getState() == Case.State.hidden)
+				revealing(x,y+1);
+		}
+		if(y+1 < this.sizeY && x-1 >= 0) {
+			if(cases.get(x-1).get(y+1).getState() == Case.State.hidden)
+				revealing(x-1,y+1);
+		}
+	}
+	
 	public void flagging(int x, int y) {
 		if(cases.get(x).get(y).getState() != Case.State.open) {
 			if(cases.get(x).get(y).getState() == Case.State.hidden)
