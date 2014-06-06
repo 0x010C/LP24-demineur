@@ -20,6 +20,7 @@ public class WindowManager implements ButtonListener {
 	private ScoreFrame scoreFrame;
 	private ButtonController bc;
 	private MainFrame.Card currentCard;
+	
 	public static GameController gc;
 	public static UpdateDisplayController udc;
 	
@@ -28,12 +29,14 @@ public class WindowManager implements ButtonListener {
 	private int sizeY;
 	private int nbBombs;
 	
+	public static int iconSize;
+	
 	public WindowManager() {
+		/* Initialisation of our Main Frame */
 		mainFrame = new MainFrame();
 		bc = new ButtonController();
 		bc.add(this);
 		mainFrame.setButtonListener(bc);
-
 		this.currentCard = MainFrame.Card.start;
 		mainFrame.switchCard(currentCard);
 		
@@ -47,7 +50,7 @@ public class WindowManager implements ButtonListener {
 		scoreFrame = new ScoreFrame();
 	}
 	
-	/* ButtonControllerListener */
+	/* ButtonListener */
 	
 	public void startGame(int sizeX, int sizeY, int nbBombs) {
 		this.sizeX = sizeX;

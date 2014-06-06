@@ -32,6 +32,9 @@ public class MainFrame extends JFrame {
 	private int logoWidth = 700;
 	private int logoHeight = 100;
 	
+	public static int realUsableWidth;
+	public static int realUsableHeight;
+	
 	private JPanel menuPanel;
 	private JMenuBar menuBar;
 	private JPanel logoPanel;
@@ -186,6 +189,8 @@ public class MainFrame extends JFrame {
 	}
 	
 	public void paint(Graphics g) {
+		MainFrame.realUsableHeight = (int)this.getSize().getHeight() - this.logoHeight;
+		MainFrame.realUsableWidth = (int)this.getSize().getWidth();
 		super.paint(g);
 	}
 }
