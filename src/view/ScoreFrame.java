@@ -16,6 +16,10 @@ public class ScoreFrame extends JFrame {
 	private int minHeight = 280;
 	private int logoWidth = 700;
 	private int logoHeight = 100;
+	private int podiumWidth = 300;
+	private int podiumHeight = 150;
+	
+	private ImagePanel podium;
 	
 	public ScoreFrame() {
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,22 +47,19 @@ public class ScoreFrame extends JFrame {
 		content.add(BorderLayout.NORTH,panelNorth);
 		content.add(BorderLayout.CENTER,panelCenter);
 		
+		/* Creation of the image */
+		podium = new ImagePanel("images/png/podium.png", this.podiumWidth, this.podiumHeight);
+		
 		/* Adding the title of the frame */
 		JLabel labelTitle = new JLabel("Scores !");
-		
-		/* Adding the content of the frame */
-		JLabel label1 = new JLabel("<html><span><center>...</center></span></html>");
-		
+				
 		/* Settings the fonts */
 		Font fontTitle = new Font("Liberation Sans", Font.BOLD, 20);
 		labelTitle.setFont(fontTitle);
 		
-		Font fontContent = new Font("Liberation Sans", Font.PLAIN, 16);
-		label1.setFont(fontContent);
-		
 		/* Adding of the labels to the panels */
 		panelNorth.add(labelTitle);
-		panelCenter.add(label1);
+		panelCenter.add(podium);
 		
 		/* Adding the color of the background */
 		panelNorth.setBackground(Color.white);
