@@ -6,13 +6,14 @@ import view.MainFrame;
 import view.RulesFrame;
 import view.ScoreFrame;
 
-public class WindowManager implements ButtonControllerListener {
+public class WindowManager implements ButtonListener {
 	public enum Frame {
 		main,
 		about,
 		rules,
 		score
 	}
+	
 	private MainFrame mainFrame;
 	private RulesFrame rulesFrame;
 	private AboutFrame aboutFrame;

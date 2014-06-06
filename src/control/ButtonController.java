@@ -9,56 +9,56 @@ import javax.swing.JButton;
 import view.MainFrame;
 
 public class ButtonController implements ActionListener {
-	private ArrayList<ButtonControllerListener> client = new ArrayList<ButtonControllerListener>();
+	private ArrayList<ButtonListener> client = new ArrayList<ButtonListener>();
 	
-	public void add(ButtonControllerListener bcl) {
-		this.client.add(bcl);
+	public void add(ButtonListener bl) {
+		this.client.add(bl);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		for(ButtonControllerListener bcl : client) {
+		for(ButtonListener bl : client) {
 			switch (e.getActionCommand()) {
 				case "btEasy":
-					bcl.startGame(8, 8, 10);
+					bl.startGame(8, 8, 10);
 					break;
 				case "btMedium":
-					bcl.startGame(16, 16, 40);
+					bl.startGame(16, 16, 40);
 					break;
 				case "btDifficult":
-					bcl.startGame(30, 16, 99);
+					bl.startGame(30, 16, 99);
 					break;
 				case "btCustom":
-					bcl.switchCard(MainFrame.Card.custom);
+					bl.switchCard(MainFrame.Card.custom);
 					break;
 				case "btInfinite":
 					break;
 				case "itemNewGame":
-					bcl.abrogateGame();
+					bl.abrogateGame();
 					break;
 				case "itemPause":
-					bcl.switchCard(MainFrame.Card.pause);
+					bl.switchCard(MainFrame.Card.pause);
 					break;
 				case "itemContinue":
-					bcl.switchCard(MainFrame.Card.game);
+					bl.switchCard(MainFrame.Card.game);
 					break;
-				case "itemRules":((JButton) e.getSource()).getName().split("#");
-					bcl.openFrame(WindowManager.Frame.rules);
+				case "itemRules":
+					bl.openFrame(WindowManager.Frame.rules);
 					break;
 				case "itemAbout":
-					bcl.openFrame(WindowManager.Frame.about);
+					bl.openFrame(WindowManager.Frame.about);
 					break;
 				case "itemScore":
-					bcl.openFrame(WindowManager.Frame.score);
+					bl.openFrame(WindowManager.Frame.score);
 					break;
 				case "itemQuit":
 					System.exit(0);
 					break;
 				case "customCancel":
-					bcl.switchCard(MainFrame.Card.start);
+					bl.switchCard(MainFrame.Card.start);
 					break;
 				case "customOK":
 					String param[] = ((JButton) e.getSource()).getName().split("#");
-					bcl.startGame((int)Integer.valueOf(param[0]), (int)Integer.valueOf(param[1]), (int)Integer.valueOf(param[2]));
+					bl.startGame((int)Integer.valueOf(param[0]), (int)Integer.valueOf(param[1]), (int)Integer.valueOf(param[2]));
 					break;
 			}
 		}

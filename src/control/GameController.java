@@ -4,27 +4,24 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import view.CasePanel;
-
 public class GameController implements MouseListener {
-	private ArrayList<GameControllerListener> client = new ArrayList<GameControllerListener>();
+	private ArrayList<GameListener> client = new ArrayList<GameListener>();
 
-	public void add(GameControllerListener gcl) {
-		this.client.add(gcl);
+	public void add(GameListener gl) {
+		this.client.add(gl);
 	}
 	
-
 	public void mouseClicked(MouseEvent e) {
 		if(e.getButton() == MouseEvent.BUTTON1) {
 			String xy[] = e.getComponent().getName().split("#");
-			for(GameControllerListener gcl : client) {
-				gcl.revealing(Integer.valueOf(xy[0]), Integer.valueOf(xy[1]));
+			for(GameListener gl : client) {
+				gl.revealing(Integer.valueOf(xy[0]), Integer.valueOf(xy[1]));
 			}
 		}
 		else if(e.getButton() == MouseEvent.BUTTON3) {
 			String xy[] = e.getComponent().getName().split("#");
-			for(GameControllerListener gcl : client) {
-				gcl.flagging(Integer.valueOf(xy[0]), Integer.valueOf(xy[1]));
+			for(GameListener gl : client) {
+				gl.flagging(Integer.valueOf(xy[0]), Integer.valueOf(xy[1]));
 			}			
 		}
 	}

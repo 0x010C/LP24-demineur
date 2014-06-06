@@ -13,10 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 
-import control.SpinnerUpdater;
-import control.SpinnerUpdaterListener;
+import control.SpinnerController;
+import control.SpinnerListener;
 
-public class CustomPanel extends JPanel implements SpinnerUpdaterListener {
+public class CustomPanel extends JPanel implements SpinnerListener {
 	private BorderLayout bl;
 	
 	private JPanel panelNorth;
@@ -158,7 +158,7 @@ public class CustomPanel extends JPanel implements SpinnerUpdaterListener {
 		customOK.setActionCommand("customOK");
 		
 		/* Creation of the listener */
-		SpinnerUpdater su = new SpinnerUpdater();
+		SpinnerController su = new SpinnerController();
 		su.add(this);
 		((JSpinner.DefaultEditor) spinnerX.getEditor()).getTextField().addFocusListener(su);
 		((JSpinner.DefaultEditor) spinnerY.getEditor()).getTextField().addFocusListener(su);

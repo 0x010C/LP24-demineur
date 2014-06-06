@@ -2,10 +2,10 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
-import control.GameControllerListener;
+import control.GameListener;
 import control.WindowManager;
 
-public class Chunk implements GameControllerListener {
+public class Chunk implements GameListener {
 
 	/* Attributes */
 	private ArrayList<ArrayList<Case>> cases;
@@ -14,7 +14,7 @@ public class Chunk implements GameControllerListener {
 	private int seed;
 	private boolean multiChunk;
 	private int nbOpen;
-	
+
 	/* Constructors */
 	public Chunk(int sizeX, int sizeY, int nbBombs) {
 		Random r = new Random();

@@ -1,5 +1,5 @@
 package control;
 
-public interface SpinnerUpdaterListener {
+public interface SpinnerListener {
 	public void update();
 }

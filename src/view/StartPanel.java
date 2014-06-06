@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 public class StartPanel extends JPanel{
 	private BorderLayout bl;
 	private GridLayout gl;
-	
+
 	private JPanel panelNorth;
 	private JPanel panelSouth;
 	private JPanel panelCenter;
