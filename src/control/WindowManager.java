@@ -60,8 +60,17 @@ public class WindowManager implements ButtonControllerListener {
 		
 		this.mainFrame.initGamePanel(this.sizeX, this.sizeY);
 		this.mainFrame.setSize(this.sizeX*37+20, this.sizeY*37+200+20); //TODO: mettre une meilleur taille
+		this.mainFrame.setEnableGameItem(true);
 		this.currentCard = MainFrame.Card.game;
 		this.mainFrame.switchCard(currentCard);
+	}
+	
+	public void abrogateGame() {
+		
+	}
+	
+	public void endGame(boolean win) {
+		
 	}
 	
 	public void switchCard(MainFrame.Card newCard) {

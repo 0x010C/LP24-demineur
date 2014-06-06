@@ -32,6 +32,15 @@ public class ButtonController implements ActionListener {
 					break;
 				case "btInfinite":
 					break;
+				case "itemNewGame":
+					bcl.abrogateGame();
+					break;
+				case "itemPause":
+					bcl.switchCard(MainFrame.Card.pause);
+					break;
+				case "itemContinue":
+					bcl.switchCard(MainFrame.Card.game);
+					break;
 				case "itemRules":((JButton) e.getSource()).getName().split("#");
 					bcl.openFrame(WindowManager.Frame.rules);
 					break;

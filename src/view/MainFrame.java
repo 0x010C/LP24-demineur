@@ -39,6 +39,7 @@ public class MainFrame extends JFrame {
 	private JPanel card;
 	
 	private JMenu menu1;
+	private JMenuItem itemNewGame;
 	private JMenuItem itemPause;
 	private JMenuItem itemRules;
 	private JMenuItem itemAbout;
@@ -75,6 +76,7 @@ public class MainFrame extends JFrame {
 		
 		// Creation of menus and items
 		menu1 = new JMenu("MineSweeper");
+		itemNewGame = new JMenuItem("New Game");
 		itemPause = new JMenuItem("Pause");
 		itemRules = new JMenuItem("Rules");
 		itemAbout = new JMenuItem("About");
@@ -82,6 +84,7 @@ public class MainFrame extends JFrame {
 		itemQuit = new JMenuItem("Quit");
 		
 		// Setting of the ActionCommand of the items
+		itemNewGame.setActionCommand("itemNewGame");
 		itemPause.setActionCommand("itemPause");
 		itemRules.setActionCommand("itemRules");
 		itemAbout.setActionCommand("itemAbout");
@@ -90,6 +93,7 @@ public class MainFrame extends JFrame {
 		
 		// Adding of the shortcuts
 		menu1.setMnemonic('M');
+		itemNewGame.setAccelerator(KeyStroke.getKeyStroke('n'));
 		itemPause.setAccelerator(KeyStroke.getKeyStroke('p'));
 		itemAbout.setAccelerator(KeyStroke.getKeyStroke('a'));
 		itemRules.setAccelerator(KeyStroke.getKeyStroke('r'));
@@ -97,7 +101,9 @@ public class MainFrame extends JFrame {
 		itemScore.setAccelerator(KeyStroke.getKeyStroke('s'));
 		
 		// Adding of the menus and items
+		itemNewGame.setEnabled(false);
 		itemPause.setEnabled(false);
+		menu1.add(itemNewGame);
 		menu1.add(itemPause);
 		menu1.addSeparator();
 		menu1.add(itemRules);
@@ -158,9 +164,13 @@ public class MainFrame extends JFrame {
 				break;
 			case game:
 				cardLayout.show(this.card, "game");
+				itemPause.setActionCommand("itemPause");
+				itemPause.setText("Pause");
 				break;
 			case pause:
 				cardLayout.show(this.card, "pause");
+				itemPause.setActionCommand("itemContinue");
+				itemPause.setText("Continue");
 				break;
 		}
 	}
@@ -170,6 +180,10 @@ public class MainFrame extends JFrame {
 		this.card.add(gamePanel, "game");
 	}
 	
+	public void setEnableGameItem(boolean b) {
+		itemPause.setEnabled(b);
+		itemNewGame.setEnabled(b);
+	}
 	
 	public void paint(Graphics g) {
 		super.paint(g);
