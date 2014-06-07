@@ -87,7 +87,7 @@ public class GamePanel extends JPanel implements UpdateDisplayListener {
 		this.setPreferredSize(new Dimension(this.sizeX*WindowManager.iconSize+(this.sizeX+1)*WindowManager.margin,this.sizeY*WindowManager.iconSize+(this.sizeY+1)*WindowManager.margin));
 		for(int i=0;i<this.sizeY;i++) {
 			for(int j=0;j<this.sizeX;j++) {
-				((CasePanel)this.panel.getComponent(j+this.sizeX*i)).loadImages();
+				((CasePanel)this.panel.getComponent(j+this.sizeX*i)).updateCase();
 				this.panel.getComponent(j+this.sizeX*i).setBounds(WindowManager.margin+j*(WindowManager.iconSize+WindowManager.margin), WindowManager.margin+i*(WindowManager.iconSize+WindowManager.margin), WindowManager.iconSize, WindowManager.iconSize);
 			}
 		}
