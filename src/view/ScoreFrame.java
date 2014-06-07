@@ -8,6 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import model.Score;
 
@@ -34,13 +35,19 @@ public class ScoreFrame extends JFrame {
 	private String[] array;
 	private String filePath;
 	
+	private JLabel label1;
+	private JLabel label2;
+	private JLabel label3;	
+	private String score1;
+	private String score2;
+	private String score3;
 	
 	public ScoreFrame() {
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
 		this.setBounds(60, 60, this.width, this.height);
 		this.setMinimumSize(new Dimension(this.minWidth,this.minHeight));
-		this.setResizable(false);
+		//this.setResizable(false);
 		
 		/* Global Panel */
 		this.getContentPane().setLayout(new BorderLayout());
@@ -90,5 +97,20 @@ public class ScoreFrame extends JFrame {
 		panelNorth.setBackground(Color.white);
 		panelCenter.setBackground(Color.white);
 		panelSouth.setBackground(Color.white);
+		this.ShowScores(50000000, 7000, 9000);
+	}
+	
+	public void ShowScores(int intScore1, int intScore2, int intScore3) {
+		/* Casing the integers into strings */
+		score1 = Integer.toString(intScore1);
+		score2 = Integer.toString(intScore2);
+		score3 = Integer.toString(intScore3);
+		
+		/* Adding the contents of the JPanel */
+		label1 = new JLabel(score1);
+		label2 = new JLabel(score2);
+		label3 = new JLabel(score3);
+		label1.setBounds(60, 60, 10, 10);
+		this.panelSouth.add(label1);
 	}
 }
