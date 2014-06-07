@@ -126,6 +126,9 @@ public class MainFrame extends JFrame {
 		card.setSize(this.width, this.height-this.logoHeight);
 		cardLayout = new CardLayout();
 		card.setLayout(cardLayout);
+
+		MainFrame.realUsableHeight = (int)this.getSize().getHeight() - this.logoHeight;
+		MainFrame.realUsableWidth = (int)this.getSize().getWidth();
 		
 		// Define the start's panel
 		startPanel = new StartPanel();

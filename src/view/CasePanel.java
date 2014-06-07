@@ -13,31 +13,33 @@ public class CasePanel extends JPanel {
 	 * Attributes
 	 */
 	
-	//Loading all the images
-	private JPanel hiddenImg = new ImagePanel("images/png/hidden.png");
-	private JPanel emptyImg = new ImagePanel("images/png/empty.png");
-	private JPanel flagImg = new ImagePanel("images/png/flag.png");
-	private JPanel askImg = new ImagePanel("images/png/ask.png");
-	private JPanel bombImg = new ImagePanel("images/png/bomb.png");
-	private JPanel explodeImg = new ImagePanel("images/png/bang.png");
-	private JPanel oneImg = new ImagePanel("images/png/one.png");
-	private JPanel twoImg = new ImagePanel("images/png/two.png");
-	private JPanel threeImg = new ImagePanel("images/png/three.png");
-	private JPanel fourImg = new ImagePanel("images/png/four.png");
-	private JPanel fiveImg = new ImagePanel("images/png/five.png");
-	private JPanel sixImg = new ImagePanel("images/png/six.png");
-	private JPanel sevenImg = new ImagePanel("images/png/seven.png");
-	private JPanel eightImg = new ImagePanel("images/png/eight.png");
+	//All the images
+	private String basePath;
+	private JPanel hiddenImg;
+	private JPanel emptyImg;
+	private JPanel flagImg;
+	private JPanel askImg;
+	private JPanel bombImg;
+	private JPanel explodeImg;
+	private JPanel oneImg;
+	private JPanel twoImg;
+	private JPanel threeImg;
+	private JPanel fourImg;
+	private JPanel fiveImg;
+	private JPanel sixImg;
+	private JPanel sevenImg;
+	private JPanel eightImg;
 	
 	/*
 	 * Constructor
 	 */
 	public CasePanel(String xy) {
 		super();
-		this.setPreferredSize(new Dimension(32, 32));
+		this.setPreferredSize(new Dimension(WindowManager.iconSize, WindowManager.iconSize));
 		this.setBackground(new Color(190,189,188));
 		this.setName(xy);
 		this.setLayout(null);
+		this.loadImages();
 		this.updateCase(Case.Content.empty, Case.State.hidden);
 		this.addMouseListener(WindowManager.gc);
 	}
@@ -45,6 +47,26 @@ public class CasePanel extends JPanel {
 	/*
 	 * Methods
 	 */
+	
+	public void loadImages() {
+		this.basePath = new String("images/png/".concat(String.valueOf(WindowManager.iconSize)).concat("/"));
+		System.out.println(basePath);
+		
+		this.hiddenImg = new ImagePanel(basePath.concat("hidden.png"));
+		this.emptyImg = new ImagePanel(basePath.concat("empty.png"));
+		this.flagImg = new ImagePanel(basePath.concat("flag.png"));
+		this.askImg = new ImagePanel(basePath.concat("ask.png"));
+		this.bombImg = new ImagePanel(basePath.concat("bomb.png"));
+		this.explodeImg = new ImagePanel(basePath.concat("bang.png"));
+		this.oneImg = new ImagePanel(basePath.concat("one.png"));
+		this.twoImg = new ImagePanel(basePath.concat("two.png"));
+		this.threeImg = new ImagePanel(basePath.concat("three.png"));
+		this.fourImg = new ImagePanel(basePath.concat("four.png"));
+		this.fiveImg = new ImagePanel(basePath.concat("five.png"));
+		this.sixImg = new ImagePanel(basePath.concat("six.png"));
+		this.sevenImg = new ImagePanel(basePath.concat("seven.png"));
+		this.eightImg = new ImagePanel(basePath.concat("eight.png"));
+	}
 	
 	protected void updateCase(Case.Content content, Case.State state) {
 		/* First, remove the previous image */
@@ -98,7 +120,7 @@ public class CasePanel extends JPanel {
 		}
 		
 		/* And finely, we correctly position the image and refresh the panel */
-		this.getComponent(0).setBounds(0, 0, 32, 32);
+		this.getComponent(0).setBounds(0, 0, WindowManager.iconSize, WindowManager.iconSize);
 		this.updateUI();
 	}
 }

@@ -29,7 +29,8 @@ public class WindowManager implements ButtonListener {
 	private int sizeY;
 	private int nbBombs;
 	
-	public static int iconSize;
+	public static int iconSize = 32;
+	public static int margin = 5;
 	
 	public WindowManager() {
 		/* Initialisation of our Main Frame */
