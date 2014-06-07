@@ -1,6 +1,4 @@
-- Générer les icones de differentes tailles
 - Refaire le calcul de la taille X et Y sur la page custom
 - Refaire le calcul du redimentionnement de la fenêtre
-- Réaliser le modèle du score
-- Réaliser la vue du score
 - Implémenter le contrôle entre les deux
+- Réaliser le panel de pause
