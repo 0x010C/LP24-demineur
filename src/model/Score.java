@@ -3,13 +3,16 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Score{
 	private ArrayList<Integer> al;
 	private ArrayList<String> tree;
+	private String[] array;
 	
 	public ArrayList<Integer> Reading (String filePath) {
+		/* The function reads the file and return an ArrayList of integers of the numbers in it */
 		try {
 			al = new ArrayList<Integer>();
 			
@@ -32,6 +35,7 @@ public class Score{
 	}
 	
 	public void AddingScore(int x, int y, int bombs, int value){
+		/* Add the score to the correct file according to the parameters */
 		String filePath;
 		int tmp;
 		
@@ -108,8 +112,8 @@ public class Score{
 	}
 	
 	public void CreateIfNotCreated(String filePath) {
+		/* Check if a file exists and if it is false, create it */
 		File file = new File(filePath);
-		int i;
 		if(file.exists() == false) {
 			/* Creation of the file writing in it 9999 as the three scores*/
 			try {
@@ -121,17 +125,62 @@ public class Score{
 		}
 	}
 	
-	public ArrayList<String> Tree(String filePath){
+	public int getSizeTreeHumanReadable(String filePath){
+		/* Return the number of files in the directory scores */
+		File file = new File(filePath);
+		File[] arbo = file.listFiles();
+		
+		return arbo.length;
+	}
+	
+	public String[] TreeHumanReadable(String filePath){
+		/* Create an array of String with the name the type of which is "8 X 8, 10 mines" for each files in the directory scores */
 		tree = new ArrayList<String>();
+		int i, tmp;
+		String tmpX, tmpY, tmpBomb;
+		
 		
 		File file = new File(filePath);
 		File[] arbo = file.listFiles();
-
-		for (File f : arbo) {
+		Arrays.sort(arbo);
+		array = new String[arbo.length];
+		
+		/* Converting the Objects File into Strings */
+		for(File f : arbo) {
 			tree.add(f.toString());
 		}
-		// 100X100, 1 mine
 		
-		return tree;
+		/* Converting the relative path into human readable path */
+		// scores/8_8_10.score   -->   8 X 8, 10 mines
+		
+		for(i = 0; i < tree.size(); i ++){
+			tmpX = tree.get(i).substring(tree.get(i).indexOf("/")+1, tree.get(i).indexOf("_"));
+			tmpY = tree.get(i).substring(tree.get(i).indexOf("_")+1, tree.get(i).lastIndexOf("_"));
+			tmpBomb = tree.get(i).substring(tree.get(i).lastIndexOf("_")+1, tree.get(i).indexOf("."));
+			
+			// to know if a "s" is necessary at the end of the word "mine"
+			tmp = Integer.parseInt(tmpBomb);
+			if (tmp == 1) {
+				tree.set(i, tmpX + " X " + tmpY + ", " + tmpBomb + " mine");
+			} else {
+				tree.set(i, tmpX + " X " + tmpY + ", " + tmpBomb + " mines");
+			}			
+		}
+		
+		tree.toArray(array);
+		
+		return array;
 	}
+	
+	public String HumanReadableToFilePath(String hr){
+		/* 8 X 8, 10 mines   -->   scores/8_8_10.score */
+		String tmpX, tmpY, tmpBomb;
+		
+		tmpX = hr.substring(0, hr.indexOf("X")-1);
+		tmpY = hr.substring(hr.indexOf("X")+2, hr.indexOf(","));
+		tmpBomb = hr.substring(hr.indexOf(",")+2, hr.indexOf("m")-1);
+		
+		return "scores/" + tmpX + "_" + tmpY + "_" + tmpBomb + ".score";
+	}
+	
 }
