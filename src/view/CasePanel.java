@@ -14,21 +14,25 @@ public class CasePanel extends JPanel {
 	 */
 	
 	//All the images
-	private String basePath;
-	private JPanel hiddenImg;
-	private JPanel emptyImg;
-	private JPanel flagImg;
-	private JPanel askImg;
-	private JPanel bombImg;
-	private JPanel explodeImg;
-	private JPanel oneImg;
-	private JPanel twoImg;
-	private JPanel threeImg;
-	private JPanel fourImg;
-	private JPanel fiveImg;
-	private JPanel sixImg;
-	private JPanel sevenImg;
-	private JPanel eightImg;
+	private String[] basePath = new String[5];
+	private int[] baseSize = new int[5];
+	private Case.Content content;
+	private Case.State state;
+	
+	private JPanel[] hiddenImg = new JPanel[5];
+	private JPanel[] emptyImg = new JPanel[5];
+	private JPanel[] flagImg = new JPanel[5];
+	private JPanel[] askImg = new JPanel[5];
+	private JPanel[] bombImg = new JPanel[5];
+	private JPanel[] explodeImg = new JPanel[5];
+	private JPanel[] oneImg = new JPanel[5];
+	private JPanel[] twoImg = new JPanel[5];
+	private JPanel[] threeImg = new JPanel[5];
+	private JPanel[] fourImg = new JPanel[5];
+	private JPanel[] fiveImg = new JPanel[5];
+	private JPanel[] sixImg = new JPanel[5];
+	private JPanel[] sevenImg = new JPanel[5];
+	private JPanel[] eightImg = new JPanel[5];
 	
 	/*
 	 * Constructor
@@ -49,76 +53,96 @@ public class CasePanel extends JPanel {
 	 */
 	
 	public void loadImages() {
-		this.basePath = new String("images/png/".concat(String.valueOf(WindowManager.iconSize)).concat("/"));
-		System.out.println(basePath);
+		this.baseSize[0] = 16;
+		this.baseSize[1] = 24;
+		this.baseSize[2] = 32;
+		this.baseSize[3] = 48;
+		this.baseSize[4] = 64;
 		
-		this.hiddenImg = new ImagePanel(basePath.concat("hidden.png"));
-		this.emptyImg = new ImagePanel(basePath.concat("empty.png"));
-		this.flagImg = new ImagePanel(basePath.concat("flag.png"));
-		this.askImg = new ImagePanel(basePath.concat("ask.png"));
-		this.bombImg = new ImagePanel(basePath.concat("bomb.png"));
-		this.explodeImg = new ImagePanel(basePath.concat("bang.png"));
-		this.oneImg = new ImagePanel(basePath.concat("one.png"));
-		this.twoImg = new ImagePanel(basePath.concat("two.png"));
-		this.threeImg = new ImagePanel(basePath.concat("three.png"));
-		this.fourImg = new ImagePanel(basePath.concat("four.png"));
-		this.fiveImg = new ImagePanel(basePath.concat("five.png"));
-		this.sixImg = new ImagePanel(basePath.concat("six.png"));
-		this.sevenImg = new ImagePanel(basePath.concat("seven.png"));
-		this.eightImg = new ImagePanel(basePath.concat("eight.png"));
+		for(int i=0;i<5;i++) {
+			this.basePath[i] = new String("images/png/".concat(Integer.toString(baseSize[i])).concat("/"));
+			
+			this.hiddenImg[i] = new ImagePanel(basePath[i].concat("hidden.png"));
+			this.emptyImg[i] = new ImagePanel(basePath[i].concat("empty.png"));
+			this.flagImg[i] = new ImagePanel(basePath[i].concat("flag.png"));
+			this.askImg[i] = new ImagePanel(basePath[i].concat("ask.png"));
+			this.bombImg[i] = new ImagePanel(basePath[i].concat("bomb.png"));
+			this.explodeImg[i] = new ImagePanel(basePath[i].concat("bang.png"));
+			this.oneImg[i] = new ImagePanel(basePath[i].concat("one.png"));
+			this.twoImg[i] = new ImagePanel(basePath[i].concat("two.png"));
+			this.threeImg[i] = new ImagePanel(basePath[i].concat("three.png"));
+			this.fourImg[i] = new ImagePanel(basePath[i].concat("four.png"));
+			this.fiveImg[i] = new ImagePanel(basePath[i].concat("five.png"));
+			this.sixImg[i] = new ImagePanel(basePath[i].concat("six.png"));
+			this.sevenImg[i] = new ImagePanel(basePath[i].concat("seven.png"));
+			this.eightImg[i] = new ImagePanel(basePath[i].concat("eight.png"));
+		}
+	}
+	
+	protected void updateCase() {
+		updateCase(this.content, this.state);
 	}
 	
 	protected void updateCase(Case.Content content, Case.State state) {
+		/* We save the content and the state */
+		this.content = content;
+		this.state = state;
+		
 		/* First, remove the previous image */
 		this.removeAll();
 		
+		/* Before the next step, we must select the right icon size */
+		int i=0;
+		while(this.baseSize[i] != WindowManager.iconSize)
+			i++;
+
 		/* Then pick the new one and past it */
 		switch(state) {
 			case hidden:
-				this.add(this.hiddenImg);
+				this.add(this.hiddenImg[i]);
 				break;
 			case flag:
-				this.add(this.flagImg);
+				this.add(this.flagImg[i]);
 				break;
 			case ask:
-				this.add(this.askImg);
+				this.add(this.askImg[i]);
 				break;
 			case open:
 				switch(content) {
 					case empty:
-						this.add(this.emptyImg);
+						this.add(this.emptyImg[i]);
 						break;
 					case one:
-						this.add(this.oneImg);
+						this.add(this.oneImg[i]);
 						break;
 					case two:
-						this.add(this.twoImg);
+						this.add(this.twoImg[i]);
 						break;
 					case three:
-						this.add(this.threeImg);
+						this.add(this.threeImg[i]);
 						break;
 					case four:
-						this.add(this.fourImg);
+						this.add(this.fourImg[i]);
 						break;
 					case five:
-						this.add(this.fiveImg);
+						this.add(this.fiveImg[i]);
 						break;
 					case six:
-						this.add(this.sixImg);
+						this.add(this.sixImg[i]);
 						break;
 					case seven:
-						this.add(this.sevenImg);
+						this.add(this.sevenImg[i]);
 						break;
 					case eight:
-						this.add(this.eightImg);
+						this.add(this.eightImg[i]);
 						break;
 					case bomb:
-						this.add(this.bombImg);
+						this.add(this.bombImg[i]);
 						break;
 				}
 				break;
 		}
-		
+		System.out.println((ImagePanel)this.getComponent(0));
 		/* And finely, we correctly position the image and refresh the panel */
 		this.getComponent(0).setBounds(0, 0, WindowManager.iconSize, WindowManager.iconSize);
 		this.updateUI();
