@@ -8,11 +8,12 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import model.Score;
 
 public class ScoreFrame extends JFrame {
+	private static final long serialVersionUID = 354054054054L;
+	
 	private int width = 700;
 	private int height = 420;
 	private int minWidth = 700;

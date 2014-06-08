@@ -25,6 +25,8 @@ public class MainFrame extends JFrame {
 		pause
 	}
 	
+	private static final long serialVersionUID = 354054054054L;
+	
 	private int width = 700;
 	private int height = 280;
 	private int minWidth = 700;
@@ -53,7 +55,7 @@ public class MainFrame extends JFrame {
 	private StartPanel startPanel;
 	private CustomPanel customPanel;
 	private GamePanel gamePanel;
-	private JPanel pausePanel;
+	private PausePanel pausePanel;
 	
 	public MainFrame() {
 		/* Define the screen size and location */
@@ -137,7 +139,7 @@ public class MainFrame extends JFrame {
 		customPanel = new CustomPanel();
 		
 		// Define the pause's panel
-		pausePanel = new JPanel();
+		pausePanel = new PausePanel();
 		
 		
 		// Adding of the different JPanel

@@ -13,6 +13,8 @@ public class CasePanel extends JPanel {
 	 * Attributes
 	 */
 	
+	private static final long serialVersionUID = 354054054054L;
+	
 	//All the images
 	private String[] basePath = new String[5];
 	private int[] baseSize = new int[5];

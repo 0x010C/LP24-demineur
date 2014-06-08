@@ -17,6 +17,8 @@ import control.SpinnerController;
 import control.SpinnerListener;
 
 public class CustomPanel extends JPanel implements SpinnerListener {
+	private static final long serialVersionUID = 354054054054L;
+	
 	private BorderLayout bl;
 	
 	private JPanel panelNorth;

@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 
 
 public class ImagePanel extends JPanel {
+	private static final long serialVersionUID = 354054054054L;
+	
 	protected int height;
 	protected int width;
 	protected String filePath;

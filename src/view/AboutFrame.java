@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 
 
 public class AboutFrame extends JFrame {
+	private static final long serialVersionUID = 354054054054L;
+	
 	private int width = 700;
 	private int height = 320;
 	private int minWidth = 700;

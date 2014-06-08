@@ -10,7 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class StartPanel extends JPanel{
+public class StartPanel extends JPanel {
+	private static final long serialVersionUID = 354054054054L;
 	private BorderLayout bl;
 	private GridLayout gl;
 
@@ -26,7 +27,7 @@ public class StartPanel extends JPanel{
 	private JButton btCustom;
 	private JButton btInfinite;
 	
-	public StartPanel(){
+	public StartPanel() {
 		super();
 				
 		/* Definition of the BoderLayout */

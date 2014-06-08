@@ -2,7 +2,6 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
@@ -15,6 +14,8 @@ public class GamePanel extends JPanel implements UpdateDisplayListener {
 	/*
 	 * Attributes
 	 */
+	
+	private static final long serialVersionUID = 354054054054L;
 	
 	public JPanel panel;
 	public int sizeX;
