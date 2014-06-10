@@ -11,14 +11,18 @@ public class GameController implements MouseListener {
 		this.client.add(gl);
 	}
 	
+	public void removeAll() {
+		this.client.clear();
+	}
+	
 	public void mouseClicked(MouseEvent e) {
-		if(e.getButton() == MouseEvent.BUTTON1) {
+		if(e.getButton() == MouseEvent.BUTTON1 && !WindowManager.finish) {
 			String xy[] = e.getComponent().getName().split("#");
 			for(GameListener gl : client) {
 				gl.revealing(Integer.valueOf(xy[0]), Integer.valueOf(xy[1]));
 			}
 		}
-		else if(e.getButton() == MouseEvent.BUTTON3) {
+		else if(e.getButton() == MouseEvent.BUTTON3 && !WindowManager.finish) {
 			String xy[] = e.getComponent().getName().split("#");
 			for(GameListener gl : client) {
 				gl.flagging(Integer.valueOf(xy[0]), Integer.valueOf(xy[1]));

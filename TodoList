@@ -1,4 +1,5 @@
 - Refaire le calcul de la taille X et Y sur la page custom
 - Refaire le calcul du redimentionnement de la fenêtre
-- Implémenter le contrôle entre les deux
+- Amméliorer les "tailles" de changement de taille d'icone
 - Implémenter le timer pour les scores
+- Gestion de la defaite

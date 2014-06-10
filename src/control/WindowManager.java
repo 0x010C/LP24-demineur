@@ -35,8 +35,8 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 	private int sizeX;
 	private int sizeY;
 	private int nbBombs;
-	private boolean finish;
 	
+	public static boolean finish;
 	public static int iconSize = 32;
 	public static int margin = 5;
 	
@@ -49,7 +49,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		
 		// Define the score's frame
 		score = new Score();
-		this.finish = false;
+		WindowManager.finish = false;
 		this.scoreFrame = new ScoreFrame(score);
 		this.scoreFrame.addWindowListener(this);
 		
@@ -82,6 +82,8 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		this.currentCard = MainFrame.Card.game;
 		this.mainFrame.switchCard(currentCard);
 		this.mainFrame.setResizable(true);
+		
+		//this.scoreFrame.selectComboBox(this.sizeX, this.sizeY, this.nbBombs);
 	}
 	
 	public void abrogateGame() {
@@ -92,21 +94,20 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		this.mainFrame.setResizable(false);
 		this.mainFrame.setSize(700, 280);
 		this.scoreFrame.setCurrentScore(-1);
-		this.finish = false;
+		WindowManager.finish = false;
 	}
 	
 	public void endGame(boolean win) {
 		if(win) {
-			//this.score.AddingScore(this.sizeX, this.sizeY, this.nbBombs, 10452);
+			this.score.AddingScore(this.sizeX, this.sizeY, this.nbBombs, 10452);
 			//this.scoreFrame.selectComboBox(this.sizeX, this.sizeY, this.nbBombs);
-			//this.scoreFrame.setCurrentScore(10452);
-			this.finish = true;
+			this.scoreFrame.setCurrentScore(10452);
+			WindowManager.finish = true;
 			this.openFrame(WindowManager.Frame.score);
 			this.switchCard(MainFrame.Card.game);
-			//this.scoreFrame.setDefaultCloseOperation(arg0);
 		}
 		else {
-			
+			WindowManager.finish = true;
 		}
 	}
 	
@@ -147,8 +148,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 	/* WindowListener */
 
 	public void windowClosing(WindowEvent e) {
-		System.out.println("Window Closed");
-		if(this.finish)
+		if(WindowManager.finish)
 			this.abrogateGame();
 	}
 	public void windowOpened(WindowEvent e) { //required but useless

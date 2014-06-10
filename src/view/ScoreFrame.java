@@ -94,9 +94,6 @@ public class ScoreFrame extends JFrame {
 		this.panelNorth.setBackground(Color.white);
 		this.panelCenter.setBackground(Color.white);
 		this.panelSouth.setBackground(Color.white);
-		
-		this.setCurrentScore(-1);
-		this.ShowScores(34, 48, 53);
 	}
 	
 	public void ShowScores(int Score1, int Score2, int Score3) {
