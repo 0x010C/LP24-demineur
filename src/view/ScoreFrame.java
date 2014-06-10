@@ -3,6 +3,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -11,7 +14,7 @@ import javax.swing.JPanel;
 
 import model.Score;
 
-public class ScoreFrame extends JFrame {
+public class ScoreFrame extends JFrame implements ItemListener {
 	private static final long serialVersionUID = 354054054054L;
 	
 	private int width = 700;
@@ -21,6 +24,8 @@ public class ScoreFrame extends JFrame {
 	private int podiumWidth = 300;
 	private int podiumHeight = 150;
 	private int sizeArray;
+	
+	private Score score;
 	
 	private ImagePanel logo;
 	private ImagePanel podium;
@@ -34,6 +39,8 @@ public class ScoreFrame extends JFrame {
 	private String[] array;
 	private String filePath;
 	
+	private boolean disableListener;
+	
 	private JLabel labelTitle;
 	private JLabel label1;
 	private JLabel label2;
@@ -45,6 +52,8 @@ public class ScoreFrame extends JFrame {
 		this.setSize(new Dimension(this.width, this.height));
 		this.setResizable(true);
 		this.setBounds(60, 60, this.width, this.height);
+		
+		this.score = score;
 		
 		/* Global Panel */
 		this.getContentPane().setLayout(new BorderLayout());
@@ -91,28 +100,53 @@ public class ScoreFrame extends JFrame {
 		this.panelCenter.add(combo);
 		this.panelSouth.add(podium);
 		this.podium.setBounds(this.width/2-(this.podiumWidth/2), 30, this.podiumWidth, this.podiumHeight);
-	
+
+		this.label1 = new JLabel("");
+		this.label2 = new JLabel("");
+		this.label3 = new JLabel("");
+		
 		/* Adding the color of the background */
 		this.panelNorth.setBackground(Color.white);
 		this.panelCenter.setBackground(Color.white);
 		this.panelSouth.setBackground(Color.white);
 		
 		this.setComboBox(8, 8, 10);
-		
+		this.disableListener = false;
+		this.combo.addItemListener(this);
+	}
+	
+	public void ShowScores() {
+		ArrayList<Integer> scores = this.score.Reading(this.score.HumanReadableToFilePath(this.combo.getSelectedItem().toString()));
+		this.ShowScores(scores.get(0), scores.get(1), scores.get(2));
 	}
 	
 	public void ShowScores(int score1, int score2, int score3) {
 		/* Adding the JLabels to the JPanel */
-		this.label1 = new JLabel(Integer.toString(score1));
-		this.label2 = new JLabel(Integer.toString(score2));
-		this.label3 = new JLabel(Integer.toString(score3));
-		
 		if(score1 != -1)
-			this.panelSouth.add(label1);
+			label1.setText(Integer.toString(score1));
+		else
+			label1.setText("");
 		if(score2 != -1)
-			this.panelSouth.add(label2);
+			label2.setText(Integer.toString(score2));
+		else
+			label2.setText("");
 		if(score3 != -1)
+			label3.setText(Integer.toString(score3));
+		else
+			label3.setText("");
+		
+		if(score1 != -1) {
+			this.panelSouth.add(label1);
+			this.panelSouth.setComponentZOrder(this.label1, this.getComponentCount()-1);
+		}
+		if(score2 != -1) {
+			this.panelSouth.add(label2);
+			this.panelSouth.setComponentZOrder(this.label2, this.getComponentCount()-1);
+		}
+		if(score3 != -1) {
 			this.panelSouth.add(label3);
+			this.panelSouth.setComponentZOrder(this.label3, this.getComponentCount()-1);
+		}
 		
 		/* Setting the location of the labels */
 		this.label1.setBounds(this.width/2-43, 22, 80, 10);
@@ -122,13 +156,24 @@ public class ScoreFrame extends JFrame {
 		this.label3.setBounds(376, 85, 80, 10);
 		this.label3.setHorizontalAlignment(JLabel.CENTER);
 		
-		this.panelSouth.setComponentZOrder(this.label1, this.getComponentCount()-1);
-		this.panelSouth.setComponentZOrder(this.label2, this.getComponentCount()-1);
-		this.panelSouth.setComponentZOrder(this.label3, this.getComponentCount()-1);
 	}
 	
 	public void setComboBox(int sizeX, int sizeY, int nbBombs) {
 		String humanReadable;
+		
+		this.disableListener = true;
+		this.combo.removeAllItems();
+		this.array = score.TreeHumanReadable(this.filePath);
+		for(String str : this.array)
+			this.combo.addItem(str);
+		
+		this.disableListener = false;
+		
+		if(sizeX < sizeY) {
+			int temp = sizeX;
+			sizeX = sizeY;
+			sizeY = temp;
+		}
 		
 		if (nbBombs == 1) {
 			humanReadable = (Integer.toString(sizeX) + " X " + Integer.toString(sizeY) + ", " + Integer.toString(nbBombs) + " mine");
@@ -143,6 +188,8 @@ public class ScoreFrame extends JFrame {
 				index = i;
 			i++;
 		}
+		if(index == -1)
+			index = 1;
 		
 		this.combo.setSelectedIndex(index);
 	}
@@ -169,4 +216,10 @@ public class ScoreFrame extends JFrame {
 			this.labelScore.setHorizontalAlignment(JLabel.CENTER);
 		}
 	}
+
+	/* ItemListener */
+	public void itemStateChanged(ItemEvent e) {
+		if(!this.disableListener)
+			this.ShowScores();
+	} 
 }

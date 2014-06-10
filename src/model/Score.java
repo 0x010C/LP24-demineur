@@ -20,8 +20,14 @@ public class Score{
 			Scanner scanner = new Scanner(new File(filePath));
 			
 			/* Parsing of the file */
+			int i=0;
 			while (scanner.hasNext()) {
 				al.add(scanner.nextInt());
+				i++;
+			}
+			while(i<3) {
+				al.add(-1);
+				i++;
 			}
 			
 			/* Closing of the scanner */
@@ -62,17 +68,17 @@ public class Score{
 			al.add(value);
 			break;
 		case 1:
-			if(al.get(0) >= value) {
+			if(al.get(0) >= value || al.get(0) == -1) {
 				al.add(al.get(0));
 				al.set(0, value);
 			}
 			break;
 		case 2:
-			if(al.get(0) >= value) {
+			if(al.get(0) >= value || al.get(0) == -1) {
 				al.add(al.get(1));
 				al.set(1, al.get(0));
 				al.set(0, value);
-			} else if(al.get(1) >= value) {
+			} else if(al.get(1) >= value  || al.get(1) == -1) {
 				al.add(al.get(1));
 				al.set(1, value);
 			} else {
@@ -80,14 +86,14 @@ public class Score{
 			}
 			break;
 		case 3:
-			if(al.get(0) >= value) {
+			if(al.get(0) >= value || al.get(0) == -1) {
 				al.set(2, al.get(1));
 				al.set(1, al.get(0));
 				al.set(0, value);
-			} else if(al.get(1) >= value) {
+			} else if(al.get(1) >= value || al.get(1) == -1) {
 				al.set(2, al.get(1));
 				al.set(1, value);
-			} else if(al.get(2) >= value) {
+			} else if(al.get(2) >= value || al.get(2) == -1) {
 				al.set(2, value);
 			}
 			break;

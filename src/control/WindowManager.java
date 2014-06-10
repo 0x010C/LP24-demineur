@@ -51,6 +51,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		score = new Score();
 		WindowManager.finish = false;
 		this.scoreFrame = new ScoreFrame(score);
+		this.scoreFrame.ShowScores();
 		this.scoreFrame.addWindowListener(this);
 		
 		/* Initialisation of our Main Frame */
@@ -100,7 +101,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 	public void endGame(boolean win) {
 		if(win) {
 			this.score.AddingScore(this.sizeX, this.sizeY, this.nbBombs, 10452);
-			//this.scoreFrame.selectComboBox(this.sizeX, this.sizeY, this.nbBombs);
+			this.scoreFrame.setComboBox(this.sizeX, this.sizeY, this.nbBombs);
 			this.scoreFrame.setCurrentScore(10452);
 			WindowManager.finish = true;
 			this.openFrame(WindowManager.Frame.score);
