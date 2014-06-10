@@ -22,6 +22,7 @@ public class ScoreFrame extends JFrame {
 	private int logoHeight = 100;
 	private int podiumWidth = 300;
 	private int podiumHeight = 150;
+	private int panelSouthHeight = 200;
 	
 	private ImagePanel logo;
 	private ImagePanel podium;
@@ -36,87 +37,96 @@ public class ScoreFrame extends JFrame {
 	private String[] array;
 	private String filePath;
 	
+	private JLabel labelTitle;
 	private JLabel label1;
 	private JLabel label2;
 	private JLabel label3;	
-	private String score1;
-	private String score2;
-	private String score3;
 	
-	public ScoreFrame() {
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(true);
+	public ScoreFrame(Score score) {
+		this.setResizable(false);
 		this.setBounds(60, 60, this.width, this.height);
 		this.setMinimumSize(new Dimension(this.minWidth,this.minHeight));
-		//this.setResizable(false);
 		
 		/* Global Panel */
 		this.getContentPane().setLayout(new BorderLayout());
 		
-		logo = new ImagePanel("images/png/logo.png", this.logoWidth, this.logoHeight);
-		content = new JPanel();
+		this.logo = new ImagePanel("images/png/logo.png", this.logoWidth, this.logoHeight);
+		this.content = new JPanel();
 		this.getContentPane().add(BorderLayout.NORTH, logo);
 		this.getContentPane().add(BorderLayout.CENTER, content);
 		
 		/* Content Panel */
-		content.setSize(this.width, this.height-this.logoHeight);
-		content.setLayout(new BorderLayout());
+		this.content.setSize(this.width, this.height-this.logoHeight);
+		this.content.setLayout(new BorderLayout());
+		this.panelNorth = new JPanel();
+		this.panelCenter = new JPanel();
+		this.panelSouth = new JPanel();
 		
-		/* Creation of the panels north, center and south*/
-		panelNorth = new JPanel();
-		panelCenter = new JPanel();
-		panelSouth = new JPanel();
-		
-		content.add(BorderLayout.NORTH,panelNorth);
-		content.add(BorderLayout.CENTER,panelCenter);
-		content.add(BorderLayout.SOUTH,panelSouth);
+		this.content.add(BorderLayout.NORTH,panelNorth);
+		this.content.add(BorderLayout.CENTER,panelCenter);
+		this.content.add(BorderLayout.SOUTH,panelSouth);
 		this.panelSouth.setLayout(null);
+		this.panelSouth.setPreferredSize(new Dimension(700,this.panelSouthHeight));
 		
-		/* Creation of the image */
-		podium = new ImagePanel("images/png/podium.png", this.podiumWidth, this.podiumHeight);
+		/* Creation of the image podium */
+		this.podium = new ImagePanel("images/png/podium.png", this.podiumWidth, this.podiumHeight);
+		this.podium.setBounds(this.width/2-(this.podiumWidth/2), 30, this.podiumWidth, this.podiumHeight);
 		
 		/* Adding the title of the frame */
-		JLabel labelTitle = new JLabel("<html><span><center>You can the configuration of the scores you want to know !<br /><br /></center></span></html>");
+		this.labelTitle = new JLabel("<html><span><center>You can the configuration of the scores you want to know !<br /><br /></center></span></html>");
 				
 		/* Settings the fonts */
 		Font fontTitle = new Font("Liberation Sans", Font.BOLD, 20);
-		labelTitle.setFont(fontTitle);
+		this.labelTitle.setFont(fontTitle);
 		
 		/* ComboBox */
-		filePath = "scores/";
-		score = new Score();
-		array = new String[score.getSizeTreeHumanReadable(filePath)];
-		array = score.TreeHumanReadable(filePath);
-		combo = new JComboBox<String>(array);
-		combo.setBackground(Color.white);
+		this.score = score;
+		this.filePath = "scores/";
+		this.array = new String[score.getSizeTreeHumanReadable(filePath)];
+		this.array = score.TreeHumanReadable(filePath);
+		this.combo = new JComboBox<String>(array);
+		this.combo.setBackground(Color.white);
 		
 		/* Adding of the labels to the panels */
-		panelNorth.add(labelTitle);
-		panelCenter.add(combo);
-		panelSouth.add(podium);
-		this.podium.setBounds(0, 0, this.podiumWidth, this.podiumHeight);
+		this.panelNorth.add(labelTitle);
+		this.panelCenter.add(combo);
+		this.panelSouth.add(podium);
+		this.podium.setBounds(this.width/2-(this.podiumWidth/2), 30, this.podiumWidth, this.podiumHeight);
 	
 		/* Adding the color of the background */
-		panelNorth.setBackground(Color.green);
-		panelCenter.setBackground(Color.yellow);
-		panelSouth.setBackground(Color.red);
-		this.ShowScores(50000001, 7001, 9001);
+		this.panelNorth.setBackground(Color.white);
+		this.panelCenter.setBackground(Color.white);
+		this.panelSouth.setBackground(Color.white);
 	}
 	
-	public void ShowScores(int intScore1, int intScore2, int intScore3) {
-		/* Casing the integers into strings */
-		score1 = Integer.toString(intScore1);
-		score2 = Integer.toString(intScore2);
-		score3 = Integer.toString(intScore3);
+	public void ShowScores(int Score1, int intScore2, int intScore3) {
+		/* Adding the JLabels to the JPanel */
+		this.label1 = new JLabel(Integer.toString(Score1));
+		this.label2 = new JLabel(Integer.toString(Score1));
+		this.label3 = new JLabel(Integer.toString(Score1));
 		
-		/* Adding the contents of the JPanel */
-		label1 = new JLabel(score1);
-		label2 = new JLabel(score2);
-		label3 = new JLabel(score3);
 		this.panelSouth.add(label1);
-		this.panelSouth.setLayout(null);
-		this.panelSouth.setPreferredSize(new Dimension(700,220));
-		label1.setBounds(280, 50, 100, 100);
-		panelSouth.setComponentZOrder(this.label1, this.getComponentCount()-1);
+		this.panelSouth.add(label2);
+		this.panelSouth.add(label3);
+		
+		/* Setting the location of the labels */
+		this.label1.setBounds(this.width/2-43, 22, 80, 10);
+		this.label1.setHorizontalAlignment(JLabel.CENTER);
+		this.label2.setBounds(225, 79, 80, 10);
+		this.label2.setHorizontalAlignment(JLabel.CENTER);
+		this.label3.setBounds(376, 85, 80, 10);
+		this.label3.setHorizontalAlignment(JLabel.CENTER);
+		
+		this.panelSouth.setComponentZOrder(this.label1, this.getComponentCount()-1);
+		this.panelSouth.setComponentZOrder(this.label2, this.getComponentCount()-1);
+		this.panelSouth.setComponentZOrder(this.label3, this.getComponentCount()-1);
+	}
+	
+	public void setComboBox(int sizeX, int sizeY, int nbBombs, int score){
+		
+	}
+	
+	public void setCurrentScore(int score){
+		
 	}
 }
