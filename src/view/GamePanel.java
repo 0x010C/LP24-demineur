@@ -100,4 +100,9 @@ public class GamePanel extends JPanel implements UpdateDisplayListener {
 	public void updateCase(int x, int y, Case.Content content, Case.State state) {
 		((CasePanel) panel.getComponents()[x+(this.sizeX)*y]).updateCase(content, state);
 	}
+	public void win() {//required but useless
+	}
+	public void loose() {//required but useless
+
+	}
 }

@@ -24,7 +24,8 @@ public class Case {
 		six,
 		seven,
 		eight,
-		bomb
+		bomb,
+		explode
 	}
 	
 	/* Constructors */

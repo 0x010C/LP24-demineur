@@ -16,4 +16,16 @@ public class UpdateDisplayController {
 			udl.updateCase(x, y, content, state);
 		}
 	}
+	
+	public void loose() {
+		for(UpdateDisplayListener udl : client) {
+			udl.loose();
+		}
+	}
+	
+	public void win() {
+		for(UpdateDisplayListener udl : client) {
+			udl.win();
+		}
+	}
 }

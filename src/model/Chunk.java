@@ -2,6 +2,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
+import model.Case.Content;
+
 import control.GameListener;
 import control.WindowManager;
 
@@ -178,13 +180,30 @@ public class Chunk implements GameListener {
 		{
 			cases.get(x).get(y).setState(Case.State.open);
 			this.nbOpen++;
+			
+			if(cases.get(x).get(y).getContent() == Case.Content.bomb)
+			{
+				cases.get(x).get(y).setContent(Case.Content.explode);
+				cases.get(x).get(y).setState(Case.State.hidden);
+				WindowManager.udc.updateCase(x, y, cases.get(x).get(y).getContent(), cases.get(x).get(y).getState());
+				this.revealingAllBomb();
+				
+				WindowManager.udc.loose();
+			}
+			else if(this.sizeX*this.sizeY-this.nbBombs == this.nbOpen) {
+				WindowManager.udc.updateCase(x, y, cases.get(x).get(y).getContent(), cases.get(x).get(y).getState());
+				WindowManager.udc.win();
+			}
+			else
+				WindowManager.udc.updateCase(x, y, cases.get(x).get(y).getContent(), cases.get(x).get(y).getState());
+				
 		}
 		
-		WindowManager.udc.updateCase(x, y, cases.get(x).get(y).getContent(), cases.get(x).get(y).getState());
-
 		if(cases.get(x).get(y).getContent() == Case.Content.empty) {
 			revealingAround(x, y);
 		}
+		
+		
 	}
 	public void revealingAround(int x, int y) {
 		if(x-1 >= 0) {
@@ -218,6 +237,14 @@ public class Chunk implements GameListener {
 		if(y+1 < this.sizeY && x-1 >= 0) {
 			if(cases.get(x-1).get(y+1).getState() == Case.State.hidden)
 				revealing(x-1,y+1);
+		}
+	}
+	public void revealingAllBomb() {
+		for(int x=0;x<this.sizeX;x++) {
+			for(int y=0;y<this.sizeY;y++) {
+				if(cases.get(x).get(y).getContent() == Case.Content.bomb)
+					WindowManager.udc.updateCase(x, y, cases.get(x).get(y).getContent(), Case.State.open);
+			}
 		}
 	}
 	

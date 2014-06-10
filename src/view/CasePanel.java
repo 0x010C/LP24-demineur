@@ -69,7 +69,7 @@ public class CasePanel extends JPanel {
 			this.flagImg[i] = new ImagePanel(basePath[i].concat("flag.png"));
 			this.askImg[i] = new ImagePanel(basePath[i].concat("ask.png"));
 			this.bombImg[i] = new ImagePanel(basePath[i].concat("bomb.png"));
-			this.explodeImg[i] = new ImagePanel(basePath[i].concat("bang.png"));
+			this.explodeImg[i] = new ImagePanel(basePath[i].concat("explode.png"));
 			this.oneImg[i] = new ImagePanel(basePath[i].concat("one.png"));
 			this.twoImg[i] = new ImagePanel(basePath[i].concat("two.png"));
 			this.threeImg[i] = new ImagePanel(basePath[i].concat("three.png"));
@@ -83,6 +83,10 @@ public class CasePanel extends JPanel {
 	
 	protected void updateCase() {
 		updateCase(this.content, this.state);
+	}
+	
+	protected void updateCase(Case.State state) {
+		updateCase(this.content, state);
 	}
 	
 	protected void updateCase(Case.Content content, Case.State state) {
@@ -101,7 +105,10 @@ public class CasePanel extends JPanel {
 		/* Then pick the new one and past it */
 		switch(state) {
 			case hidden:
-				this.add(this.hiddenImg[i]);
+				if(content == Case.Content.explode)
+					this.add(this.explodeImg[i]);
+				else
+					this.add(this.hiddenImg[i]);
 				break;
 			case flag:
 				this.add(this.flagImg[i]);
@@ -144,7 +151,6 @@ public class CasePanel extends JPanel {
 				}
 				break;
 		}
-		System.out.println((ImagePanel)this.getComponent(0));
 		/* And finely, we correctly position the image and refresh the panel */
 		this.getComponent(0).setBounds(0, 0, WindowManager.iconSize, WindowManager.iconSize);
 		this.updateUI();

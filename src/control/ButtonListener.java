@@ -7,5 +7,4 @@ public interface ButtonListener {
 	public void openFrame(WindowManager.Frame frame);
 	public void switchCard(MainFrame.Card newCard);
 	public void abrogateGame();
-	public void endGame(boolean win);
 }
