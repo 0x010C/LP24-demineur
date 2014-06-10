@@ -103,9 +103,9 @@ public class CustomPanel extends JPanel implements SpinnerListener {
 		
 		/* Creation of the labels */
 		labelNorth = new JLabel("<html><span><center>You can choose your parameters for your personal game !</center></span></html>");
-		labelX = new JLabel("<html><span><center>Horizontal :<br /></center></span></html>");
-		labelY = new JLabel("<html><span><center>Vertical :<br /></center></span></html>");
-		labelB = new JLabel("<html><span><center>Number of bombs :<br /></center></span></html>");
+		labelX = new JLabel("Horizontal :");
+		labelY = new JLabel("Vertical :");
+		labelB = new JLabel("Number of bombs :");
 		
 		// Settings the fonts
 		Font fontNorth = new Font("Liberation Sans", Font.BOLD, 18);
@@ -133,7 +133,7 @@ public class CustomPanel extends JPanel implements SpinnerListener {
 		spinnerX.setBackground(Color.white);
 		spinnerY.setBackground(Color.white);
 		spinnerB.setBackground(Color.white);
-				
+		
 		/* Adding the content to the panels */
 		panelNorth.add(labelNorth);
 		
