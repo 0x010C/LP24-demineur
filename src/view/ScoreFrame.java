@@ -70,6 +70,7 @@ public class ScoreFrame extends JFrame {
 		content.add(BorderLayout.NORTH,panelNorth);
 		content.add(BorderLayout.CENTER,panelCenter);
 		content.add(BorderLayout.SOUTH,panelSouth);
+		this.panelSouth.setLayout(null);
 		
 		/* Creation of the image */
 		podium = new ImagePanel("images/png/podium.png", this.podiumWidth, this.podiumHeight);
@@ -93,12 +94,13 @@ public class ScoreFrame extends JFrame {
 		panelNorth.add(labelTitle);
 		panelCenter.add(combo);
 		panelSouth.add(podium);
+		this.podium.setBounds(0, 0, this.podiumWidth, this.podiumHeight);
 	
 		/* Adding the color of the background */
-		panelNorth.setBackground(Color.white);
-		panelCenter.setBackground(Color.white);
-		panelSouth.setBackground(Color.white);
-		this.ShowScores(50000000, 7000, 9000);
+		panelNorth.setBackground(Color.green);
+		panelCenter.setBackground(Color.yellow);
+		panelSouth.setBackground(Color.red);
+		this.ShowScores(50000001, 7001, 9001);
 	}
 	
 	public void ShowScores(int intScore1, int intScore2, int intScore3) {
@@ -111,7 +113,10 @@ public class ScoreFrame extends JFrame {
 		label1 = new JLabel(score1);
 		label2 = new JLabel(score2);
 		label3 = new JLabel(score3);
-		label1.setBounds(60, 60, 10, 10);
 		this.panelSouth.add(label1);
+		this.panelSouth.setLayout(null);
+		this.panelSouth.setPreferredSize(new Dimension(700,220));
+		label1.setBounds(280, 50, 100, 100);
+		panelSouth.setComponentZOrder(this.label1, this.getComponentCount()-1);
 	}
 }
