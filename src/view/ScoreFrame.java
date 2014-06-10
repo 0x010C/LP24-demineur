@@ -15,14 +15,11 @@ public class ScoreFrame extends JFrame {
 	private static final long serialVersionUID = 354054054054L;
 	
 	private int width = 700;
-	private int height = 420;
-	private int minWidth = 700;
-	private int minHeight = 280;
+	private int height = 430;
 	private int logoWidth = 700;
 	private int logoHeight = 100;
 	private int podiumWidth = 300;
 	private int podiumHeight = 150;
-	private int panelSouthHeight = 200;
 	
 	private ImagePanel logo;
 	private ImagePanel podium;
@@ -33,19 +30,20 @@ public class ScoreFrame extends JFrame {
 	private JPanel panelSouth;
 	
 	private JComboBox<String> combo;
-	private Score score;
 	private String[] array;
 	private String filePath;
 	
 	private JLabel labelTitle;
 	private JLabel label1;
 	private JLabel label2;
-	private JLabel label3;	
+	private JLabel label3;
+	private JLabel labelText;
+	private JLabel labelScore;
 	
 	public ScoreFrame(Score score) {
-		this.setResizable(false);
+		this.setSize(new Dimension(this.width, this.height));
+		this.setResizable(true);
 		this.setBounds(60, 60, this.width, this.height);
-		this.setMinimumSize(new Dimension(this.minWidth,this.minHeight));
 		
 		/* Global Panel */
 		this.getContentPane().setLayout(new BorderLayout());
@@ -66,7 +64,7 @@ public class ScoreFrame extends JFrame {
 		this.content.add(BorderLayout.CENTER,panelCenter);
 		this.content.add(BorderLayout.SOUTH,panelSouth);
 		this.panelSouth.setLayout(null);
-		this.panelSouth.setPreferredSize(new Dimension(700,this.panelSouthHeight));
+		this.panelSouth.setPreferredSize(new Dimension(700, 220));
 		
 		/* Creation of the image podium */
 		this.podium = new ImagePanel("images/png/podium.png", this.podiumWidth, this.podiumHeight);
@@ -80,7 +78,6 @@ public class ScoreFrame extends JFrame {
 		this.labelTitle.setFont(fontTitle);
 		
 		/* ComboBox */
-		this.score = score;
 		this.filePath = "scores/";
 		this.array = new String[score.getSizeTreeHumanReadable(filePath)];
 		this.array = score.TreeHumanReadable(filePath);
@@ -97,13 +94,16 @@ public class ScoreFrame extends JFrame {
 		this.panelNorth.setBackground(Color.white);
 		this.panelCenter.setBackground(Color.white);
 		this.panelSouth.setBackground(Color.white);
+		
+		this.setCurrentScore(-1);
+		this.ShowScores(34, 48, 53);
 	}
 	
-	public void ShowScores(int Score1, int intScore2, int intScore3) {
+	public void ShowScores(int Score1, int Score2, int Score3) {
 		/* Adding the JLabels to the JPanel */
 		this.label1 = new JLabel(Integer.toString(Score1));
-		this.label2 = new JLabel(Integer.toString(Score1));
-		this.label3 = new JLabel(Integer.toString(Score1));
+		this.label2 = new JLabel(Integer.toString(Score2));
+		this.label3 = new JLabel(Integer.toString(Score3));
 		
 		this.panelSouth.add(label1);
 		this.panelSouth.add(label2);
@@ -122,11 +122,29 @@ public class ScoreFrame extends JFrame {
 		this.panelSouth.setComponentZOrder(this.label3, this.getComponentCount()-1);
 	}
 	
-	public void setComboBox(int sizeX, int sizeY, int nbBombs, int score){
-		
+	public void setComboBox(int sizeX, int sizeY, int nbBombs){
+		//this.combo.get
 	}
 	
 	public void setCurrentScore(int score){
-		
+		if(score == -1){
+			this.labelText = new JLabel("");
+			this.labelScore = new JLabel("");
+			this.panelSouth.add(labelText);
+			this.panelSouth.add(labelScore);
+		} else {
+			this.labelText = new JLabel("Your actual score : ");
+			this.labelScore = new JLabel(Integer.toString(score));
+			
+			Font font = new Font("Liberation Sans", Font.BOLD, 20);
+			this.labelText.setFont(font);
+			this.labelScore.setFont(font);
+			
+			this.panelSouth.add(labelText);
+			this.panelSouth.add(labelScore);
+			this.labelText.setBounds(227, 180, 200, 20);
+			this.labelText.setHorizontalAlignment(JLabel.CENTER);
+			this.labelScore.setBounds(418, 180, 200, 20);
+		}
 	}
 }
