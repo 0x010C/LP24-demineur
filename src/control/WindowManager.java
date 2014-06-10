@@ -1,13 +1,17 @@
 package control;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import model.Case;
 import model.Chunk;
+import model.Score;
 import view.AboutFrame;
 import view.MainFrame;
 import view.RulesFrame;
 import view.ScoreFrame;
 
-public class WindowManager implements ButtonListener, UpdateDisplayListener {
+public class WindowManager implements ButtonListener, UpdateDisplayListener, WindowListener {
 	public enum Frame {
 		main,
 		about,
@@ -31,6 +35,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener {
 	private int sizeX;
 	private int sizeY;
 	private int nbBombs;
+	private boolean finish;
 	
 	public static int iconSize = 32;
 	public static int margin = 5;
@@ -44,7 +49,9 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener {
 		
 		// Define the score's frame
 		score = new Score();
-		scoreFrame = new ScoreFrame(score);
+		this.finish = false;
+		this.scoreFrame = new ScoreFrame(score);
+		this.scoreFrame.addWindowListener(this);
 		
 		/* Initialisation of our Main Frame */
 		mainFrame = new MainFrame();
@@ -84,14 +91,19 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener {
 		this.mainFrame.switchCard(currentCard);
 		this.mainFrame.setResizable(false);
 		this.mainFrame.setSize(700, 280);
+		this.scoreFrame.setCurrentScore(-1);
+		this.finish = false;
 	}
 	
 	public void endGame(boolean win) {
 		if(win) {
-			this.score.AddingScore(this.sizeX, this.sizeY, this.nbBombs, 10452);
-			this.scoreFrame.selectComboBox(this.sizeX, this.sizeY, this.nbBombs);
-			this.scoreFrame.setCurrentScore(10452);
+			//this.score.AddingScore(this.sizeX, this.sizeY, this.nbBombs, 10452);
+			//this.scoreFrame.selectComboBox(this.sizeX, this.sizeY, this.nbBombs);
+			//this.scoreFrame.setCurrentScore(10452);
+			this.finish = true;
 			this.openFrame(WindowManager.Frame.score);
+			this.switchCard(MainFrame.Card.game);
+			//this.scoreFrame.setDefaultCloseOperation(arg0);
 		}
 		else {
 			
@@ -130,5 +142,25 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener {
 		this.endGame(true);
 	}
 	public void updateCase(int x, int y, Case.Content content, Case.State state) {//required but useless
+	}
+	
+	/* WindowListener */
+
+	public void windowClosing(WindowEvent e) {
+		System.out.println("Window Closed");
+		if(this.finish)
+			this.abrogateGame();
+	}
+	public void windowOpened(WindowEvent e) { //required but useless
+	}
+	public void windowClosed(WindowEvent e) { //required but useless
+	}
+	public void windowDeactivated(WindowEvent e) { //required but useless
+	}
+	public void windowIconified(WindowEvent e) { //required but useless
+	}
+	public void windowDeiconified(WindowEvent e) { //required but useless
+	}
+	public void windowActivated(WindowEvent e) { //required but useless
 	}
 }

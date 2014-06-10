@@ -2,8 +2,6 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
-import model.Case.Content;
-
 import control.GameListener;
 import control.WindowManager;
 

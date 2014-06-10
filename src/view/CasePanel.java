@@ -148,6 +148,8 @@ public class CasePanel extends JPanel {
 					case bomb:
 						this.add(this.bombImg[i]);
 						break;
+					case explode:
+						break;
 				}
 				break;
 		}
