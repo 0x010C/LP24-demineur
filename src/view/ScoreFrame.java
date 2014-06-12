@@ -50,7 +50,7 @@ public class ScoreFrame extends JFrame implements ItemListener {
 	
 	public ScoreFrame(Score score) {
 		this.setSize(new Dimension(this.width, this.height));
-		this.setResizable(true);
+		this.setResizable(false);
 		this.setBounds(60, 60, this.width, this.height);
 		
 		this.score = score;
@@ -113,6 +113,8 @@ public class ScoreFrame extends JFrame implements ItemListener {
 		this.setComboBox(8, 8, 10);
 		this.disableListener = false;
 		this.combo.addItemListener(this);
+		this.labelText = new JLabel("");
+		this.labelScore = new JLabel("");
 	}
 	
 	public void ShowScores() {
@@ -166,7 +168,6 @@ public class ScoreFrame extends JFrame implements ItemListener {
 		this.array = score.TreeHumanReadable(this.filePath);
 		for(String str : this.array)
 			this.combo.addItem(str);
-		
 		this.disableListener = false;
 		
 		if(sizeX < sizeY) {
@@ -174,6 +175,7 @@ public class ScoreFrame extends JFrame implements ItemListener {
 			sizeX = sizeY;
 			sizeY = temp;
 		}
+		System.out.println(""+sizeX+"T"+sizeY+"T"+nbBombs);
 		
 		if (nbBombs == 1) {
 			humanReadable = (Integer.toString(sizeX) + " X " + Integer.toString(sizeY) + ", " + Integer.toString(nbBombs) + " mine");
@@ -184,7 +186,7 @@ public class ScoreFrame extends JFrame implements ItemListener {
 		int i = 0, index = -1;
 		
 		while(i<this.sizeArray && index == -1) {
-			if(humanReadable.compareTo(this.array[i]) == 0)
+			if(humanReadable.replace(" ", "").compareToIgnoreCase(this.array[i].replace(" ", "")) == 0)
 				index = i;
 			i++;
 		}
@@ -196,13 +198,13 @@ public class ScoreFrame extends JFrame implements ItemListener {
 	
 	public void setCurrentScore(int score) {
 		if(score == -1){
-			this.labelText = new JLabel("");
-			this.labelScore = new JLabel("");
+			this.labelText.setText("");
+			this.labelScore.setText("");
 			this.panelSouth.add(labelText);
 			this.panelSouth.add(labelScore);
 		} else {
-			this.labelText = new JLabel("Your actual score");
-			this.labelScore = new JLabel(Integer.toString(score));
+			this.labelText.setText("Your actual score");
+			this.labelScore.setText(Integer.toString(score));
 			
 			Font font = new Font("Liberation Sans", Font.BOLD, 20);
 			this.labelText.setFont(font);

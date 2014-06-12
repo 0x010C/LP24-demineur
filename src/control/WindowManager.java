@@ -4,6 +4,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import model.Case;
+import model.Chrono;
 import model.Chunk;
 import model.Score;
 import view.AboutFrame;
@@ -29,6 +30,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 	public static GameController gc;
 	public static UpdateDisplayController udc;
 	
+	public static Chrono chrono;
 	private Score score;
 	
 	private Chunk chunk;
@@ -43,7 +45,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 	public WindowManager() {
 		// Define the rules' frame
 		rulesFrame = new RulesFrame();
-				
+
 		// Define the about's frame
 		aboutFrame = new AboutFrame();
 		
@@ -55,6 +57,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		this.scoreFrame.addWindowListener(this);
 		
 		/* Initialisation of our Main Frame */
+		WindowManager.chrono = new Chrono();
 		mainFrame = new MainFrame();
 		bc = new ButtonController();
 		bc.add(this);
@@ -84,10 +87,11 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		this.mainFrame.switchCard(currentCard);
 		this.mainFrame.setResizable(true);
 		
-		//this.scoreFrame.selectComboBox(this.sizeX, this.sizeY, this.nbBombs);
+		WindowManager.chrono.start();
 	}
 	
 	public void abrogateGame() {
+		WindowManager.chrono.stop();
 		this.mainFrame.setEnableGameItem(false);
 		chunk = null;
 		this.currentCard = MainFrame.Card.start;
@@ -99,10 +103,12 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 	}
 	
 	public void endGame(boolean win) {
+		System.out.println("ONE");
+		System.out.println("TWO");
 		if(win) {
-			this.score.AddingScore(this.sizeX, this.sizeY, this.nbBombs, 10452);
+			this.score.AddingScore(this.sizeX, this.sizeY, this.nbBombs, (int)WindowManager.chrono.getTime());
 			this.scoreFrame.setComboBox(this.sizeX, this.sizeY, this.nbBombs);
-			this.scoreFrame.setCurrentScore(10452);
+			this.scoreFrame.setCurrentScore((int)WindowManager.chrono.getTime());
 			WindowManager.finish = true;
 			this.openFrame(WindowManager.Frame.score);
 			this.switchCard(MainFrame.Card.game);
@@ -110,6 +116,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		else {
 			WindowManager.finish = true;
 		}
+		WindowManager.chrono.stop();
 	}
 	
 	public void switchCard(MainFrame.Card newCard) {
@@ -133,6 +140,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		
 		if(this.currentCard == MainFrame.Card.game) {
 			this.switchCard(MainFrame.Card.pause);
+			WindowManager.chrono.pause();
 		}
 	}
 	

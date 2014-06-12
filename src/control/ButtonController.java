@@ -37,9 +37,11 @@ public class ButtonController implements ActionListener {
 					break;
 				case "itemPause":
 					bl.switchCard(MainFrame.Card.pause);
+					WindowManager.chrono.pause();
 					break;
 				case "itemContinue":
 					bl.switchCard(MainFrame.Card.game);
+					WindowManager.chrono.pause();
 					break;
 				case "itemRules":
 					bl.openFrame(WindowManager.Frame.rules);
