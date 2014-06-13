@@ -240,7 +240,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 	
 	public void paint(Graphics g) {
-		MainFrame.realUsableHeight = (int)this.getSize().getHeight() - this.logoHeight;
+		MainFrame.realUsableHeight = (int)this.getSize().getHeight() - this.logoHeight - 42 - 42; //42 is the menuBar's height
 		MainFrame.realUsableWidth = (int)this.getSize().getWidth();
 		super.paint(g);
 	}
