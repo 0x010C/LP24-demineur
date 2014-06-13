@@ -9,10 +9,14 @@ public class Chrono implements ActionListener {
 	private long startTime;
 	private long savedTime;
 	private boolean running;
-	private Timer timer;
+	public static Timer timer;
 	
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(this.getTime());
+	}
+	
+	public Chrono() {
+		timer = new Timer(100,this);
 	}
 	
 	public void start() {
@@ -20,7 +24,6 @@ public class Chrono implements ActionListener {
 			running = true;
 			savedTime = 0;
 			startTime = System.currentTimeMillis();
-			timer = new Timer(100,this);
 			timer.start();
 		}
 	}
@@ -32,15 +35,16 @@ public class Chrono implements ActionListener {
 			timer.restart();
 		}
 		else {
-			savedTime = System.currentTimeMillis() - startTime;
+			savedTime += System.currentTimeMillis() - startTime;
 			running = false;
 			timer.stop();
+			System.out.println("Saved : "+savedTime);
 		}
 	}
 	
 	public void stop() {
 		if(this.running == true) {
-			savedTime = System.currentTimeMillis() - startTime;
+			savedTime += System.currentTimeMillis() - startTime;
 			startTime = 0;
 			running = false;
 			timer.stop();

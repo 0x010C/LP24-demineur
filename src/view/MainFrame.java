@@ -4,18 +4,26 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.util.EventListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import model.Chrono;
+import control.WindowManager;
+
 /* For more details, see the graph of the interface */
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements ActionListener {
 	
 	public enum Card {
 		start,
@@ -37,17 +45,21 @@ public class MainFrame extends JFrame {
 	public static int realUsableHeight;
 	
 	private JPanel menuPanel;
+	private JPanel topMenuPanel;
+	private JPanel leftMenuPanel;
+	private JPanel rightMenuPanel;
 	private JMenuBar menuBar;
 	private JPanel logoPanel;
 	private ImagePanel logo;
 	private JPanel card;
 	
-	private JMenuItem itemNewGame;
-	private JMenuItem itemPause;
-	private JMenuItem itemRules;
-	private JMenuItem itemAbout;
-	private JMenuItem itemScore;
-	private JMenuItem itemQuit;
+	private ImagePanel buttonNewGame;
+	private ImagePanel buttonPause;
+	private ImagePanel buttonRules;
+	private ImagePanel buttonAbout;
+	private ImagePanel buttonScore;
+	private ImagePanel buttonQuit;
+	private JLabel labelScore;
 	
 	private CardLayout cardLayout;
 	private StartPanel startPanel;
@@ -66,7 +78,10 @@ public class MainFrame extends JFrame {
 		/* Global Panel */
 		this.getContentPane().setLayout(new BorderLayout());
 		menuPanel = new JPanel();
-		menuBar = new JMenuBar();
+		topMenuPanel = new JPanel();
+		leftMenuPanel = new JPanel();
+		rightMenuPanel = new JPanel();
+		//menuBar = new JMenuBar();
 		logoPanel = new JPanel();
 		logo = new ImagePanel("src/images/png/logo.png", this.logoWidth, this.logoHeight);
 		card = new JPanel();
@@ -77,54 +92,58 @@ public class MainFrame extends JFrame {
 		/* Menu Panel */
 		menuPanel.setLayout(new BorderLayout());
 		
-		// Creation of menus and items
-		itemNewGame = new JMenuItem(new ImageIcon("src/images/png/newgame.png"));
-		itemPause = new JMenuItem(new ImageIcon("src/images/png/pause.png"));
-		itemRules = new JMenuItem(new ImageIcon("src/images/png/rules.png"));
-		itemAbout = new JMenuItem(new ImageIcon("src/images/png/about.png"));
-		itemScore = new JMenuItem(new ImageIcon("src/images/png/score.png"));
-		itemQuit = new JMenuItem(new ImageIcon("src/images/png/quit.png"));
+		topMenuPanel.setLayout(new BorderLayout());
+		leftMenuPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		rightMenuPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		topMenuPanel.add(BorderLayout.WEST, leftMenuPanel);
+		topMenuPanel.add(BorderLayout.EAST, rightMenuPanel);
+		menuPanel.add(BorderLayout.NORTH, topMenuPanel);
 		
-		// Setting the ActionCommand of the items
-		itemNewGame.setActionCommand("itemNewGame");
-		itemPause.setActionCommand("itemPause");
-		itemRules.setActionCommand("itemRules");
-		itemAbout.setActionCommand("itemAbout");
-		itemScore.setActionCommand("itemScore");
-		itemQuit.setActionCommand("itemQuit");
+		buttonNewGame = new ImagePanel("src/images/png/newgame.png");
+		buttonPause = new ImagePanel("src/images/png/pause.png");
+		buttonRules = new ImagePanel("src/images/png/rules.png");
+		buttonAbout = new ImagePanel("src/images/png/about.png");
+		buttonScore = new ImagePanel("src/images/png/score.png");
+		buttonQuit = new ImagePanel("src/images/png/quit.png");
+		labelScore = new JLabel("");
 		
-		// Setting the ToolTip of the items
-		itemNewGame.setToolTipText("New Game");
-		itemPause.setToolTipText("Pause");
-		itemRules.setToolTipText("Rules");
-		itemAbout.setToolTipText("About");
-		itemScore.setToolTipText("Score");
-		itemQuit.setToolTipText("Quit");
+		labelScore.setFont(new Font("Liberation Sans", Font.BOLD, 20));
 		
-		// Hidding the background of the items
-		itemNewGame.setOpaque(false);
-		itemPause.setOpaque(false);
-		itemRules.setOpaque(false);
-		itemAbout.setOpaque(false);
-		itemScore.setOpaque(false);
-		itemQuit.setOpaque(false);
+		leftMenuPanel.add(buttonNewGame);
+		leftMenuPanel.add(buttonPause);
+		leftMenuPanel.add(buttonRules);
+		leftMenuPanel.add(buttonAbout);
+		leftMenuPanel.add(buttonScore);
+		leftMenuPanel.add(buttonQuit);
+		rightMenuPanel.add(labelScore);
+		
+		// Setting the ActionCommand of the buttons
+		buttonNewGame.setName("itemNewGame");
+		buttonPause.setName("itemPause");
+		buttonRules.setName("itemRules");
+		buttonAbout.setName("itemAbout");
+		buttonScore.setName("itemScore");
+		buttonQuit.setName("itemQuit");
 
 		// Disabling some items at the beginning
-		itemNewGame.setEnabled(false);
-		itemPause.setEnabled(false);
+		buttonNewGame.setEnabled(false);
+		buttonPause.setEnabled(false);
 		
-		// Adding the items to the menuBar
-		menuBar.add(itemNewGame);
-		menuBar.add(itemPause);
-		menuBar.add(itemRules);
-		menuBar.add(itemAbout);
-		menuBar.add(itemScore);
-		menuBar.add(itemQuit);
+		// Setting the ToolTip of the items
+		buttonNewGame.setToolTipText("New Game");
+		buttonPause.setToolTipText("Pause");
+		buttonRules.setToolTipText("Rules");
+		buttonAbout.setToolTipText("About");
+		buttonScore.setToolTipText("Score");
+		buttonQuit.setToolTipText("Quit");
 		
-		// Adding the menuBar to the panel he belongs to
-		menuBar.setLayout(new FlowLayout());
-		((FlowLayout)menuBar.getLayout()).setAlignment(FlowLayout.LEFT);
-		menuPanel.add(BorderLayout.NORTH, menuBar);
+		// Hidding the background of the items
+		buttonNewGame.setOpaque(false);
+		buttonPause.setOpaque(false);
+		buttonRules.setOpaque(false);
+		buttonAbout.setOpaque(false);
+		buttonScore.setOpaque(false);
+		buttonQuit.setOpaque(false);
 		
 		/* Setting the logo's parameters */
 		logoPanel.setLayout(new FlowLayout());
@@ -155,20 +174,22 @@ public class MainFrame extends JFrame {
 		card.add(customPanel, "custom");
 		card.add(pausePanel, "pause");
 		
+		Chrono.timer.addActionListener(this);
+		
 		/* Display the window */
 		this.setVisible(true);
 	}
 	
-	public void setButtonListener(ActionListener al){
-		startPanel.setButtonListener(al);
-		customPanel.setButtonListener(al);
+	public void setButtonListener(EventListener al){
+		startPanel.setButtonListener((ActionListener)al);
+		customPanel.setButtonListener((ActionListener)al);
 
-		itemNewGame.addActionListener(al);
-		itemPause.addActionListener(al);
-		itemRules.addActionListener(al);
-		itemAbout.addActionListener(al);
-		itemScore.addActionListener(al);
-		itemQuit.addActionListener(al);
+		buttonNewGame.addMouseListener((MouseListener)al);
+		buttonPause.addMouseListener((MouseListener)al);
+		buttonRules.addMouseListener((MouseListener)al);
+		buttonAbout.addMouseListener((MouseListener)al);
+		buttonScore.addMouseListener((MouseListener)al);
+		buttonQuit.addMouseListener((MouseListener)al);
 	}
 	
 	public void switchCard(MainFrame.Card newCard) {
@@ -181,15 +202,15 @@ public class MainFrame extends JFrame {
 				break;
 			case game:
 				cardLayout.show(this.card, "game");
-				itemPause.setActionCommand("itemPause");
-				itemPause.setIcon(new ImageIcon("src/images/png/pause.png"));
-				itemPause.setToolTipText("Pause");
+				buttonPause.setName("itemPause");
+				buttonPause.changeImage("src/images/png/pause.png");
+				buttonPause.setToolTipText("Pause");
 				break;
 			case pause:
 				cardLayout.show(this.card, "pause");
-				itemPause.setActionCommand("itemContinue");
-				itemPause.setIcon(new ImageIcon("src/images/png/play.png"));
-				itemPause.setToolTipText("Continue");
+				buttonPause.setName("itemContinue");
+				buttonPause.changeImage("src/images/png/play.png");
+				buttonPause.setToolTipText("Continue");
 				break;
 		}
 	}
@@ -200,13 +221,30 @@ public class MainFrame extends JFrame {
 	}
 	
 	public void setEnableGameItem(boolean b) {
-		itemPause.setEnabled(b);
-		itemNewGame.setEnabled(b);
+		if(b) {
+			buttonPause.changeImage("src/images/png/pause.png");
+			buttonNewGame.changeImage("src/images/png/newgame.png");
+			buttonPause.setName("itemPause");
+			buttonNewGame.setName("itemNewGame");
+		}
+		else {
+			buttonPause.changeImage("src/images/png/pause-grey.png");
+			buttonNewGame.changeImage("src/images/png/newgame-grey.png");
+			buttonPause.setName("itemPauseDisabled");
+			buttonNewGame.setName("itemNewGameDisabled");
+		}
+	}
+	
+	public void resetScore() {
+		this.labelScore.setText("");
 	}
 	
 	public void paint(Graphics g) {
 		MainFrame.realUsableHeight = (int)this.getSize().getHeight() - this.logoHeight;
 		MainFrame.realUsableWidth = (int)this.getSize().getWidth();
 		super.paint(g);
+	}
+	public void actionPerformed(ActionEvent e) {
+		labelScore.setText("Chrono : "+WindowManager.chrono.getTime()+"s");
 	}
 }

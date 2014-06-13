@@ -193,6 +193,7 @@ public class ScoreFrame extends JFrame implements ItemListener {
 			index = 1;
 		
 		this.combo.setSelectedIndex(index);
+		this.ShowScores();
 	}
 	
 	public void setCurrentScore(int score) {

@@ -35,6 +35,15 @@ public class ImagePanel extends JPanel {
 		this.setPreferredSize(new Dimension(this.width, this.height));
 	}
 	
+	public void changeImage(String filePath) {
+		this.filePath = filePath;
+		this.img = new ImageIcon(this.filePath).getImage();
+		this.width = img.getWidth(null);
+		this.height = img.getHeight(null);
+		this.setPreferredSize(new Dimension(this.width, this.height));
+		this.repaint();
+	}
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		this.setSize(this.width, this.height);

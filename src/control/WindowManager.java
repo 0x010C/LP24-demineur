@@ -62,6 +62,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		bc = new ButtonController();
 		bc.add(this);
 		mainFrame.setButtonListener(bc);
+		mainFrame.setEnableGameItem(false);
 		this.currentCard = MainFrame.Card.start;
 		mainFrame.switchCard(currentCard);
 		this.mainFrame.setResizable(false);
@@ -96,6 +97,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		this.mainFrame.switchCard(currentCard);
 		this.mainFrame.setResizable(false);
 		this.mainFrame.setSize(700, 280);
+		this.mainFrame.resetScore();
 		this.scoreFrame.setCurrentScore(-1);
 		WindowManager.finish = false;
 	}
