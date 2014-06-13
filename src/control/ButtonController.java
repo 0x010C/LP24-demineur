@@ -32,7 +32,7 @@ public class ButtonController implements ActionListener, MouseListener {
 				case "btCustom":
 					bl.switchCard(MainFrame.Card.custom);
 					break;
-				case "btInfinite":
+				case "btHard":
 					break;
 				case "customCancel":
 					bl.switchCard(MainFrame.Card.start);

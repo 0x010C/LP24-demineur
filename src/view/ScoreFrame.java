@@ -81,7 +81,7 @@ public class ScoreFrame extends JFrame implements ItemListener {
 		this.podium.setBounds(this.width/2-(this.podiumWidth/2), 30, this.podiumWidth, this.podiumHeight);
 		
 		/* Adding the title of the frame */
-		this.labelTitle = new JLabel("<html><span><center>You can the configuration of the scores you want to know !<br /><br /></center></span></html>");
+		this.labelTitle = new JLabel("<html><span><center>Select the score you're looking for !<br /><br /></center></span></html>");
 				
 		/* Settings the fonts */
 		Font fontTitle = new Font("Liberation Sans", Font.BOLD, 20);

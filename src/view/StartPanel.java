@@ -25,75 +25,75 @@ public class StartPanel extends JPanel {
 	private JButton btMedium;
 	private JButton btDifficult;
 	private JButton btCustom;
-	private JButton btInfinite;
+	private JButton btHard;
 	
 	public StartPanel() {
 		super();
 				
 		/* Definition of the BoderLayout */
-		bl = new BorderLayout();
-		this.setLayout(bl);
+		this.bl = new BorderLayout();
+		this.setLayout(this.bl);
 		
 		/* Definition of the GridLayout */
-		gl = new GridLayout();
-		gl.setColumns(5);
-		gl.setRows(1);
-		gl.setHgap(10);
-		gl.setVgap(10);
+		this.gl = new GridLayout();
+		this.gl.setColumns(5);
+		this.gl.setRows(1);
+		this.gl.setHgap(10);
+		this.gl.setVgap(10);
 		
 		/* Creation of the panels north, south, center, east and west */
-		panelNorth = new JPanel();
-		panelSouth = new JPanel();
-		panelCenter = new JPanel();
-		panelEast = new JPanel();
-		panelWest = new JPanel();
+		this.panelNorth = new JPanel();
+		this.panelSouth = new JPanel();
+		this.panelCenter = new JPanel();
+		this.panelEast = new JPanel();
+		this.panelWest = new JPanel();
 		
-		this.add(BorderLayout.NORTH,panelNorth);
-		this.add(BorderLayout.SOUTH,panelSouth);
-		this.add(BorderLayout.CENTER,panelCenter);
-		this.add(BorderLayout.EAST,panelEast);
-		this.add(BorderLayout.WEST,panelWest);
+		this.add(BorderLayout.NORTH,this.panelNorth);
+		this.add(BorderLayout.SOUTH,this.panelSouth);
+		this.add(BorderLayout.CENTER,this.panelCenter);
+		this.add(BorderLayout.EAST,this.panelEast);
+		this.add(BorderLayout.WEST,this.panelWest);
 		
 		/* Creation of the buttons and setting the buttons' texts */
-		btEasy = new JButton("Easy");
-		btMedium = new JButton("Medium");
-		btDifficult = new JButton("Difficult");
-		btCustom = new JButton("Custom");
-		btInfinite = new JButton("Infinite");
+		this.btEasy = new JButton("Easy");
+		this.btMedium = new JButton("Medium");
+		this.btDifficult = new JButton("Difficult");
+		this.btCustom = new JButton("Custom");
+		this.btHard = new JButton("Hard");
 		
 		// Setting of the ActionCommand of the buttons
-		btEasy.setActionCommand("btEasy");
-		btMedium.setActionCommand("btMedium");
-		btDifficult.setActionCommand("btDifficult");
-		btCustom.setActionCommand("btCustom");
-		btInfinite.setActionCommand("btInfinite");
+		this.btEasy.setActionCommand("btEasy");
+		this.btMedium.setActionCommand("btMedium");
+		this.btDifficult.setActionCommand("btDifficult");
+		this.btCustom.setActionCommand("btCustom");
+		this.btHard.setActionCommand("btHard");
 
 		/* Adding the buttons and label to the panels */
-		panelCenter.setLayout(gl);
+		this.panelCenter.setLayout(this.gl);
 		Font font = new Font("Liberation Sans", Font.BOLD, 20);
 		JLabel label = new JLabel("<html><span><center>Choose your difficulty !</center></span></html>");
 		label.setFont(font);
-		panelNorth.add(label);
+		this.panelNorth.add(label);
 		
-		panelCenter.add(btEasy);
-		panelCenter.add(btMedium);
-		panelCenter.add(btDifficult);
-		panelCenter.add(btCustom);
-		panelCenter.add(btInfinite);
+		this.panelCenter.add(this.btEasy);
+		this.panelCenter.add(this.btMedium);
+		this.panelCenter.add(this.btDifficult);
+		this.panelCenter.add(this.btCustom);
+		this.panelCenter.add(this.btHard);
 		
 		/* Adding the color of the background */
-		panelNorth.setBackground(Color.white);
-		panelSouth.setBackground(Color.white);
-		panelCenter.setBackground(Color.white);
-		panelEast.setBackground(Color.white);
-		panelWest.setBackground(Color.white);
+		this.panelNorth.setBackground(Color.white);
+		this.panelSouth.setBackground(Color.white);
+		this.panelCenter.setBackground(Color.white);
+		this.panelEast.setBackground(Color.white);
+		this.panelWest.setBackground(Color.white);
 	}
 	
 	public void setButtonListener(ActionListener al){
-		btEasy.addActionListener(al);
-		btMedium.addActionListener(al);
-		btDifficult.addActionListener(al);
-		btCustom.addActionListener(al);
-		btInfinite.addActionListener(al);
+		this.btEasy.addActionListener(al);
+		this.btMedium.addActionListener(al);
+		this.btDifficult.addActionListener(al);
+		this.btCustom.addActionListener(al);
+		this.btHard.addActionListener(al);
 	}
 }
