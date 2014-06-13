@@ -86,8 +86,6 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		this.currentCard = MainFrame.Card.game;
 		this.mainFrame.switchCard(currentCard);
 		this.mainFrame.setResizable(true);
-		
-		WindowManager.chrono.start();
 	}
 	
 	public void abrogateGame() {
@@ -103,8 +101,6 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 	}
 	
 	public void endGame(boolean win) {
-		System.out.println("ONE");
-		System.out.println("TWO");
 		if(win) {
 			this.score.AddingScore(this.sizeX, this.sizeY, this.nbBombs, (int)WindowManager.chrono.getTime());
 			this.scoreFrame.setComboBox(this.sizeX, this.sizeY, this.nbBombs);

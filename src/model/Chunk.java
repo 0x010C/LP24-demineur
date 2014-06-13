@@ -122,6 +122,8 @@ public class Chunk implements GameListener {
 			this.seed = r.nextInt(1000000);
 			this.generateChunk();
 		}
+		if(this.nbOpen == 0)
+			WindowManager.chrono.start();
 		
 		if(cases.get(x).get(y).getState() == Case.State.open && cases.get(x).get(y).getContent() != Case.Content.empty && cases.get(x).get(y).getContent() != Case.Content.bomb) {
 			int count = 0;
