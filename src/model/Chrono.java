@@ -19,7 +19,7 @@ public class Chrono implements ActionListener {
 		if (running == false) {
 			running = true;
 			savedTime = 0;
-			startTime = System.currentTimeMillis(); // Time when mouse was clicked.
+			startTime = System.currentTimeMillis();
 			timer = new Timer(100,this);
 			timer.start();
 		}
@@ -49,5 +49,8 @@ public class Chrono implements ActionListener {
 
 	public int getTime() {
 		return (int) (System.currentTimeMillis() - this.startTime + this.savedTime) / 1000;
+	}
+	public double getTimeMillis() {
+		return (System.currentTimeMillis() - this.startTime + this.savedTime) / 1000;
 	}
 }

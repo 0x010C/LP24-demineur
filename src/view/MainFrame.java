@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -43,7 +44,6 @@ public class MainFrame extends JFrame {
 	private ImagePanel logo;
 	private JPanel card;
 	
-	private JMenu menu1;
 	private JMenuItem itemNewGame;
 	private JMenuItem itemPause;
 	private JMenuItem itemRules;
@@ -80,15 +80,14 @@ public class MainFrame extends JFrame {
 		menuPanel.setLayout(new BorderLayout());
 		
 		// Creation of menus and items
-		menu1 = new JMenu("MineSweeper");
-		itemNewGame = new JMenuItem("New Game");
-		itemPause = new JMenuItem("Pause");
-		itemRules = new JMenuItem("Rules");
-		itemAbout = new JMenuItem("About");
-		itemScore = new JMenuItem("Scores");
-		itemQuit = new JMenuItem("Quit");
+		itemNewGame = new JMenuItem(new ImageIcon("images/png/newgame.png"));
+		itemPause = new JMenuItem(new ImageIcon("images/png/pause.png"));
+		itemRules = new JMenuItem(new ImageIcon("images/png/rules.png"));
+		itemAbout = new JMenuItem(new ImageIcon("images/png/about.png"));
+		itemScore = new JMenuItem(new ImageIcon("images/png/score.png"));
+		itemQuit = new JMenuItem(new ImageIcon("images/png/quit.png"));
 		
-		// Setting of the ActionCommand of the items
+		// Setting the ActionCommand of the items
 		itemNewGame.setActionCommand("itemNewGame");
 		itemPause.setActionCommand("itemPause");
 		itemRules.setActionCommand("itemRules");
@@ -96,29 +95,40 @@ public class MainFrame extends JFrame {
 		itemScore.setActionCommand("itemScore");
 		itemQuit.setActionCommand("itemQuit");
 		
-		// Adding of the shortcuts
-		menu1.setMnemonic('M');
-		itemNewGame.setAccelerator(KeyStroke.getKeyStroke('n'));
-		itemPause.setAccelerator(KeyStroke.getKeyStroke('p'));
-		itemAbout.setAccelerator(KeyStroke.getKeyStroke('a'));
-		itemRules.setAccelerator(KeyStroke.getKeyStroke('r'));
-		itemQuit.setAccelerator(KeyStroke.getKeyStroke('q'));
-		itemScore.setAccelerator(KeyStroke.getKeyStroke('s'));
+		// Setting the ToolTip of the items
+		itemNewGame.setToolTipText("New Game");
+		itemPause.setToolTipText("Pause");
+		itemRules.setToolTipText("Rules");
+		itemAbout.setToolTipText("About");
+		itemScore.setToolTipText("Score");
+		itemQuit.setToolTipText("Quit");
 		
-		// Adding of the menus and items
+		// Hidding the background of the items
+		itemNewGame.setOpaque(false);
+		itemPause.setOpaque(false);
+		itemRules.setOpaque(false);
+		itemAbout.setOpaque(false);
+		itemScore.setOpaque(false);
+		itemQuit.setOpaque(false);
+
+		// Disabling some items at the beginning
 		itemNewGame.setEnabled(false);
 		itemPause.setEnabled(false);
-		menu1.add(itemNewGame);
-		menu1.add(itemPause);
-		menu1.addSeparator();
-		menu1.add(itemRules);
-		menu1.add(itemAbout);
-		menu1.add(itemScore);
-		menu1.addSeparator();
-		menu1.add(itemQuit);
-		menuBar.add(menu1);
+		
+		// Adding the items to the menuBar
+		menuBar.add(itemNewGame);
+		menuBar.add(itemPause);
+		menuBar.add(itemRules);
+		menuBar.add(itemAbout);
+		menuBar.add(itemScore);
+		menuBar.add(itemQuit);
+		
+		// Adding the menuBar to the panel he belongs to
+		menuBar.setLayout(new FlowLayout());
+		((FlowLayout)menuBar.getLayout()).setAlignment(FlowLayout.LEFT);
 		menuPanel.add(BorderLayout.NORTH, menuBar);
 		
+		/* Setting the logo's parameters */
 		logoPanel.setLayout(new FlowLayout());
 		logoPanel.add(logo);
 		logoPanel.setBackground(Color.white);
@@ -174,12 +184,14 @@ public class MainFrame extends JFrame {
 			case game:
 				cardLayout.show(this.card, "game");
 				itemPause.setActionCommand("itemPause");
-				itemPause.setText("Pause");
+				itemPause.setIcon(new ImageIcon("images/png/pause.png"));
+				itemPause.setToolTipText("Pause");
 				break;
 			case pause:
 				cardLayout.show(this.card, "pause");
 				itemPause.setActionCommand("itemContinue");
-				itemPause.setText("Continue");
+				itemPause.setIcon(new ImageIcon("images/png/play.png"));
+				itemPause.setToolTipText("Continue");
 				break;
 		}
 	}
