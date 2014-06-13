@@ -55,7 +55,7 @@ public class Score{
 		}
 		
 		/* Initialization of filePath */
-		filePath = ("scores/" + x + "_" + y + "_" + bombs + ".score");
+		filePath = ("src/scores/" + x + "_" + y + "_" + bombs + ".score");
 		
 		// Check if the file exists or not
 		this.CreateIfNotCreated(filePath);
@@ -160,10 +160,10 @@ public class Score{
 		// scores/8_8_10.score   -->   8 X 8, 10 mines
 		
 		for(i = 0; i < tree.size(); i ++){
-			tmpX = tree.get(i).substring(tree.get(i).indexOf("/")+1, tree.get(i).indexOf("_"));
+			tmpX = tree.get(i).substring(tree.get(i).lastIndexOf("/")+1, tree.get(i).indexOf("_"));
 			tmpY = tree.get(i).substring(tree.get(i).indexOf("_")+1, tree.get(i).lastIndexOf("_"));
 			tmpBomb = tree.get(i).substring(tree.get(i).lastIndexOf("_")+1, tree.get(i).indexOf("."));
-			
+
 			// to know if a "s" is necessary at the end of the word "mine"
 			tmp = Integer.parseInt(tmpBomb);
 			if (tmp == 1) {
@@ -179,14 +179,14 @@ public class Score{
 	}
 	
 	public String HumanReadableToFilePath(String hr){
-		/* 8 X 8, 10 mines   -->   scores/8_8_10.score */
+		/* 8 X 8, 10 mines   -->   src/scores/8_8_10.score */
 		String tmpX, tmpY, tmpBomb;
 		
 		tmpX = hr.substring(0, hr.indexOf("X")-1);
 		tmpY = hr.substring(hr.indexOf("X")+2, hr.indexOf(","));
 		tmpBomb = hr.substring(hr.indexOf(",")+2, hr.indexOf("m")-1);
 		
-		return "scores/" + tmpX + "_" + tmpY + "_" + tmpBomb + ".score";
+		return "src/scores/" + tmpX + "_" + tmpY + "_" + tmpBomb + ".score";
 	}
 	
 }

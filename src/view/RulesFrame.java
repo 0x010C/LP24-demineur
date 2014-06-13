@@ -29,7 +29,7 @@ public class RulesFrame extends JFrame {
 		/* Global Panel */
 		this.getContentPane().setLayout(new BorderLayout());
 		
-		ImagePanel logo = new ImagePanel("images/png/logo.png", this.logoWidth, this.logoHeight);
+		ImagePanel logo = new ImagePanel("src/images/png/logo.png", this.logoWidth, this.logoHeight);
 		JPanel content = new JPanel();
 		this.getContentPane().add(BorderLayout.NORTH, logo);
 		this.getContentPane().add(BorderLayout.CENTER, content);

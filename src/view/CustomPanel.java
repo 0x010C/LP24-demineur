@@ -173,7 +173,6 @@ public class CustomPanel extends JPanel implements SpinnerListener {
 	}
 	
 	public void update() {
-		System.out.println(this.spinnerXEditor.getTextField().getText().concat("#").concat(this.spinnerYEditor.getTextField().getText()).concat("#").concat(this.spinnerBEditor.getTextField().getText().replaceAll(" ", "")));
 		int newMaxBomb = (Integer)spinnerXEditor.getModel().getNumber()*(Integer)spinnerYEditor.getModel().getNumber()-10;
 		if((Integer)spinnerBEditor.getModel().getNumber() > newMaxBomb)
 			spinnerBEditor.getModel().setValue(newMaxBomb);

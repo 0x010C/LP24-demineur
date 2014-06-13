@@ -29,7 +29,7 @@ public class Chrono implements ActionListener {
 		if (running == false) {
 			running = true;
 			startTime = System.currentTimeMillis(); // Time when mouse was clicked.
-			timer.start();
+			timer.restart();
 		}
 		else {
 			savedTime = System.currentTimeMillis() - startTime;

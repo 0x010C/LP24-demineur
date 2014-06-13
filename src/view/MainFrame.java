@@ -68,7 +68,7 @@ public class MainFrame extends JFrame {
 		menuPanel = new JPanel();
 		menuBar = new JMenuBar();
 		logoPanel = new JPanel();
-		logo = new ImagePanel("images/png/logo.png", this.logoWidth, this.logoHeight);
+		logo = new ImagePanel("src/images/png/logo.png", this.logoWidth, this.logoHeight);
 		card = new JPanel();
 		
 		this.getContentPane().add(BorderLayout.NORTH, menuPanel);
@@ -78,12 +78,12 @@ public class MainFrame extends JFrame {
 		menuPanel.setLayout(new BorderLayout());
 		
 		// Creation of menus and items
-		itemNewGame = new JMenuItem(new ImageIcon("images/png/newgame.png"));
-		itemPause = new JMenuItem(new ImageIcon("images/png/pause.png"));
-		itemRules = new JMenuItem(new ImageIcon("images/png/rules.png"));
-		itemAbout = new JMenuItem(new ImageIcon("images/png/about.png"));
-		itemScore = new JMenuItem(new ImageIcon("images/png/score.png"));
-		itemQuit = new JMenuItem(new ImageIcon("images/png/quit.png"));
+		itemNewGame = new JMenuItem(new ImageIcon("src/images/png/newgame.png"));
+		itemPause = new JMenuItem(new ImageIcon("src/images/png/pause.png"));
+		itemRules = new JMenuItem(new ImageIcon("src/images/png/rules.png"));
+		itemAbout = new JMenuItem(new ImageIcon("src/images/png/about.png"));
+		itemScore = new JMenuItem(new ImageIcon("src/images/png/score.png"));
+		itemQuit = new JMenuItem(new ImageIcon("src/images/png/quit.png"));
 		
 		// Setting the ActionCommand of the items
 		itemNewGame.setActionCommand("itemNewGame");
@@ -182,13 +182,13 @@ public class MainFrame extends JFrame {
 			case game:
 				cardLayout.show(this.card, "game");
 				itemPause.setActionCommand("itemPause");
-				itemPause.setIcon(new ImageIcon("images/png/pause.png"));
+				itemPause.setIcon(new ImageIcon("src/images/png/pause.png"));
 				itemPause.setToolTipText("Pause");
 				break;
 			case pause:
 				cardLayout.show(this.card, "pause");
 				itemPause.setActionCommand("itemContinue");
-				itemPause.setIcon(new ImageIcon("images/png/play.png"));
+				itemPause.setIcon(new ImageIcon("src/images/png/play.png"));
 				itemPause.setToolTipText("Continue");
 				break;
 		}
