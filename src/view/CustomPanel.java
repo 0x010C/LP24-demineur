@@ -73,7 +73,7 @@ public class CustomPanel extends JPanel implements SpinnerListener {
 		spinnerX.setEditor(spinnerXEditor);
 		
 		spinnerXEditor.getModel().setMinimum(4);
-		spinnerXEditor.getModel().setMaximum((int) (toolkit.getScreenSize().getWidth()/32*0.95));
+		spinnerXEditor.getModel().setMaximum((int) (toolkit.getScreenSize().getWidth()/(16+3)*0.95));
 		spinnerXEditor.getModel().setStepSize(1);
 		spinnerXEditor.getModel().setValue(8);		
 
@@ -83,7 +83,7 @@ public class CustomPanel extends JPanel implements SpinnerListener {
 		spinnerY.setEditor(spinnerYEditor);
 		
 		spinnerYEditor.getModel().setMinimum(4);
-		spinnerYEditor.getModel().setMaximum((int) ((toolkit.getScreenSize().getWidth()-100)/32*0.95));
+		spinnerYEditor.getModel().setMaximum((int) ((toolkit.getScreenSize().getHeight()-100-84)/(16+3)*0.90));
 		spinnerYEditor.getModel().setStepSize(1);
 		spinnerYEditor.getModel().setValue(8);
 
