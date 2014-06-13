@@ -82,11 +82,12 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		WindowManager.udc.add(this);
 		
 		this.mainFrame.initGamePanel(this.sizeX, this.sizeY);
-		this.mainFrame.setSize(this.sizeX*37+20, this.sizeY*37+200+20); //TODO: mettre une meilleur taille
 		this.mainFrame.setEnableGameItem(true);
 		this.currentCard = MainFrame.Card.game;
 		this.mainFrame.switchCard(currentCard);
 		this.mainFrame.setResizable(true);
+		this.mainFrame.setSize(this.sizeX*(32+5)+5, this.sizeY*(32+5)+5+100+84);
+		System.out.println("Hey");
 	}
 	
 	public void abrogateGame() {
