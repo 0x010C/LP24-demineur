@@ -89,7 +89,6 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		this.mainFrame.switchCard(currentCard);
 		this.mainFrame.setResizable(true);
 		this.mainFrame.setSize(this.sizeX*(32+5)+5, this.sizeY*(32+5)+5+100+84);
-		System.out.println("Hey");
 	}
 	
 	public void abrogateGame() {
@@ -105,10 +104,12 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		this.scoreFrame.setCurrentScore(-1);
 		WindowManager.finish = false;
 		WindowManager.hardMode = false;
+		mainFrame.setMessage("");
 	}
 	
 	public void endGame(boolean win) {
 		if(win) {
+			mainFrame.setMessage("You win, congratulations !  ");
 			this.score.AddingScore(this.sizeX, this.sizeY, this.nbBombs, (int)WindowManager.chrono.getTime());
 			this.scoreFrame.setComboBox(this.sizeX, this.sizeY, this.nbBombs);
 			this.scoreFrame.setCurrentScore((int)WindowManager.chrono.getTime());
@@ -117,6 +118,11 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 			this.switchCard(MainFrame.Card.game);
 		}
 		else {
+			if(WindowManager.hardMode) {
+				mainFrame.setMessage("You loose ! ");
+			}
+			else
+				mainFrame.setMessage("You loose, try again !  ");
 			WindowManager.finish = true;
 		}
 		WindowManager.chrono.stop();
@@ -145,6 +151,8 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		if(this.currentCard == MainFrame.Card.game) {
 			this.switchCard(MainFrame.Card.pause);
 			WindowManager.chrono.pause();
+			if(WindowManager.hardMode)
+				MainFrame.hardChrono.pause();
 		}
 	}
 	

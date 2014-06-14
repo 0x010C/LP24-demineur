@@ -57,12 +57,14 @@ public class ButtonController implements ActionListener, MouseListener {
 					case "itemPause":
 						bl.switchCard(MainFrame.Card.pause);
 						WindowManager.chrono.pause();
-						MainFrame.hardChrono.pause();
+						if(WindowManager.hardMode)
+							MainFrame.hardChrono.pause();
 						break;
 					case "itemContinue":
 						bl.switchCard(MainFrame.Card.game);
 						WindowManager.chrono.pause();
-						MainFrame.hardChrono.pause();
+						if(WindowManager.hardMode)
+							MainFrame.hardChrono.pause();
 						break;
 					case "itemRules":
 						bl.openFrame(WindowManager.Frame.rules);

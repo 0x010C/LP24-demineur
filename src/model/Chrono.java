@@ -12,7 +12,7 @@ public class Chrono implements ActionListener {
 	private Timer timer;
 	
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(this.getTime());
+		//System.out.println(this.getTime());
 	}
 	
 	public Chrono(String name) {
@@ -43,7 +43,6 @@ public class Chrono implements ActionListener {
 			savedTime += System.currentTimeMillis() - startTime;
 			running = false;
 			timer.stop();
-			System.out.println("Saved : "+savedTime);
 		}
 	}
 	

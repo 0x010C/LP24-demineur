@@ -55,6 +55,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	private ImagePanel buttonAbout;
 	private ImagePanel buttonScore;
 	private ImagePanel buttonQuit;
+	private JLabel labelMessage;
 	private JLabel labelHard;
 	private JLabel labelScore;
 	
@@ -104,9 +105,11 @@ public class MainFrame extends JFrame implements ActionListener {
 		buttonAbout = new ImagePanel("src/images/png/about.png");
 		buttonScore = new ImagePanel("src/images/png/score.png");
 		buttonQuit = new ImagePanel("src/images/png/quit.png");
+		labelMessage = new JLabel("");
 		labelHard = new JLabel("");
 		labelScore = new JLabel("");
-		
+
+		labelMessage.setFont(new Font("Liberation Sans", Font.BOLD, 20));
 		labelHard.setFont(new Font("Liberation Sans", Font.BOLD, 20));
 		labelScore.setFont(new Font("Liberation Sans", Font.BOLD, 20));
 		
@@ -116,6 +119,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		leftMenuPanel.add(buttonAbout);
 		leftMenuPanel.add(buttonScore);
 		leftMenuPanel.add(buttonQuit);
+		rightMenuPanel.add(labelMessage);
 		rightMenuPanel.add(labelHard);
 		rightMenuPanel.add(labelScore);
 		
@@ -249,13 +253,18 @@ public class MainFrame extends JFrame implements ActionListener {
 		MainFrame.realUsableWidth = (int)this.getSize().getWidth();
 		super.paint(g);
 	}
+	
+	public void setMessage(String str) {
+		this.labelMessage.setText(str);
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "Chronometre")
-			labelScore.setText("Chrono : "+WindowManager.chrono.getTime()+"s");
+			this.labelScore.setText("Chrono : "+WindowManager.chrono.getTime()+"s ");
 		else {
-			labelHard.setText("Only "+(15-MainFrame.hardChrono.getTime())+"s left  ");
+			this.labelHard.setText("Only "+(15-MainFrame.hardChrono.getTime())+"s left  ");
 			if(15-MainFrame.hardChrono.getTime() <= 0) {
-				labelHard.setText("Time is Over, try again !  ");
+				this.labelHard.setText("Time is over ...  ");
 				WindowManager.udc.loose();
 			}
 		}
