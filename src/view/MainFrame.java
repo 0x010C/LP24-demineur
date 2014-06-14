@@ -74,6 +74,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		this.setResizable(true);
 		this.setBounds((int) (toolkit.getScreenSize().getWidth()-this.width)/2,(int) (toolkit.getScreenSize().getHeight()-this.height)/2,this.width,this.height);
 		this.setMinimumSize(new Dimension(this.minWidth,this.minHeight));
+		this.setTitle("MineSweeper");
 		
 		/* Global Panel */
 		this.getContentPane().setLayout(new BorderLayout());

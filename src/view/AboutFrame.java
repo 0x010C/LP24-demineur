@@ -35,6 +35,7 @@ public class AboutFrame extends JFrame {
 		this.setBounds(60, 60, this.width, this.height);
 		this.setMinimumSize(new Dimension(this.minWidth,this.minHeight));
 		this.setResizable(false);
+		this.setTitle("MineSweeper - About");
 		
 		/* Global Panel */
 		this.getContentPane().setLayout(new BorderLayout());

@@ -52,6 +52,7 @@ public class ScoreFrame extends JFrame implements ItemListener {
 		this.setSize(new Dimension(this.width, this.height));
 		this.setResizable(false);
 		this.setBounds(60, 60, this.width, this.height);
+		this.setTitle("MineSweeper - Scores");
 		
 		this.score = score;
 		
