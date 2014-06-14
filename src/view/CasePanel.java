@@ -62,7 +62,7 @@ public class CasePanel extends JPanel {
 		this.baseSize[4] = 64;
 		
 		for(int i=0;i<5;i++) {
-			this.basePath[i] = new String("src/images/png/".concat(Integer.toString(baseSize[i])).concat("/"));
+			this.basePath[i] = new String("ressources/images/png/".concat(Integer.toString(baseSize[i])).concat("/"));
 			
 			this.hiddenImg[i] = new ImagePanel(basePath[i].concat("hidden.png"));
 			this.emptyImg[i] = new ImagePanel(basePath[i].concat("empty.png"));

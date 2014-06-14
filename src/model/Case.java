@@ -6,7 +6,7 @@ public class Case {
 	private State state;
 	private Content content;
 
-	/* Enum */
+	/* Enumerations */
 	public enum State {
 		hidden,
 		open,

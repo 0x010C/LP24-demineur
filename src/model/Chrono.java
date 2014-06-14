@@ -12,7 +12,7 @@ public class Chrono implements ActionListener {
 	private Timer timer;
 	
 	public void actionPerformed(ActionEvent e) {
-		//System.out.println(this.getTime());
+		
 	}
 	
 	public Chrono(String name) {

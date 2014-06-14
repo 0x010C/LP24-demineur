@@ -39,7 +39,7 @@ public class AboutFrame extends JFrame {
 		
 		/* Global Panel */
 		this.getContentPane().setLayout(new BorderLayout());
-		logo = new ImagePanel("src/images/png/logo.png", this.logoWidth, this.logoHeight);
+		logo = new ImagePanel("ressources/images/png/logo.png", this.logoWidth, this.logoHeight);
 		
 		content = new JPanel();
 		this.getContentPane().add(BorderLayout.NORTH, logo);

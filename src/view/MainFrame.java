@@ -82,9 +82,8 @@ public class MainFrame extends JFrame implements ActionListener {
 		topMenuPanel = new JPanel();
 		leftMenuPanel = new JPanel();
 		rightMenuPanel = new JPanel();
-		//menuBar = new JMenuBar();
 		logoPanel = new JPanel();
-		logo = new ImagePanel("src/images/png/logo.png", this.logoWidth, this.logoHeight);
+		logo = new ImagePanel("ressources/images/png/logo.png", this.logoWidth, this.logoHeight);
 		card = new JPanel();
 		
 		this.getContentPane().add(BorderLayout.NORTH, menuPanel);
@@ -100,12 +99,12 @@ public class MainFrame extends JFrame implements ActionListener {
 		topMenuPanel.add(BorderLayout.EAST, rightMenuPanel);
 		menuPanel.add(BorderLayout.NORTH, topMenuPanel);
 		
-		buttonNewGame = new ImagePanel("src/images/png/newgame.png");
-		buttonPause = new ImagePanel("src/images/png/pause.png");
-		buttonRules = new ImagePanel("src/images/png/rules.png");
-		buttonAbout = new ImagePanel("src/images/png/about.png");
-		buttonScore = new ImagePanel("src/images/png/score.png");
-		buttonQuit = new ImagePanel("src/images/png/quit.png");
+		buttonNewGame = new ImagePanel("ressources/images/png/newgame.png");
+		buttonPause = new ImagePanel("ressources/images/png/pause.png");
+		buttonRules = new ImagePanel("ressources/images/png/rules.png");
+		buttonAbout = new ImagePanel("ressources/images/png/about.png");
+		buttonScore = new ImagePanel("ressources/images/png/score.png");
+		buttonQuit = new ImagePanel("ressources/images/png/quit.png");
 		labelMessage = new JLabel("");
 		labelHard = new JLabel("");
 		labelScore = new JLabel("");
@@ -144,7 +143,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		buttonScore.setToolTipText("Score");
 		buttonQuit.setToolTipText("Quit");
 		
-		// Hidding the background of the items
+		// Hiding the background of the items
 		buttonNewGame.setOpaque(false);
 		buttonPause.setOpaque(false);
 		buttonRules.setOpaque(false);
@@ -212,13 +211,13 @@ public class MainFrame extends JFrame implements ActionListener {
 			case game:
 				cardLayout.show(this.card, "game");
 				buttonPause.setName("itemPause");
-				buttonPause.changeImage("src/images/png/pause.png");
+				buttonPause.changeImage("ressources/images/png/pause.png");
 				buttonPause.setToolTipText("Pause");
 				break;
 			case pause:
 				cardLayout.show(this.card, "pause");
 				buttonPause.setName("itemContinue");
-				buttonPause.changeImage("src/images/png/play.png");
+				buttonPause.changeImage("ressources/images/png/play.png");
 				buttonPause.setToolTipText("Continue");
 				break;
 		}
@@ -231,14 +230,14 @@ public class MainFrame extends JFrame implements ActionListener {
 	
 	public void setEnableGameItem(boolean b) {
 		if(b) {
-			buttonPause.changeImage("src/images/png/pause.png");
-			buttonNewGame.changeImage("src/images/png/newgame.png");
+			buttonPause.changeImage("ressources/images/png/pause.png");
+			buttonNewGame.changeImage("ressources/images/png/newgame.png");
 			buttonPause.setName("itemPause");
 			buttonNewGame.setName("itemNewGame");
 		}
 		else {
-			buttonPause.changeImage("src/images/png/pause-grey.png");
-			buttonNewGame.changeImage("src/images/png/newgame-grey.png");
+			buttonPause.changeImage("ressources/images/png/pause-grey.png");
+			buttonNewGame.changeImage("ressources/images/png/newgame-grey.png");
 			buttonPause.setName("itemPauseDisabled");
 			buttonNewGame.setName("itemNewGameDisabled");
 		}

@@ -58,7 +58,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		this.scoreFrame.ShowScores();
 		this.scoreFrame.addWindowListener(this);
 		
-		/* Initialisation of our Main Frame */
+		/* Initialization of our Main Frame */
 		WindowManager.chrono = new Chrono("Chronometre");
 		mainFrame = new MainFrame();
 		bc = new ButtonController();

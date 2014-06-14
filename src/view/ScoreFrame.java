@@ -59,7 +59,7 @@ public class ScoreFrame extends JFrame implements ItemListener {
 		/* Global Panel */
 		this.getContentPane().setLayout(new BorderLayout());
 		
-		this.logo = new ImagePanel("src/images/png/logo.png", this.logoWidth, this.logoHeight);
+		this.logo = new ImagePanel("ressources/images/png/logo.png", this.logoWidth, this.logoHeight);
 		this.content = new JPanel();
 		this.getContentPane().add(BorderLayout.NORTH, logo);
 		this.getContentPane().add(BorderLayout.CENTER, content);
@@ -78,7 +78,7 @@ public class ScoreFrame extends JFrame implements ItemListener {
 		this.panelSouth.setPreferredSize(new Dimension(700, 220));
 		
 		/* Creation of the image podium */
-		this.podium = new ImagePanel("src/images/png/podium.png", this.podiumWidth, this.podiumHeight);
+		this.podium = new ImagePanel("ressources/images/png/podium.png", this.podiumWidth, this.podiumHeight);
 		this.podium.setBounds(this.width/2-(this.podiumWidth/2), 30, this.podiumWidth, this.podiumHeight);
 		
 		/* Adding the title of the frame */
@@ -89,7 +89,7 @@ public class ScoreFrame extends JFrame implements ItemListener {
 		this.labelTitle.setFont(fontTitle);
 		
 		/* ComboBox */
-		this.filePath = "src/scores/";
+		this.filePath = "ressources/scores/";
 		this.sizeArray = score.getSizeTreeHumanReadable(filePath);
 		this.array = new String[sizeArray];
 		this.array = score.TreeHumanReadable(filePath);

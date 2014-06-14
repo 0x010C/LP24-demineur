@@ -55,7 +55,7 @@ public class Score{
 		}
 		
 		/* Initialization of filePath */
-		filePath = ("src/scores/" + x + "_" + y + "_" + bombs + ".score");
+		filePath = ("ressources/scores/" + x + "_" + y + "_" + bombs + ".score");
 		
 		// Check if the file exists or not
 		this.CreateIfNotCreated(filePath);
@@ -157,7 +157,7 @@ public class Score{
 		}
 		
 		/* Converting the relative path into human readable path */
-		// scores/8_8_10.score   -->   8 X 8, 10 mines
+		// ressources/scores/8_8_10.score   -->   8 X 8, 10 mines
 		
 		for(i = 0; i < tree.size(); i ++){
 			tmpX = tree.get(i).substring(tree.get(i).lastIndexOf("/")+1, tree.get(i).indexOf("_"));
@@ -179,14 +179,14 @@ public class Score{
 	}
 	
 	public String HumanReadableToFilePath(String hr){
-		/* 8 X 8, 10 mines   -->   src/scores/8_8_10.score */
+		/* 8 X 8, 10 mines   -->   ressources/scores/8_8_10.score */
 		String tmpX, tmpY, tmpBomb;
 		
 		tmpX = hr.substring(0, hr.indexOf("X")-1);
 		tmpY = hr.substring(hr.indexOf("X")+2, hr.indexOf(","));
 		tmpBomb = hr.substring(hr.indexOf(",")+2, hr.indexOf("m")-1);
 		
-		return "src/scores/" + tmpX + "_" + tmpY + "_" + tmpBomb + ".score";
+		return "ressources/scores/" + tmpX + "_" + tmpY + "_" + tmpBomb + ".score";
 	}
 	
 }
