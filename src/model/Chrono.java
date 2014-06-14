@@ -9,14 +9,19 @@ public class Chrono implements ActionListener {
 	private long startTime;
 	private long savedTime;
 	private boolean running;
-	public static Timer timer;
+	private Timer timer;
 	
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(this.getTime());
 	}
 	
-	public Chrono() {
-		timer = new Timer(100,this);
+	public Chrono(String name) {
+		this.timer = new Timer(200,this);
+		this.timer.setActionCommand(name);
+	}
+	
+	public void addActionListener(ActionListener listener) {
+		this.timer.addActionListener(listener);
 	}
 	
 	public void start() {

@@ -39,6 +39,8 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 	private int nbBombs;
 	
 	public static boolean finish;
+	public static boolean hardMode = false;
+	
 	public static int iconSize = 32;
 	public static int margin = 5;
 	
@@ -57,7 +59,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		this.scoreFrame.addWindowListener(this);
 		
 		/* Initialisation of our Main Frame */
-		WindowManager.chrono = new Chrono();
+		WindowManager.chrono = new Chrono("Chronometre");
 		mainFrame = new MainFrame();
 		bc = new ButtonController();
 		bc.add(this);
@@ -92,6 +94,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 	
 	public void abrogateGame() {
 		WindowManager.chrono.stop();
+		MainFrame.hardChrono.stop();
 		this.mainFrame.setEnableGameItem(false);
 		chunk = null;
 		this.currentCard = MainFrame.Card.start;
@@ -101,6 +104,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 		this.mainFrame.resetScore();
 		this.scoreFrame.setCurrentScore(-1);
 		WindowManager.finish = false;
+		WindowManager.hardMode = false;
 	}
 	
 	public void endGame(boolean win) {
@@ -116,6 +120,7 @@ public class WindowManager implements ButtonListener, UpdateDisplayListener, Win
 			WindowManager.finish = true;
 		}
 		WindowManager.chrono.stop();
+		MainFrame.hardChrono.stop();
 	}
 	
 	public void switchCard(MainFrame.Card newCard) {

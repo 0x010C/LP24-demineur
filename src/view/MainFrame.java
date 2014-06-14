@@ -12,11 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.EventListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
 import model.Chrono;
@@ -48,7 +45,6 @@ public class MainFrame extends JFrame implements ActionListener {
 	private JPanel topMenuPanel;
 	private JPanel leftMenuPanel;
 	private JPanel rightMenuPanel;
-	private JMenuBar menuBar;
 	private JPanel logoPanel;
 	private ImagePanel logo;
 	private JPanel card;
@@ -59,6 +55,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	private ImagePanel buttonAbout;
 	private ImagePanel buttonScore;
 	private ImagePanel buttonQuit;
+	private JLabel labelHard;
 	private JLabel labelScore;
 	
 	private CardLayout cardLayout;
@@ -66,6 +63,8 @@ public class MainFrame extends JFrame implements ActionListener {
 	private CustomPanel customPanel;
 	private GamePanel gamePanel;
 	private PausePanel pausePanel;
+	
+	public static Chrono hardChrono;
 	
 	public MainFrame() {
 		/* Define the screen size and location */
@@ -105,8 +104,10 @@ public class MainFrame extends JFrame implements ActionListener {
 		buttonAbout = new ImagePanel("src/images/png/about.png");
 		buttonScore = new ImagePanel("src/images/png/score.png");
 		buttonQuit = new ImagePanel("src/images/png/quit.png");
+		labelHard = new JLabel("");
 		labelScore = new JLabel("");
 		
+		labelHard.setFont(new Font("Liberation Sans", Font.BOLD, 20));
 		labelScore.setFont(new Font("Liberation Sans", Font.BOLD, 20));
 		
 		leftMenuPanel.add(buttonNewGame);
@@ -115,6 +116,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		leftMenuPanel.add(buttonAbout);
 		leftMenuPanel.add(buttonScore);
 		leftMenuPanel.add(buttonQuit);
+		rightMenuPanel.add(labelHard);
 		rightMenuPanel.add(labelScore);
 		
 		// Setting the ActionCommand of the buttons
@@ -174,7 +176,9 @@ public class MainFrame extends JFrame implements ActionListener {
 		card.add(customPanel, "custom");
 		card.add(pausePanel, "pause");
 		
-		Chrono.timer.addActionListener(this);
+		WindowManager.chrono.addActionListener(this);
+		MainFrame.hardChrono = new Chrono("Hard");
+		MainFrame.hardChrono.addActionListener(this);
 		
 		/* Display the window */
 		this.setVisible(true);
@@ -237,6 +241,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	
 	public void resetScore() {
 		this.labelScore.setText("");
+		this.labelHard.setText("");
 	}
 	
 	public void paint(Graphics g) {
@@ -245,6 +250,14 @@ public class MainFrame extends JFrame implements ActionListener {
 		super.paint(g);
 	}
 	public void actionPerformed(ActionEvent e) {
-		labelScore.setText("Chrono : "+WindowManager.chrono.getTime()+"s");
+		if(e.getActionCommand() == "Chronometre")
+			labelScore.setText("Chrono : "+WindowManager.chrono.getTime()+"s");
+		else {
+			labelHard.setText("Only "+(15-MainFrame.hardChrono.getTime())+"s left  ");
+			if(15-MainFrame.hardChrono.getTime() <= 0) {
+				labelHard.setText("Time is Over, try again !  ");
+				WindowManager.udc.loose();
+			}
+		}
 	}
 }

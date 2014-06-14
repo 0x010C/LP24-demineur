@@ -33,6 +33,8 @@ public class ButtonController implements ActionListener, MouseListener {
 					bl.switchCard(MainFrame.Card.custom);
 					break;
 				case "btHard":
+					WindowManager.hardMode = true;
+					bl.startGame(16, 16, 40);
 					break;
 				case "customCancel":
 					bl.switchCard(MainFrame.Card.start);
@@ -55,10 +57,12 @@ public class ButtonController implements ActionListener, MouseListener {
 					case "itemPause":
 						bl.switchCard(MainFrame.Card.pause);
 						WindowManager.chrono.pause();
+						MainFrame.hardChrono.pause();
 						break;
 					case "itemContinue":
 						bl.switchCard(MainFrame.Card.game);
 						WindowManager.chrono.pause();
+						MainFrame.hardChrono.pause();
 						break;
 					case "itemRules":
 						bl.openFrame(WindowManager.Frame.rules);

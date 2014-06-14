@@ -2,6 +2,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
+import view.MainFrame;
+
 import control.GameListener;
 import control.WindowManager;
 
@@ -122,8 +124,11 @@ public class Chunk implements GameListener {
 			this.seed = r.nextInt(1000000);
 			this.generateChunk();
 		}
-		if(this.nbOpen == 0)
+		if(this.nbOpen == 0) {
 			WindowManager.chrono.start();
+			if(WindowManager.hardMode)
+				MainFrame.hardChrono.start();
+		}
 		
 		if(cases.get(x).get(y).getState() == Case.State.open && cases.get(x).get(y).getContent() != Case.Content.empty && cases.get(x).get(y).getContent() != Case.Content.bomb) {
 			int count = 0;
@@ -180,6 +185,10 @@ public class Chunk implements GameListener {
 		{
 			cases.get(x).get(y).setState(Case.State.open);
 			this.nbOpen++;
+			if(WindowManager.hardMode) {
+				MainFrame.hardChrono.stop();
+				MainFrame.hardChrono.start();
+			}
 			
 			if(cases.get(x).get(y).getContent() == Case.Content.bomb)
 			{
